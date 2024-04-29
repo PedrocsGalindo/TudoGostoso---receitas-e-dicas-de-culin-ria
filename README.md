@@ -1,7 +1,7 @@
 # TudoGostoso---receitas-e-dicas-de-culinaria
 
 ## Integrantes do grupo 
-[Liste o nome completo de todos os integrantes do grupo com seus respectivos e-mails]
+
  * Vinícius Gabriel Pereira Lima - vinicius.gplima@ufrpe.br
  * Pedro César Galindo de Souza - pedrocgsouza23@gmail.com
  * Yuri Catunda Ferreira de Sousa - yuri.catundapc@gmail.com
@@ -21,10 +21,10 @@ O projeto é um aplicativo de culinária que permite aos usuários cadastrar, bu
     -Podem cadastrar receitas, buscar receitas, compartilhar receitas, criar listas de compras, avaliar e comentar receitas.
 
 ## Requisitos do projeto
-REQ1: O sistema deve permitir o cadastro e login de usuários usando um nome de usuário e uma senha.
-REQ2: O sistema deve permitir que usuários cadastrem receitas com detalhes como nome, ingredientes, modo de preparo e tempo de cozimento.
-REQ3: O sistema deve permitir que os usuários busquem receitas por nome, ingredientes ou categorias (como sobremesas, pratos principais, etc.).
-REQ3: O sistema deve permitir que os usuários gerenciem (Create, Recover, Update e Delete - CRUD) suas receitas.
-REQ4: O sistema deve permitir que os usuários compartilhem receitas com outros usuários.
-REQ5: O sistema deve permitir que os usuários criem listas de compras baseadas nas receitas selecionadas.
-REQ6: O sistema deve permitir que os usuários avaliem e comentem receitas.
+-REQ1: O sistema deve permitir o cadastro e login de usuários usando um nome de usuário e uma senha.
+-REQ2: O sistema deve permitir que usuários cadastrem receitas com detalhes como nome, ingredientes, modo de preparo e tempo de cozimento.
+-REQ3: O sistema deve permitir que os usuários busquem receitas por nome, ingredientes ou categorias (como sobremesas, pratos principais, etc.).
+-REQ3: O sistema deve permitir que os usuários gerenciem (Create, Recover, Update e Delete - CRUD) suas receitas.
+-REQ4: O sistema deve permitir que os usuários compartilhem receitas com outros usuários.
+-REQ5: O sistema deve permitir que os usuários criem listas de compras baseadas nas receitas selecionadas.
+-REQ6: O sistema deve permitir que os usuários avaliem e comentem receitas.
