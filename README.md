@@ -6,7 +6,7 @@
  * Beltrano de Amorim Cardoso - beltrano@abc.com
  * Maria das Graças Nascimento - maria@abc.com
  * João da Fonseca - joao@abc.com
- * 
+ * Yuri Catunda Ferreira de Sousa - yuri.catundapc@gmail.com
 
 ## Descrição geral do projeto 
 O projeto é um aplicativo de culinária que permite aos usuários cadastrar, buscar e compartilhar receitas, bem como obter dicas culinárias e criar listas de compras com base nas receitas selecionadas.
