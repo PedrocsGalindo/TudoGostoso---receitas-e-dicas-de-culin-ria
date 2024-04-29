@@ -3,7 +3,7 @@
 ## Integrantes do grupo 
 [Liste o nome completo de todos os integrantes do grupo com seus respectivos e-mails]
  * Vinícius Gabriel Pereira Lima - vinicius.gplima@ufrpe.br
- * Beltrano de Amorim Cardoso - beltrano@abc.com
+ * Pedro César Galindo de Souza - pedrocgsouza23@gmail.com
  * Maria das Graças Nascimento - maria@abc.com
  * João da Fonseca - joao@abc.com
  * Yuri Catunda Ferreira de Sousa - yuri.catundapc@gmail.com
