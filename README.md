@@ -24,7 +24,7 @@ O projeto é um aplicativo de culinária que permite aos usuários cadastrar, bu
 -REQ1: O sistema deve permitir o cadastro e login de usuários usando um nome de usuário e uma senha.
 -REQ2: O sistema deve permitir que usuários cadastrem receitas com detalhes como nome, ingredientes, modo de preparo e tempo de cozimento.
 -REQ3: O sistema deve permitir que os usuários busquem receitas por nome, ingredientes ou categorias (como sobremesas, pratos principais, etc.).
--REQ3: O sistema deve permitir que os usuários gerenciem (Create, Recover, Update e Delete - CRUD) suas receitas.
--REQ4: O sistema deve permitir que os usuários compartilhem receitas com outros usuários.
--REQ5: O sistema deve permitir que os usuários criem listas de compras baseadas nas receitas selecionadas.
--REQ6: O sistema deve permitir que os usuários avaliem e comentem receitas.
+-REQ4: O sistema deve permitir que os usuários gerenciem (Create, Recover, Update e Delete - CRUD) suas receitas.
+-REQ5: O sistema deve permitir que os usuários compartilhem receitas com outros usuários.
+-REQ6: O sistema deve permitir que os usuários criem listas de compras baseadas nas receitas selecionadas.
+-REQ7: O sistema deve permitir que os usuários avaliem e comentem receitas.
