@@ -4,10 +4,9 @@
 [Liste o nome completo de todos os integrantes do grupo com seus respectivos e-mails]
  * Vinícius Gabriel Pereira Lima - vinicius.gplima@ufrpe.br
  * Pedro César Galindo de Souza - pedrocgsouza23@gmail.com
- * Maria das Graças Nascimento - maria@abc.com
- * João da Fonseca - joao@abc.com
  * Yuri Catunda Ferreira de Sousa - yuri.catundapc@gmail.com
  * Breno Jordão de Vasconcelos Bandeira - breno.vasc16052000@gmail.com
+ * 
 
 ## Descrição geral do projeto 
 O projeto é um aplicativo de culinária que permite aos usuários cadastrar, buscar e compartilhar receitas, bem como obter dicas culinárias e criar listas de compras com base nas receitas selecionadas.
