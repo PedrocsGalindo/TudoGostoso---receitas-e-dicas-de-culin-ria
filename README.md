@@ -12,10 +12,8 @@
 O projeto é um aplicativo de culinária que permite aos usuários cadastrar, buscar e compartilhar receitas, bem como obter dicas culinárias e criar listas de compras com base nas receitas selecionadas.
  1. Quem vai usar o programa?
     -O programa é destinado a pessoas interessadas em cozinhar, encontrar receitas e compartilhar receitas.
- 3. Que serviços são “necessários” ?
+ 2. Que serviços são “necessários” ?
     -Cadastro e busca de receitas,compartilhamento de receitas com outros usuários,criação de listas de compras baseadas em receitas selecionadas e avaliação e comentários sobre receitas.
- 5. Quais serviços cada usuário pode executar?
-    -Podem cadastrar receitas, buscar receitas, compartilhar receitas, criar listas de compras, avaliar e comentar receitas.
 
 ## Requisitos do projeto
 -REQ1: O sistema deve permitir o cadastro e login de usuários usando um nome de usuário e uma senha.
@@ -31,3 +29,5 @@ O projeto é um aplicativo de culinária que permite aos usuários cadastrar, bu
 -REQ6: O sistema deve permitir que os usuários criem listas de compras baseadas nas receitas selecionadas.
 
 -REQ7: O sistema deve permitir que os usuários avaliem e comentem receitas.
+
+-REQ8: O sistema deve pemitir que o usuário coloque como favorito as receitas que gostou, tendo ela em uma lista. 
