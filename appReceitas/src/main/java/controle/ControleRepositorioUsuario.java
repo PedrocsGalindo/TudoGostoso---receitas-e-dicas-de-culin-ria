@@ -16,3 +16,4 @@ public class ControleRepositorioUsuario {
         return usuario;
     }
 }
+//Precisa ser adicionado o CPF agora

@@ -10,15 +10,17 @@ public class Usuario implements Serializable {
     private String nome;
     private String senha;
     private String email;
+    private String cpf;
     private List<Receita> receitasFav;
     private List<Receita> minhasReceitas;
 
 
-    public Usuario(String nome, String senha, String email) {
+    public Usuario(String nome, String senha, String email, String cpf  ) {
         this.id = numIds++;
         this.nome = nome;
         this.senha = senha;
         this.email = email;
+        this.cpf = cpf;
         this.receitasFav = new ArrayList<Receita>();
         this.minhasReceitas = new ArrayList<Receita>();
     }

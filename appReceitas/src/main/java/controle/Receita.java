@@ -6,11 +6,11 @@ public class Receita{
     private static int numIds = 0;
     private final int id;
     private String titulo;
-    private List<Ingredientes> ingredientes;
+    private List<Ingrediente> ingredientes;
     private List<String> preparo;
     private Nota nota;
 
-    public Receita(String titulo, List<Ingredientes> ingredientes, List<String> preparo, Nota nota) {
+    public Receita(String titulo, List<Ingrediente> ingredientes, List<String> preparo, Nota nota) {
         this.id = numIds++;
         this.titulo = titulo;
         this.ingredientes = ingredientes;
@@ -33,7 +33,7 @@ public class Receita{
         return titulo;
     }
 
-    public List<Ingredientes> getIngredientes() {
+    public List<Ingrediente> getIngredientes() {
         return ingredientes;
     }
 
