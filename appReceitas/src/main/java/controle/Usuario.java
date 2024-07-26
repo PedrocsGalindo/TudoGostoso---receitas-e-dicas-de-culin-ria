@@ -10,9 +10,8 @@ public class Usuario implements Serializable {
     private String nome;
     private String senha;
     private String email;
-    private String cpf;
+    private final String cpf;
     private List<Receita> receitasFav;
-    private List<Receita> minhasReceitas;
 
 
     public Usuario(String nome, String senha, String email, String cpf  ) {
@@ -22,7 +21,6 @@ public class Usuario implements Serializable {
         this.email = email;
         this.cpf = cpf;
         this.receitasFav = new ArrayList<Receita>();
-        this.minhasReceitas = new ArrayList<Receita>();
     }
 
     public boolean equals(Receita receita) {
@@ -42,14 +40,6 @@ public class Usuario implements Serializable {
 
     public void removerReceitasFav(Receita receita) {
         this.receitasFav.remove(receita);
-    }
-
-    public void addMinhasReceitas(Receita receita) {
-        this.minhasReceitas.add(receita);
-    }
-
-    public void removerMinhasReceitas(Receita receita) {
-        this.minhasReceitas.remove(receita);
     }
 
     //gets e sets
@@ -94,11 +84,4 @@ public class Usuario implements Serializable {
         this.receitasFav = receitasFav;
     }
 
-    public List<Receita> getMinhasReceitas() {
-        return minhasReceitas;
-    }
-
-    public void setMinhasReceitas(List<Receita> minhasReceitas) {
-        this.minhasReceitas = minhasReceitas;
-    }
 }
