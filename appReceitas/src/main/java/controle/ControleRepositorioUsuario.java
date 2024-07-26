@@ -5,8 +5,8 @@ import repositorio.RepositorioUsuario;
 public class ControleRepositorioUsuario {
 
     private final RepositorioUsuario repositorio = new RepositorioUsuario();
-    public Usuario criarESalvarUsuario(String nome, String senha, String email){
-        Usuario usuario = new Usuario(nome, senha, email);
+    public Usuario criarESalvarUsuario(String nome, String senha, String email, String cpf){
+        Usuario usuario = new Usuario(nome, senha, email,cpf);
         this.repositorio.salvarUsuario(usuario);
         return usuario;
     }
