@@ -1,8 +1,9 @@
 package controle;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Receita{
+public class Receita implements Serializable {
     private static int numIds = 0;
     private final int id;
     private String titulo;

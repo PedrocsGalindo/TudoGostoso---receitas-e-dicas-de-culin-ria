@@ -1,6 +1,8 @@
 package controle;
 
-public class Ingrediente {
+import java.io.Serializable;
+
+public class Ingrediente implements Serializable {
     private int id;
     private String nome;
 
