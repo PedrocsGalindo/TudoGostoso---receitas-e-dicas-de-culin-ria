@@ -2,18 +2,24 @@ package controle;
 
 import repositorio.RepositorioUsuario;
 
+//tem que intanciar para poder usar
+
 public class ControleRepositorioUsuario  {
 
     private final RepositorioUsuario repositorio = new RepositorioUsuario();
+
+
+    // intancia um Usuario com os parametros dados, Mando pro RepositorioUsuario para salvar e retornar o proprio Usurio
+    //  Acho que vai ter que tirar essas intanciação daq, criar um factory
     public Usuario criarESalvarUsuario(String nome, String senha, String email, String cpf){
         Usuario usuario = new Usuario(nome, senha, email,cpf);
         this.repositorio.salvar(usuario);
         return usuario;
     }
 
+    //retornar o usuario baseado no id
     public Usuario recuperarUsuarioPorId(int id){
-        Usuario usuario = repositorio.buscar(id);
-        return usuario;
+        return repositorio.recuperar(id);
     }
 }
 //Precisa ser adicionado o CPF agora

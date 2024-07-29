@@ -1,9 +1,12 @@
 package repositorio;
 
-import controle.Usuario;
+import java.util.List;
 
 public interface IRepositorio <Objeto>{
-    public void salvar(Objeto valor);
+
+     void salvar(Objeto valor);
+     List<Objeto> buscar();
+     Objeto recuperar(int id);
 
 
 }

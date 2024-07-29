@@ -3,39 +3,58 @@ package repositorio;
 import controle.Usuario;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class RepositorioUsuario implements IRepositorio<Usuario>{
+public class RepositorioUsuario implements IRepositorio<Usuario> {
 
-    private static final File arquivo = new File("src/main/recursos/repositorios/repositorioUsuarios.bin");
+    //caminho do arquivo, relativo em relação ao content root
+    private static final Path path = Paths.get("appReceitas/src/main/recursos/repositorios/repositorioUsuarios.ser");
 
-    //output = escrever no arquivo
-    //input = ler o arquivo
 
-    //Salva o usuario no repositorio, ta tendo um problema de não conseguir salvar mais de um
+    //Busca e retorna a lista de Usuarios
+    public List<Usuario> buscar(){
 
-    public void salvar(Usuario usuario) {
-        try(FileOutputStream fileOutputStream = new FileOutputStream(arquivo);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)){
-
-            objectOutputStream.writeObject(usuario);
-
+        List<Usuario> usuarios = new ArrayList<>();
+        try(ObjectInputStream input = new ObjectInputStream( Files.newInputStream(path))){
+            try{
+                usuarios = (List<Usuario>) input.readObject();
+            }catch (ClassNotFoundException e){
+                System.out.println("erro ao ler arquivo");
+            }
         }catch (IOException e){
             e.printStackTrace();
+            System.out.println("Erro ao abrir arquivo");
+        }
+        return usuarios;
+    }
+
+    //salva usurio novo
+    public void salvar(Usuario usuario) {
+
+        List<Usuario> usuarios = buscar();
+        usuarios.add(usuario);
+        try(ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(path))){
+            output.writeObject(usuarios);
+        }catch (IOException e){
+            System.out.println("Erro ao abrir arquivo para escrever");
         }
     }
 
-    //retorna a intancia do Usuario desejado, ainda não ta sendo feito a busca baseada no id.
-    public Usuario buscar(int id) {
-        Usuario usuario;
-        try (FileInputStream FileInputStream = new FileInputStream(arquivo);
-             ObjectInputStream objectInputStream = new ObjectInputStream(FileInputStream)) {
 
-             usuario = (Usuario) objectInputStream.readObject();
+    //recuperar Usuario com id
+    public Usuario recuperar(int id) {
 
-        } catch (IOException | ClassNotFoundException e){
-            e.printStackTrace();
-            usuario = null;
+        List<Usuario> usuarios = buscar();
+        Usuario usuario = null;
+        for (Usuario u : usuarios) {
+            if (u.getId() == id) {
+                usuario = u;
+            }
         }
         return usuario;
     }
