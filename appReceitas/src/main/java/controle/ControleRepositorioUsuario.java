@@ -24,15 +24,15 @@ public class ControleRepositorioUsuario  {
 
     //retornar o usuario baseado no id
     public Usuario recuperarUsuarioPorId(int id){
-        return repositorio.recuperar(id);
+        return repositorio.buscarPorId(id);
     }
     //retornar o usuario baseado no cpf
     public Usuario recuperarUsuarioPorCpf(String cpf){
-        return repositorio.recuperar(cpf);
+        return repositorio.buscarPorCpf(cpf);
     }
     //retornar o usuario baseado no email
-    public Usuario recuperarUsuarioPorEmail(InternetAddress cpf){
-        return repositorio.recuperar(cpf);
+    public Usuario recuperarUsuarioPorEmail(InternetAddress email){
+        return repositorio.buscarPorEmail(email);
     }
 }
 //Precisa ser adicionado o CPF agora
