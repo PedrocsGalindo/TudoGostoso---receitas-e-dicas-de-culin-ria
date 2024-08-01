@@ -1,14 +1,19 @@
 package repositorio;
 
-import controle.Receita;
+import controle.ControleRepositorioUsuario;
+
+import controle.Usuario;
 
 public class Main {
     public static void main(String[] args) {
 
-        RepositorioReceita repositorioReceita = new RepositorioReceita();
-        Receita receita1 = new Receita("test",null,null,null);
-        repositorioReceita.adicionar(receita1);
-        repositorioReceita.buscar(receita1);
+        ControleRepositorioUsuario controle = new ControleRepositorioUsuario();
+        Usuario pedro = controle.criarESalvarUsuario("pedro","1231","pedrocgsouza23@gmail.com","1231414141");
+
+        Usuario caio = controle.criarESalvarUsuario("caio","1231","pedrocgsouza23@gmail.com","1231414141");
+
+
+
 
     }
 }

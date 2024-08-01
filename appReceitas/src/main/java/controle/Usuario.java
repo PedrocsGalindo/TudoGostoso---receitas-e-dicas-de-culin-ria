@@ -16,7 +16,7 @@ public class Usuario implements Serializable {
     private final String cpf;
     private List<Receita> receitasFav;
 
-
+    //usuario não vai ser intanciado diretamente, quem vai intanciar vai ser controle, depois criar um factory
     public Usuario(String nome, String senha, String email, String cpf  ) {
         this.id = numIds++;
         this.nome = nome;
