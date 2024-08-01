@@ -16,7 +16,7 @@ public class RepositorioUsuario implements IRepositorio<Usuario> {
     private static final Path path = Paths.get("appReceitas/src/main/recursos/repositorios/repositorioUsuarios.ser");
 
 
-    //Busca e retorna a lista de Usuarios
+    //Busca e retorna a lista de Usuarios, se tiver fazia, retorna uma lista vazia
     public List<Usuario> buscar(){
 
         List<Usuario> usuarios = new ArrayList<>();
@@ -61,7 +61,7 @@ public class RepositorioUsuario implements IRepositorio<Usuario> {
     }
 
 
-    //recuperar Usuario com id
+    //recuperar Usuario com id, se não achar retorna NULL
     public Usuario recuperar(int id) {
 
         List<Usuario> usuarios = buscar();
