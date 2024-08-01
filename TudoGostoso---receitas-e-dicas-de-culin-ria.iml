@@ -8,5 +8,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="javax.mail" level="project" />
+    <orderEntry type="library" name="java.mail" level="project" />
   </component>
 </module>
