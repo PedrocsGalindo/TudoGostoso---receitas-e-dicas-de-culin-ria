@@ -8,13 +8,16 @@ public class Receita implements Serializable {
     private static int numIds = 0;
     private final int id;
     private String titulo;
+    private final Usuario autor;
     private List<Ingrediente> ingredientes;
     private List<String> preparo;
+    private Avaliacao avaliacao;
     private Nota nota;
     private LocalDateTime horario;
 
-    public Receita(String titulo, List<Ingrediente> ingredientes, List<String> preparo, Nota nota, LocalDateTime horario) {
+    public Receita(String titulo, Usuario autor, List<Ingrediente> ingredientes, List<String> preparo, Nota nota, LocalDateTime horario) {
         this.id = numIds++;
+        this.autor = autor;
         this.titulo = titulo;
         this.ingredientes = ingredientes;
         this.preparo = preparo;
@@ -23,10 +26,7 @@ public class Receita implements Serializable {
     }
 
     public boolean equals(Receita receita) {
-         if (receita.getId() == getId()) {
-            return true;
-        }
-        return false;
+        return receita.getId() == getId();
     }
 
     public int getId() {
@@ -36,6 +36,8 @@ public class Receita implements Serializable {
     public String getTitulo() {
         return titulo;
     }
+
+    public Usuario getAutor() { return  this.autor;}
 
     public List<Ingrediente> getIngredientes() {
         return ingredientes;
@@ -69,7 +71,15 @@ public class Receita implements Serializable {
         this.nota = nota;
     }
 
+    public Avaliacao getAvaliacao(){return this.avaliacao;}
+
+    public void setAvaliacao(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
+    }
+
     public void setHorario(LocalDateTime horario) {
         this.horario = horario;
     }
+
+
 }
