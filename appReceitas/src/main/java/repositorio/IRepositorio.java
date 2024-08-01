@@ -2,11 +2,11 @@ package repositorio;
 
 import java.util.List;
 
-public interface IRepositorio <Objeto>{
+public interface IRepositorio <T>{
 
-     void salvar(Objeto valor);
-     List<Objeto> buscar();
-     Objeto recuperar(int id);
+     void salvar(T valor);
+     List<T> buscar();
+     T recuperar(int id);
 
 
 }
