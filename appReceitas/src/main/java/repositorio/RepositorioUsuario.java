@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import javax.mail.internet.InternetAddress;
 
 
 public class RepositorioUsuario implements IRepositorio<Usuario> {
@@ -81,6 +82,18 @@ public class RepositorioUsuario implements IRepositorio<Usuario> {
         Usuario usuario = null;
         for (Usuario u : usuarios) {
             if (u.getCpf().equals(cpf)) {
+                usuario = u;
+            }
+        }
+        return usuario;
+    }
+    //recuperar Usuario com emaill, se não achar retorna NULL
+    public Usuario recuperar(InternetAddress  email){
+
+        List<Usuario> usuarios = buscar();
+        Usuario usuario = null;
+        for (Usuario u : usuarios) {
+            if (u.getEmail().equals(email)) {
                 usuario = u;
             }
         }

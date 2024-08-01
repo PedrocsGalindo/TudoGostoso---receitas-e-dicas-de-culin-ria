@@ -1,6 +1,7 @@
 package controle;
 
 import repositorio.RepositorioUsuario;
+import javax.mail.internet.InternetAddress;
 
 //tem que intanciar para poder usar
 
@@ -27,6 +28,10 @@ public class ControleRepositorioUsuario  {
     }
     //retornar o usuario baseado no cpf
     public Usuario recuperarUsuarioPorCpf(String cpf){
+        return repositorio.recuperar(cpf);
+    }
+    //retornar o usuario baseado no email
+    public Usuario recuperarUsuarioPorEmail(InternetAddress cpf){
         return repositorio.recuperar(cpf);
     }
 }

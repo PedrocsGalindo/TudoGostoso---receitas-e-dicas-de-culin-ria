@@ -3,13 +3,16 @@ package controle;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.AddressException;
+
 
 public class Usuario implements Serializable {
     private static int numIds = 0;
     private final int id;
     private String nome;
     private String senha;
-    private String email;
+    private InternetAddress email;
     private final String cpf;
     private List<Receita> receitasFav;
 
@@ -18,16 +21,20 @@ public class Usuario implements Serializable {
         this.id = numIds++;
         this.nome = nome;
         this.senha = senha;
-        this.email = email;
+        try{
+            InternetAddress emailAddress = new InternetAddress(email);
+            emailAddress.validate();
+            this.email = emailAddress;
+
+        } catch (AddressException e) {
+            System.out.println("Email invalido");
+        }
         this.cpf = cpf;
         this.receitasFav = new ArrayList<Receita>();
     }
 
     public boolean equals(Receita receita) {
-        if (receita.getId() == getId()) {
-            return true;
-        }
-        return false;
+        return receita.getId() == getId();
     }
 
     public String toString(){
@@ -68,11 +75,11 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    public String getEmail() {
+    public InternetAddress getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(InternetAddress email) {
         this.email = email;
     }
 
