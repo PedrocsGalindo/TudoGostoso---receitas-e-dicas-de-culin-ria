@@ -9,6 +9,8 @@ import java.util.List;
 
 public abstract class RepositorioGenerico <T> {
 
+
+    //as subclasses podem ter acesso a path, assim mudando o caminho para cada repositorio
     protected Path path;
 
     public RepositorioGenerico(String filePath) {
