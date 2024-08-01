@@ -27,7 +27,6 @@ public class RepositorioUsuario implements IRepositorio<Usuario> {
                 System.out.println("erro ao ler arquivo");
             }
         }catch (IOException e){
-            e.printStackTrace();
             System.out.println("Erro ao abrir arquivo");
         }
         return usuarios;
@@ -42,6 +41,22 @@ public class RepositorioUsuario implements IRepositorio<Usuario> {
             output.writeObject(usuarios);
         }catch (IOException e){
             System.out.println("Erro ao abrir arquivo para escrever");
+        }
+    }
+
+    //remove usuario existente
+    public void excluir(Usuario usuario) {
+        List<Usuario> usuarios = buscar();
+        int hUsuarios = usuarios.size();
+        usuarios.remove(usuario);
+
+        //verefica se a lista foi alterada, se ela for, significa que existe o usuario e foi excluido
+        if (usuarios.size() != hUsuarios){
+            try(ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(path))){
+                output.writeObject(usuarios);
+            }catch (IOException e){
+                System.out.println("Erro ao abrir arquivo para escrever");
+            }
         }
     }
 
