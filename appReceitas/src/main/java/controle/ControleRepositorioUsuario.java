@@ -17,9 +17,17 @@ public class ControleRepositorioUsuario  {
         return usuario;
     }
 
+    public void excluirUsuario(Usuario usuario){
+        this.repositorio.excluir(usuario);
+    }
+
     //retornar o usuario baseado no id
     public Usuario recuperarUsuarioPorId(int id){
         return repositorio.recuperar(id);
+    }
+    //retornar o usuario baseado no cpf
+    public Usuario recuperarUsuarioPorCpf(String cpf){
+        return repositorio.recuperar(cpf);
     }
 }
 //Precisa ser adicionado o CPF agora

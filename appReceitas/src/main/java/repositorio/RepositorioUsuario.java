@@ -74,4 +74,16 @@ public class RepositorioUsuario implements IRepositorio<Usuario> {
         return usuario;
     }
 
+    //recuperar Usuario com cpf, se não achar retorna NULL
+    public Usuario recuperar(String cpf){
+
+        List<Usuario> usuarios = buscar();
+        Usuario usuario = null;
+        for (Usuario u : usuarios) {
+            if (u.getCpf().equals(cpf)) {
+                usuario = u;
+            }
+        }
+        return usuario;
+    }
 }

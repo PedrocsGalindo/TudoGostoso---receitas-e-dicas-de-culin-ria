@@ -76,6 +76,8 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
+    public String getCpf(){return cpf;}
+
     public List<Receita> getReceitasFav() {
         return receitasFav;
     }
