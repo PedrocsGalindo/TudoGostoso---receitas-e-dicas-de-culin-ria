@@ -2,7 +2,7 @@ package controle;
 
 import java.io.Serializable;
 
-public class Ingrediente implements Serializable {
+public class Ingrediente implements Serializable, Comparable<Ingrediente>{
     private int id;
     private String nome;
 
@@ -12,6 +12,11 @@ public class Ingrediente implements Serializable {
         this.nome = nome;
     }
 
+    //a ordem naturel é baseado no nome, ordem alfabetica
+    @Override
+    public int compareTo(Ingrediente o) {
+        return this.nome.compareTo(o.getNome());
+    }
     public String getNome() {
         return nome;
     }
