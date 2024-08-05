@@ -1,10 +1,12 @@
 package controle;
 
+import javax.xml.crypto.Data;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Receita implements Serializable {
+
+public class Receita implements Serializable, Comparable<Receita>{
     private static int numIds = 0;
     private final int id;
     private String titulo;
@@ -15,14 +17,19 @@ public class Receita implements Serializable {
     private Nota nota;
     private LocalDateTime horario;
 
-    public Receita(String titulo, Usuario autor, List<Ingrediente> ingredientes, List<String> preparo, Nota nota, LocalDateTime horario) {
+    public Receita(String titulo, Usuario autor, List<Ingrediente> ingredientes, List<String> preparo, Nota nota) {
         this.id = numIds++;
         this.autor = autor;
         this.titulo = titulo;
         this.ingredientes = ingredientes;
         this.preparo = preparo;
         this.nota = nota;
-        this.horario = horario;
+        this.horario = LocalDateTime.now();
+    }
+    //ordem natural de receitas é baseado no horario
+    @Override
+    public int compareTo(Receita o){
+        return this.horario.compareTo(o.getHorario());
     }
 
     public boolean equals(Receita receita) {
@@ -51,10 +58,6 @@ public class Receita implements Serializable {
         return nota;
     }
 
-    public LocalDateTime getHorario() {
-        return horario;
-    }
-
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
@@ -79,6 +82,10 @@ public class Receita implements Serializable {
 
     public void setHorario(LocalDateTime horario) {
         this.horario = horario;
+    }
+
+    public LocalDateTime getHorario(){
+        return this.horario;
     }
 
 
