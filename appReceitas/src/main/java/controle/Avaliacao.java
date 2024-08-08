@@ -1,8 +1,9 @@
 package controle;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Avaliacao {
+public class Avaliacao implements Serializable {
     private final int id;
     private int nota;
     private String comentario;
@@ -18,6 +19,11 @@ public class Avaliacao {
         this.data = data;
         this.usuario = usuario;
         this.receita = receita;
+    }
+
+    public boolean equals(Avaliacao a) {
+        return this.getId() == a.getId();
+
     }
 
     public int getId() {
