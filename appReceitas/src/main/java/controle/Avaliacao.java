@@ -3,12 +3,12 @@ package controle;
 import java.util.Date;
 
 public class Avaliacao {
-    private int id;
+    private final int id;
     private int nota;
     private String comentario;
-    private Date data;
-    private Usuario usuario;
-    private Receita receita;
+    private final Date data;
+    private final Usuario usuario;
+    private final Receita receita;
 
 
     public Avaliacao(int id, int nota, String comentario, Date data, Usuario usuario, Receita receita) {
@@ -22,10 +22,6 @@ public class Avaliacao {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getNota() {
@@ -48,23 +44,11 @@ public class Avaliacao {
         return data;
     }
 
-    public void setData(Date data) {
-        this.data = data;
-    }
-
     public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public Receita getReceita() {
         return receita;
-    }
-
-    public void setReceita(Receita receita) {
-        this.receita = receita;
     }
 }
