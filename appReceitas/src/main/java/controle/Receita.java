@@ -1,8 +1,9 @@
 package controle;
 
-import javax.xml.crypto.Data;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -13,18 +14,18 @@ public class Receita implements Serializable, Comparable<Receita>{
     private final Usuario autor;
     private List<Ingrediente> ingredientes;
     private List<String> preparo;
-    private Avaliacao avaliacao;
-    private Nota nota;
+    private List<Avaliacao> avaliacoes;
+    private int nota = 0;
     private LocalDateTime horario;
 
-    public Receita(String titulo, Usuario autor, List<Ingrediente> ingredientes, List<String> preparo, Nota nota) {
+    public Receita(String titulo, Usuario autor, List<Ingrediente> ingredientes, List<String> preparo) {
         this.id = numIds++;
         this.autor = autor;
         this.titulo = titulo;
         this.ingredientes = ingredientes;
         this.preparo = preparo;
-        this.nota = nota;
         this.horario = LocalDateTime.now();
+        this.avaliacoes = new ArrayList<>();
     }
     //ordem natural de receitas é baseado no horario
     @Override
@@ -54,8 +55,16 @@ public class Receita implements Serializable, Comparable<Receita>{
         return preparo;
     }
 
-    public Nota getNota() {
+    public int getNota() {
         return nota;
+    }
+
+    public void atualizarNota(){
+        int soma = 0;
+        for (Avaliacao avaliacao : avaliacoes) {
+            soma += avaliacao.getNota(); //soma todas as avaliações
+        }
+        this.nota = soma/this.avaliacoes.size();
     }
 
     public void setTitulo(String titulo) {
@@ -70,14 +79,14 @@ public class Receita implements Serializable, Comparable<Receita>{
         this.preparo = preparo;
     }
 
-    public void setNota(Nota nota) {
-        this.nota = nota;
+    public List<Avaliacao> getAvaliacoes(){return this.avaliacoes;}
+
+    public void adicioarAvaliacao(Avaliacao avaliacao) {
+        this.avaliacoes.add(avaliacao);
     }
 
-    public Avaliacao getAvaliacao(){return this.avaliacao;}
-
-    public void setAvaliacao(Avaliacao avaliacao) {
-        this.avaliacao = avaliacao;
+    public  void removerAvaliacao(Avaliacao avaliacao) {
+        this.avaliacoes.remove(avaliacao);
     }
 
     public void setHorario(LocalDateTime horario) {
