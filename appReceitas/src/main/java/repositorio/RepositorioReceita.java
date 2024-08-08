@@ -2,7 +2,6 @@ package repositorio;
 
 import controle.Avaliacao;
 import controle.Receita;
-import controle.Usuario;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,10 +26,11 @@ public class RepositorioReceita extends RepositorioGenerico<Receita> {
                 .collect(Collectors.toList());
     }
 
-    public List<Receita> buscarPorAvaliacao(int avaliacao) {
+    public List<Receita> buscarPorAvaliacao(Avaliacao avaliacao) {
         List<Receita> items = this.buscar();
         return items.stream()
-                .filter(receita -> receita.getAvaliacao().getNota() == (avaliacao))
+                .filter(receita -> receita.getAvaliacoes().stream()
+                        .anyMatch(a -> a.equals(avaliacao)))
                 .collect(Collectors.toList());
     }
 }
