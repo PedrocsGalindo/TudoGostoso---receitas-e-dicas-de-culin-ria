@@ -13,12 +13,16 @@ public class Receita implements Serializable, Comparable<Receita>{
     private String titulo;
     private final Usuario autor;
     private List<Ingrediente> ingredientes;
-    private List<String> preparo;
+    private List<String> preparo;// o arraylist de preparo Seria um guia por para o leitor?
     private List<Avaliacao> avaliacoes;
     private int nota = 0;
     private LocalDateTime horario;
+    private String modoDePreparo;
+    private String tempoDePreparo;
+    private String categoria;
 
-    public Receita(String titulo, Usuario autor, List<Ingrediente> ingredientes, List<String> preparo) {
+
+    public Receita(String titulo, Usuario autor, List<Ingrediente> ingredientes, List<String> preparo, String modoDePreparo,String tempoDePreparo, String categoria) {
         this.id = numIds++;
         this.autor = autor;
         this.titulo = titulo;
@@ -26,6 +30,9 @@ public class Receita implements Serializable, Comparable<Receita>{
         this.preparo = preparo;
         this.horario = LocalDateTime.now();
         this.avaliacoes = new ArrayList<>();
+        this.tempoDePreparo= tempoDePreparo;
+        this.modoDePreparo = modoDePreparo;
+        this.categoria = categoria;
     }
     //ordem natural de receitas é baseado no horario
     @Override
@@ -59,6 +66,17 @@ public class Receita implements Serializable, Comparable<Receita>{
         return nota;
     }
 
+    public String getModoDePreparo(){
+        return modoDePreparo;
+    }
+    public String getCategoria(){
+        return categoria;
+
+    }
+    public  String getTempoDePreparo(){
+        return tempoDePreparo;
+    }
+
     public void atualizarNota(){
         int soma = 0;
         for (Avaliacao avaliacao : avaliacoes) {
@@ -83,11 +101,12 @@ public class Receita implements Serializable, Comparable<Receita>{
 
     public void adicioarAvaliacao(Avaliacao avaliacao) {
         this.avaliacoes.add(avaliacao);
-    }
+    }// é pra esse método ser aqui mesmo?
 
     public  void removerAvaliacao(Avaliacao avaliacao) {
         this.avaliacoes.remove(avaliacao);
     }
+    // é pra esse método ser aqui mesmo?
 
     public void setHorario(LocalDateTime horario) {
         this.horario = horario;

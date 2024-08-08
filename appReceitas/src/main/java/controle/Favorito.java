@@ -5,7 +5,7 @@ public class Favorito {
     private Usuario usuario;
     private Receita receita;
 
-    // Construtor
+
     public Favorito(int id, Usuario usuario, Receita receita) {
         this.id = id;
         this.usuario = usuario;
