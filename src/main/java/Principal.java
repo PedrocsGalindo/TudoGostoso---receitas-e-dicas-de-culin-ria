@@ -1,16 +1,19 @@
 import controle.ControleRepositorioUsuario;
 import controle.ControleUsuario;
 import modelo.Usuario;
+import repositorio.RepositorioUsuario;
 
 
 public class Principal {
     public static void main(String[] args) {
+        ControleRepositorioUsuario controleRepositorioUsuario= new ControleRepositorioUsuario(new RepositorioUsuario());
+        ControleUsuario controleU = new ControleUsuario(controleRepositorioUsuario);
 
-        Usuario pedro = ControleUsuario.criarUsuario("pedro", "4315","pedrocgsouza23@gmail", "123141");
-        Usuario caio = ControleUsuario.criarUsuario("caio", "4315","pedrocgsouza23@gmail", "123141");
+        Usuario pedro = controleU.criarUsuario("pedro", "4315","pedrocgsouza23@gmail", "123141");
+        Usuario caio = controleU.criarUsuario("caio", "4315","pedrocgsouza23@gmail", "123141");
 
-        Usuario caioc = ControleRepositorioUsuario.recuperarUsuarioPorId(1);
-        Usuario pedror= ControleRepositorioUsuario.recuperarUsuarioPorId(0);
+        Usuario caioc = controleRepositorioUsuario.recuperarUsuarioPorId(1);
+        Usuario pedror= controleRepositorioUsuario.recuperarUsuarioPorId(0);
 
         System.out.println(pedror.getNome());
         System.out.println(caioc.getNome());
