@@ -1,5 +1,7 @@
 package controle;
 
+import modelo.Usuario;
+
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 

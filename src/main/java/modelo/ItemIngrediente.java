@@ -1,4 +1,4 @@
-package controle;
+package modelo;
 
 //ItemIgrendientes são os igrendiente que vão em receitas, justamente por conta disso precisam tem quantidade e medida
 public class ItemIngrediente extends Ingrediente{

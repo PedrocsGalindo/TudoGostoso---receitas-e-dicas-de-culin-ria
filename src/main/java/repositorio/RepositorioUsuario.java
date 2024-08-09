@@ -1,6 +1,6 @@
 package repositorio;
 
-import controle.Usuario;
+import modelo.Usuario;
 
 import java.util.List;
 import javax.mail.internet.InternetAddress;

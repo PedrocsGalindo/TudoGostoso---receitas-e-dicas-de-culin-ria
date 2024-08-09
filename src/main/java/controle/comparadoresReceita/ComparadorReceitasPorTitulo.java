@@ -1,6 +1,6 @@
 package controle.comparadoresReceita;
 
-import controle.Receita;
+import modelo.Receita;
 
 import java.util.Comparator;
 

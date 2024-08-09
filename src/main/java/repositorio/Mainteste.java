@@ -1,6 +1,6 @@
 package repositorio;
 
-import controle.Receita;
+import modelo.Receita;
 
 public class Mainteste {
     public static void main(String[] args) {

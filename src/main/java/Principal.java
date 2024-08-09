@@ -1,6 +1,6 @@
 import controle.ControleRepositorioUsuario;
 import controle.ControleUsuario;
-import controle.Usuario;
+import modelo.Usuario;
 
 
 public class Principal {

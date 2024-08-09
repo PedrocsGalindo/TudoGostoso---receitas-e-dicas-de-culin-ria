@@ -1,7 +1,7 @@
 package repositorio;
 
-import controle.Avaliacao;
-import controle.Receita;
+import modelo.Avaliacao;
+import modelo.Receita;
 
 import java.util.List;
 import java.util.stream.Collectors;

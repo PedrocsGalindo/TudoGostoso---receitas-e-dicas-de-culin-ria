@@ -1,10 +1,10 @@
-package controle;
+package modelo;
 
 import javax.mail.internet.InternetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioChef extends Usuario{
+public class UsuarioChef extends Usuario {
 
     private List<Receita> minhasReceitas;
 
