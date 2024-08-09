@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.AddressException;
 
 
 public class Usuario implements Serializable {
@@ -17,18 +16,11 @@ public class Usuario implements Serializable {
     private List<Receita> receitasFav;
 
     //usuario não vai ser intanciado diretamente, quem vai intanciar vai ser controle, depois criar um factory
-    public Usuario(String nome, String senha, String email, String cpf  ) {
+    public Usuario(String nome, String senha, InternetAddress email, String cpf  ) {
         this.id = numIds++;
         this.nome = nome;
         this.senha = senha;
-        try{
-            InternetAddress emailAddress = new InternetAddress(email);
-            emailAddress.validate();
-            this.email = emailAddress;
-
-        } catch (AddressException e) {
-            System.out.println("Email invalido");
-        }
+        this.email = email;
         this.cpf = cpf;
         this.receitasFav = new ArrayList<Receita>();
     }
