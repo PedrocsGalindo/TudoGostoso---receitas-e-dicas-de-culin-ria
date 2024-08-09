@@ -117,4 +117,20 @@ public class Receita implements Serializable, Comparable<Receita>{
     }
 
 
+    @Override
+    public String toString() {
+        return "Receita{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", autor=" + autor +
+                ", ingredientes=" + ingredientes +
+                ", preparo=" + preparo +
+                ", avaliacoes=" + avaliacoes +
+                ", nota=" + nota +
+                ", horario=" + horario +
+                ", modoDePreparo='" + modoDePreparo + '\'' +
+                ", tempoDePreparo='" + tempoDePreparo + '\'' +
+                ", categoria='" + categoria + '\'' +
+                '}';
+    }
 }

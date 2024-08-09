@@ -9,7 +9,7 @@ public class Ingrediente implements Serializable, Comparable<Ingrediente>{
     private String unidade;
 
 
-    public Ingrediente(int id, String nome, String quantidade, String unidade) {
+    public Ingrediente(int id, String nome) {
         this.id = id;
         this.nome = nome;
         this.quantidade = quantidade;
