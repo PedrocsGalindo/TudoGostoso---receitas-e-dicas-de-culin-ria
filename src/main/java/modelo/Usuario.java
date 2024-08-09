@@ -8,7 +8,7 @@ import javax.mail.internet.InternetAddress;
 
 public class Usuario implements Serializable {
     private static int numIds = 0;
-    private final int id;
+    protected final int id;
     private String nome;
     private String senha;
     private InternetAddress email;
@@ -17,14 +17,26 @@ public class Usuario implements Serializable {
 
     //usuario não vai ser intanciado diretamente, quem vai intanciar vai ser controle, depois criar um factory
     public Usuario(String nome, String senha, InternetAddress email, String cpf  ) {
-        this.id = numIds++;
+        this.id = gerarId();
         this.nome = nome;
         this.senha = senha;
         this.email = email;
         this.cpf = cpf;
         this.receitasFav = new ArrayList<Receita>();
     }
+    //construtor que so vai ser usado para poder Criar a UsuarioChef
+    public Usuario(String nome, String senha, InternetAddress email, String cpf, List<Receita> receitasFav, int id){
+        this.id = id;
+        this.nome = nome;
+        this.senha = senha;
+        this.email = email;
+        this.cpf = cpf;
+        this.receitasFav = receitasFav;
+    }
 
+    public int gerarId(){
+        return ++numIds;
+    }
     public boolean equals(Receita receita) {
         return receita.getId() == getId();
     }
