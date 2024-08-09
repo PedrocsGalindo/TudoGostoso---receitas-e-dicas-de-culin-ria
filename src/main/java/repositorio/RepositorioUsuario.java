@@ -10,7 +10,7 @@ public class RepositorioUsuario extends repositorio.RepositorioGenerico<Usuario>
 
     // Define o caminho do arquivo específico para usuários
     public RepositorioUsuario() {
-        super("appReceitas/out/production/appReceitas/repositorios/RepositorioUsuarios/repositorio.ser");
+        super("src/main/java/repositorios/RepositorioUsuario/repositorio.ser");
     }
 
     //buscar, salvar e excluir herdados de Generico

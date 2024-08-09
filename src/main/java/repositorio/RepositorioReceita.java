@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class RepositorioReceita extends RepositorioGenerico<Receita> {
 
     public RepositorioReceita() {
-        super("appReceitas/out/production/appReceitas/repositorios/RepositorioReceitas/repositorio.ser");
+        super("src/main/java/repositorios/RepositorioReceitas/repositorio.ser");
     }
 
     public List<Receita> buscarPorTitulo(String nome) {
