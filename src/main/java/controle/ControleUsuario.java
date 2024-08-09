@@ -2,16 +2,17 @@ package controle;
 
 import exceptions.UsuarioJaExistenteException;
 import modelo.Usuario;
+import modelo.UsuarioChef;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 public class ControleUsuario {
 
-    private final ControleRepositorioUsuario controleRepositorioU;
+    private final ControleRepositorioUsuario controleRepositorioUsuario;
 
     public ControleUsuario(ControleRepositorioUsuario controleRepositorioU) {
-        this.controleRepositorioU = controleRepositorioU;
+        this.controleRepositorioUsuario = controleRepositorioU;
     }
 
     public  Usuario criarUsuario(String nome, String senha, String email, String cpf) {
@@ -23,8 +24,8 @@ public class ControleUsuario {
             if (nome.isEmpty() || senha.isEmpty()|| email.isEmpty() || cpf.isEmpty()) {throw new NullPointerException();}
 
 
-            Usuario usuario = new Usuario(nome, senha, emailAddress,cpf);
-            controleRepositorioU.salvarUsuario(usuario);
+            Usuario usuario = new Usuario(nome, senha, emailAddress, cpf);
+            controleRepositorioUsuario.salvarUsuario(usuario);
             return usuario;
         } catch (AddressException e) {
             System.out.println("email invalido");
@@ -34,6 +35,16 @@ public class ControleUsuario {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+    public UsuarioChef criarUsuarioChef(Usuario usuario) {
+        UsuarioChef usuarioChef = new UsuarioChef(usuario);
+        controleRepositorioUsuario.excluirUsuario(usuario);
+        try{
+            controleRepositorioUsuario.salvarUsuario(usuarioChef);
+        }catch (UsuarioJaExistenteException e){
+            System.out.println(e.getMessage());
+        }
+        return usuarioChef;
     }
 
 
