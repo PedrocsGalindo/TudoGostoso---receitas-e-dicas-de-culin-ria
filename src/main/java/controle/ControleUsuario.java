@@ -36,8 +36,8 @@ public class ControleUsuario {
         }
         return null;
     }
-    public UsuarioChef criarUsuarioChef(Usuario usuario) {
-        UsuarioChef usuarioChef = new UsuarioChef(usuario);
+    public Usuario criarUsuarioChef(Usuario usuario) {
+        Usuario usuarioChef = new UsuarioChef(usuario);
         controleRepositorioUsuario.excluirUsuario(usuario);
         try{
             controleRepositorioUsuario.salvarUsuario(usuarioChef);
@@ -46,7 +46,4 @@ public class ControleUsuario {
         }
         return usuarioChef;
     }
-
-
-
 }

@@ -9,7 +9,9 @@ public class ControleFactory {
         ControleRepositorioUsuario controleRepositorioUsuario = new ControleRepositorioUsuario(new RepositorioUsuario());
         ControleRepositorioReceita controleRepositorioReceita = new ControleRepositorioReceita(new RepositorioReceita());
         ControleUsuario controleUsuario = new ControleUsuario(controleRepositorioUsuario);
+        ControleReceita controleReceita = new ControleReceita(controleRepositorioReceita);
+        ControleUsuarioChef controleUsuarioChef = new ControleUsuarioChef(controleRepositorioUsuario, controleReceita);
 
-        return new Controle(controleRepositorioUsuario, controleRepositorioReceita, controleUsuario);
+        return new Controle(controleRepositorioUsuario, controleRepositorioReceita, controleUsuario, controleReceita, controleUsuarioChef);
     }
 }

@@ -11,7 +11,7 @@ public class Receita implements Serializable, Comparable<Receita>{
     private static int numIds = 0;
     private final int id;
     private String titulo;
-    private final Usuario autor;
+    private final UsuarioChef autor;
     private List<ItemIngrediente> ingredientes;
     private List<String> preparo;// o arraylist de preparo Seria um guia por para o leitor?
     private List<Avaliacao> avaliacoes;
@@ -22,7 +22,7 @@ public class Receita implements Serializable, Comparable<Receita>{
     private String categoria;
 
 
-    public Receita(String titulo, Usuario autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo,String tempoDePreparo, String categoria) {
+    public Receita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo,String tempoDePreparo, String categoria) {
         this.id = numIds++;
         this.autor = autor;
         this.titulo = titulo;

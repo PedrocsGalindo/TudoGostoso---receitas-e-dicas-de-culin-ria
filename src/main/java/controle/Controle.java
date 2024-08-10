@@ -1,18 +1,26 @@
 package controle;
 
+import modelo.ItemIngrediente;
+import modelo.Receita;
 import modelo.Usuario;
+import modelo.UsuarioChef;
 
 import javax.mail.internet.InternetAddress;
+import java.util.List;
 
 public class Controle {
     private final ControleRepositorioUsuario controleRepositorioUsuario;
     private final ControleRepositorioReceita controleRepositorioReceita;
     private final ControleUsuario controleioUsuario;
+    private final ControleReceita controleReceita;
+    private final ControleUsuarioChef controleUsuarioChef;
 
-    public Controle(ControleRepositorioUsuario controleRepositorioUsuario, ControleRepositorioReceita controleRepositorioReceita, ControleUsuario controleioUsuario) {
+    public Controle(ControleRepositorioUsuario controleRepositorioUsuario, ControleRepositorioReceita controleRepositorioReceita, ControleUsuario controleioUsuario, ControleReceita controleReceita, ControleUsuarioChef controleUsuarioChef) {
         this.controleRepositorioUsuario = controleRepositorioUsuario;
         this.controleRepositorioReceita = controleRepositorioReceita;
         this.controleioUsuario = controleioUsuario;
+        this.controleReceita = controleReceita;
+        this.controleUsuarioChef = controleUsuarioChef;
     }
 
     //metodos de ControleRepositorioUsuario
@@ -34,8 +42,35 @@ public class Controle {
 
     //metodos de ControleRepositorioReceita
 
-    //metoos de ControleUsuario
+    public void salvarReceita(Receita receita) {
+        this.controleRepositorioReceita.salvarReceita(receita);
+    }
+    public void excluirReceita(Receita receita) {
+        this.controleRepositorioReceita.excluirReceita(receita);
+    }
+    public List<Receita> buscarReceitaPorAutor(Usuario autor) {
+        return this.controleRepositorioReceita.buscarReceitaPorAutor(autor.getNome());
+    }
+    public List<Receita> buscarReceitaPorAutor(String autor) {
+        return this.controleRepositorioReceita.buscarReceitaPorAutor(autor);
+    }
+
+    //metodos de ControleUsuario
+
     public  Usuario criarUsuario(String nome, String senha, String email, String cpf) {
         return this.controleioUsuario.criarUsuario(nome, senha, email, cpf);
     }
+
+    public Usuario criarUsuarioChef(Usuario usuario){
+        return controleioUsuario.criarUsuarioChef(usuario);
+    }
+
+    //metodos de ControleUsuarioChef
+
+    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria){
+        this.controleUsuarioChef.criarReceita( titulo,  autor,  ingredientes,  preparo,  modoDePreparo,  tempoDePreparo, categoria);
+    }
+
+    //metodos de  ControleReceita
+
 }

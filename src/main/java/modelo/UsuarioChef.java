@@ -1,6 +1,5 @@
 package modelo;
 
-import javax.mail.internet.InternetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class UsuarioChef extends Usuario {
         this.minhasReceitas = new ArrayList<>();
     }
 
-    public void addMinhasReceitas(Receita receita) {
+    public void criarReceita(Receita receita) {
         this.minhasReceitas.add(receita);
     }
 
