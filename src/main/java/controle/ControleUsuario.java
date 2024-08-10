@@ -36,7 +36,10 @@ public class ControleUsuario {
         }
         return null;
     }
-    public Usuario criarUsuarioChef(Usuario usuario) {
+    public Usuario criarUsuarioChef(Usuario usuario)throws NullPointerException{
+        if (usuario == null) {
+            throw new NullPointerException();
+        }
         Usuario usuarioChef = new UsuarioChef(usuario);
         controleRepositorioUsuario.excluirUsuario(usuario);
         try{
