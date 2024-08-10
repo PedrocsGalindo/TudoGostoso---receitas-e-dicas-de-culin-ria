@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 import javax.mail.internet.InternetAddress;
+import java.util.Objects;
 
 
 public class Usuario implements Serializable {
     private static int numIds = 0;
-    protected final int id;
+    protected final int id; //começa do 1
     private String nome;
     private String senha;
     private InternetAddress email;
@@ -37,8 +38,16 @@ public class Usuario implements Serializable {
     public int gerarId(){
         return ++numIds;
     }
-    public boolean equals(Receita receita) {
-        return receita.getId() == getId();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return id == usuario.id;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cpf);
     }
 
     public String toString(){
