@@ -11,23 +11,20 @@ import java.util.List;
 public class Controle {
     private final ControleRepositorioUsuario controleRepositorioUsuario;
     private final ControleRepositorioReceita controleRepositorioReceita;
-    private final ControleUsuario controleioUsuario;
+    private final ControleUsuario controleUsuario;
     private final ControleReceita controleReceita;
     private final ControleUsuarioChef controleUsuarioChef;
 
-    public Controle(ControleRepositorioUsuario controleRepositorioUsuario, ControleRepositorioReceita controleRepositorioReceita, ControleUsuario controleioUsuario, ControleReceita controleReceita, ControleUsuarioChef controleUsuarioChef) {
+    public Controle(ControleRepositorioUsuario controleRepositorioUsuario, ControleRepositorioReceita controleRepositorioReceita, ControleUsuario controleUsuario, ControleReceita controleReceita, ControleUsuarioChef controleUsuarioChef) {
         this.controleRepositorioUsuario = controleRepositorioUsuario;
         this.controleRepositorioReceita = controleRepositorioReceita;
-        this.controleioUsuario = controleioUsuario;
+        this.controleUsuario = controleUsuario;
         this.controleReceita = controleReceita;
         this.controleUsuarioChef = controleUsuarioChef;
     }
 
     //metodos de ControleRepositorioUsuario
 
-    public void salvarUsuario(Usuario usuario) throws Exception {
-        this.controleRepositorioUsuario.salvarUsuario(usuario);
-    }
     public  void excluirUsuario(Usuario usuario){ this.controleRepositorioUsuario.excluirUsuario(usuario);
     }
     public  Usuario recuperarUsuarioPorId(int id){
@@ -58,11 +55,11 @@ public class Controle {
     //metodos de ControleUsuario
 
     public  Usuario criarUsuario(String nome, String senha, String email, String cpf) {
-        return this.controleioUsuario.criarUsuario(nome, senha, email, cpf);
+        return this.controleUsuario.criarUsuario(nome, senha, email, cpf);
     }
 
-    public Usuario criarUsuarioChef(Usuario usuario){
-        return controleioUsuario.criarUsuarioChef(usuario);
+    public Usuario criarUsuarioChef(Usuario usuario) throws NullPointerException{
+        return controleUsuario.criarUsuarioChef(usuario);
     }
 
     //metodos de ControleUsuarioChef
