@@ -2,8 +2,6 @@ package controle;
 
 import modelo.Receita;
 
-import java.util.List;
-
 public class ControleReceita {
 
     private final ControleRepositorioReceita controleRepositorioReceita;
