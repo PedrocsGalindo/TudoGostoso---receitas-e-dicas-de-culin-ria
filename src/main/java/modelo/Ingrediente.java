@@ -3,15 +3,15 @@ package modelo;
 import java.io.Serializable;
 
 public class Ingrediente implements Serializable, Comparable<Ingrediente>{
+    private static int ids;
     private int id;
     private String nome;
 
 
-    public Ingrediente(int id, String nome) {
-        this.id = id;
+    public Ingrediente(String nome) {
+        this.id = gerarId();
         this.nome = nome;
     }
-
     //a ordem naturel é baseado no nome, ordem alfabetica
     @Override
     public int compareTo(Ingrediente o) {
@@ -25,9 +25,11 @@ public class Ingrediente implements Serializable, Comparable<Ingrediente>{
         this.nome = nome;
     }
 
-    public int getId() {
-        return id;
+    public int gerarId() {
+        return ++ids;
     }
+
+    public int getId() {return id;}
 
     public void setId(int id) {
         this.id = id;
