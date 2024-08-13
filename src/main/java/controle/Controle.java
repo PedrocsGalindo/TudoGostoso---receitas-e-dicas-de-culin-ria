@@ -4,6 +4,7 @@ import modelo.ItemIngrediente;
 import modelo.Receita;
 import modelo.Usuario;
 import modelo.UsuarioChef;
+import modelo.Avaliacao;
 
 import javax.mail.internet.InternetAddress;
 import java.util.List;
@@ -25,17 +26,11 @@ public class Controle {
 
     //metodos de ControleRepositorioUsuario
 
-    public  void excluirUsuario(Usuario usuario){ this.controleRepositorioUsuario.excluirUsuario(usuario);
-    }
-    public  Usuario recuperarUsuarioPorId(int id){
-        return this.controleRepositorioUsuario.recuperarUsuarioPorId(id);
-    }
-    public Usuario recuperarUsuarioPorCpf(String cpf){
-        return this.controleRepositorioUsuario.recuperarUsuarioPorCpf(cpf);
-    }
-    public Usuario recuperarUsuarioPorEmail(InternetAddress email){
-        return this.controleRepositorioUsuario.recuperarUsuarioPorEmail(email);
-    }
+    public  void excluirUsuario(Usuario usuario){ this.controleRepositorioUsuario.excluirUsuario(usuario);}
+    public void atualizarUsuario(Usuario usuario){this.controleRepositorioUsuario.atualizarUsuario(usuario);}
+    public  Usuario recuperarUsuarioPorId(int id){return this.controleRepositorioUsuario.recuperarUsuarioPorId(id);}
+    public Usuario recuperarUsuarioPorCpf(String cpf){ return this.controleRepositorioUsuario.recuperarUsuarioPorCpf(cpf);}
+    public Usuario recuperarUsuarioPorEmail(InternetAddress email){return this.controleRepositorioUsuario.recuperarUsuarioPorEmail(email);}
 
     //metodos de ControleRepositorioReceita
 
@@ -45,13 +40,11 @@ public class Controle {
     public void excluirReceita(Receita receita) {
         this.controleRepositorioReceita.excluirReceita(receita);
     }
-    public List<Receita> buscarReceitaPorAutor(Usuario autor) {
-        return this.controleRepositorioReceita.buscarReceitaPorAutor(autor.getNome());
-    }
-    public List<Receita> buscarReceitaPorAutor(String autor) {
-        return this.controleRepositorioReceita.buscarReceitaPorAutor(autor);
-    }
-
+    public void atualizarReceita(Receita receita) {this.controleRepositorioReceita.atualizarReceita(receita);}
+    public List<Receita> buscarReceitaPorAutor(Usuario autor) {return this.controleRepositorioReceita.buscarReceitaPorAutor(autor);}
+    public List<Receita> buscarReceitaPorAutor(String autor) {return this.controleRepositorioReceita.buscarReceitaPorAutor(autor);}
+    public List<Receita> buascarReceitaPorTitulo(String nome){return this.controleRepositorioReceita.buscarReceitaPorTitulo(nome);}
+    public List<Receita> buscarReceitaPorAvaliacao (Avaliacao avalicao){return this.controleRepositorioReceita.buscarReceitaPorAvaliacao(avalicao);}
     //metodos de ControleUsuario
 
     public  Usuario criarUsuario(String nome, String senha, String email, String cpf) {
