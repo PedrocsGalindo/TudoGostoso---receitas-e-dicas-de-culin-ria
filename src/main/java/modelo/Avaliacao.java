@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Avaliacao implements Serializable {
+    private static int ids = 0;
     private final int id;
     private int nota;
     private String comentario;
@@ -12,8 +13,8 @@ public class Avaliacao implements Serializable {
     private final Receita receita;
 
 
-    public Avaliacao(int id, int nota, String comentario, Date data, Usuario usuario, Receita receita) {
-        this.id = id;
+    public Avaliacao(int nota, String comentario, Date data, Usuario usuario, Receita receita) {
+        this.id = gerarId();
         this.nota = nota;
         this.comentario = comentario;
         this.data = data;
@@ -21,9 +22,16 @@ public class Avaliacao implements Serializable {
         this.receita = receita;
     }
 
-    public boolean equals(Avaliacao a) {
-        return this.getId() == a.getId();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Avaliacao avaliacao = (Avaliacao) o;
+        return id == avaliacao.id;
+    }
 
+    public int gerarId(){
+        return ++ ids;
     }
 
     public int getId() {
