@@ -14,8 +14,10 @@ public abstract class RepositorioGenerico <T> {
     protected Path path;
 
     public RepositorioGenerico(String filePath) {
+
         this.path = Paths.get(filePath);
     }
+
     public List<T> buscar(){
 
         List<T> objetos = new ArrayList<>();
