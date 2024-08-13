@@ -8,7 +8,6 @@ import java.util.Objects;
 
 
 public class Usuario implements Serializable {
-    private static int numIds = 0;
     protected final int id; //começa do 1
     private String nome;
     private String senha;
@@ -18,8 +17,8 @@ public class Usuario implements Serializable {
     private List<Ingrediente> listaDeCompra;
 
     //usuario não vai ser intanciado diretamente, quem vai intanciar vai ser controle, depois criar um factory
-    public Usuario(String nome, String senha, InternetAddress email, String cpf  ) {
-        this.id = gerarId();
+    public Usuario(String nome, String senha, InternetAddress email, String cpf, int id) {
+        this.id = id;
         this.nome = nome;
         this.senha = senha;
         this.email = email;
@@ -37,9 +36,6 @@ public class Usuario implements Serializable {
         this.receitasFav = receitasFav;
     }
 
-    public int gerarId(){
-        return ++numIds;
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,10 +61,6 @@ public class Usuario implements Serializable {
     }
 
     //gets e sets
-
-    public static int getNumIds() {
-        return numIds;
-    }
 
     public int getId() {
         return id;

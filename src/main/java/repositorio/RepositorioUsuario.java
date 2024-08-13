@@ -15,6 +15,11 @@ public class RepositorioUsuario extends repositorio.RepositorioGenerico<Usuario>
 
     //buscar, salvar e excluir herdados de Generico
 
+    public int getLastId(){
+        List<Usuario> usuarios = buscar();
+        return usuarios.getLast().getId();
+    }
+
     //recuperar Usuario com id, se não achar retorna NULL
     public Usuario buscarPorId(int id) {
 

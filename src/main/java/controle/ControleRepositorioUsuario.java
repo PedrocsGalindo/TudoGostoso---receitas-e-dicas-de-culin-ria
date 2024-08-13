@@ -31,6 +31,10 @@ public class ControleRepositorioUsuario {
         repositorio.update(usuario);
     }
 
+    public int getLastId(){
+        return repositorio.getLastId();
+    }
+
     //retornar o usuario baseado no id
     public  Usuario recuperarUsuarioPorId(int id){
         return repositorio.buscarPorId(id);
