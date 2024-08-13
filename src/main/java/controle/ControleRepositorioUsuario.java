@@ -27,6 +27,10 @@ public class ControleRepositorioUsuario {
     public  void excluirUsuario(Usuario usuario){ repositorio.excluir(usuario);
     }
 
+    public void atualizarUsuario(Usuario usuario) {
+        repositorio.update(usuario);
+    }
+
     //retornar o usuario baseado no id
     public  Usuario recuperarUsuarioPorId(int id){
         return repositorio.buscarPorId(id);
