@@ -30,12 +30,14 @@ public class RepositorioIngrediente extends RepositorioGenerico<Ingrediente>{
 
     public Ingrediente buscarIngredientePorNome(String nome){
         List<Ingrediente> ingredientes = buscar();
-        Iterator <Ingrediente> interador= ingredientes.iterator();
+        Iterator <Ingrediente> iterador= ingredientes.iterator();
         Ingrediente ingrediente = null;
-        while(interador.hasNext()){
-            ingrediente = interador.next();
+        while(iterador.hasNext()){
+            ingrediente = iterador.next();
             if(ingrediente.getNome().equals(nome)){
                 break;
+            }else if (!iterador.hasNext()){
+                ingrediente = null;
             }
         }
         return ingrediente;
