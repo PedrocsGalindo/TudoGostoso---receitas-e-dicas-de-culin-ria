@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 public class RepositorioIngrediente extends RepositorioGenerico<Ingrediente>{
 
     public RepositorioIngrediente(){
-        super("src/main/resourcers/repositorios/RepositorioIngrediente/repositorio.ser");
+        super("src/main/resourcers/repositorios/RepositorioIngredientes/repositorio.ser");
     }
 
     public Ingrediente busarIngredientePorId(int id) throws NoSuchElementException{
