@@ -57,6 +57,21 @@ public abstract class RepositorioGenerico <T> {
             }
         }
     }
+
+    //atualizar informações
+    public void update(T objeto) {
+        List<T> objetos = buscar();
+        try{
+            objetos.set(objetos.indexOf(objeto), objeto);
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("objeto não existe no banco de dados");
+        }
+        try(ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(this.path))){
+            output.writeObject(objetos);
+        }catch (IOException e){
+            System.out.println("Erro ao abrir arquivo para atualizar");
+        }
+    }
 }
 
 
