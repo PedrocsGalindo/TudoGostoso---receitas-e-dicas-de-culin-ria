@@ -1,10 +1,6 @@
 package controle;
 
-import modelo.ItemIngrediente;
-import modelo.Receita;
-import modelo.Usuario;
-import modelo.UsuarioChef;
-import modelo.Avaliacao;
+import modelo.*;
 
 import javax.mail.internet.InternetAddress;
 import java.util.List;
@@ -12,16 +8,20 @@ import java.util.List;
 public class Controle {
     private final ControleRepositorioUsuario controleRepositorioUsuario;
     private final ControleRepositorioReceita controleRepositorioReceita;
+    private final ControleRepositorioIngrediente controleRepositorioIngrediente;
     private final ControleUsuario controleUsuario;
     private final ControleReceita controleReceita;
     private final ControleUsuarioChef controleUsuarioChef;
+    private final ControleIngrediente controleIngrediente;
 
-    public Controle(ControleRepositorioUsuario controleRepositorioUsuario, ControleRepositorioReceita controleRepositorioReceita, ControleUsuario controleUsuario, ControleReceita controleReceita, ControleUsuarioChef controleUsuarioChef) {
+    public Controle(ControleRepositorioUsuario controleRepositorioUsuario, ControleRepositorioReceita controleRepositorioReceita, ControleRepositorioIngrediente controleRepositorioIngrediente, ControleUsuario controleUsuario, ControleReceita controleReceita, ControleUsuarioChef controleUsuarioChef, ControleIngrediente controleIngrediente) {
         this.controleRepositorioUsuario = controleRepositorioUsuario;
         this.controleRepositorioReceita = controleRepositorioReceita;
+        this.controleRepositorioIngrediente = controleRepositorioIngrediente;
         this.controleUsuario = controleUsuario;
         this.controleReceita = controleReceita;
         this.controleUsuarioChef = controleUsuarioChef;
+        this.controleIngrediente = controleIngrediente;
     }
 
     //metodos de ControleRepositorioUsuario
@@ -45,22 +45,24 @@ public class Controle {
     public List<Receita> buscarReceitaPorAutor(String autor) {return this.controleRepositorioReceita.buscarReceitaPorAutor(autor);}
     public List<Receita> buascarReceitaPorTitulo(String nome){return this.controleRepositorioReceita.buscarReceitaPorTitulo(nome);}
     public List<Receita> buscarReceitaPorAvaliacao (Avaliacao avalicao){return this.controleRepositorioReceita.buscarReceitaPorAvaliacao(avalicao);}
+
+    //metodos de ControleRepositorioIngrediente
+
     //metodos de ControleUsuario
 
-    public  Usuario criarUsuario(String nome, String senha, String email, String cpf) {
-        return this.controleUsuario.criarUsuario(nome, senha, email, cpf);
-    }
-
-    public Usuario criarUsuarioChef(Usuario usuario) throws NullPointerException{
-        return controleUsuario.criarUsuarioChef(usuario);
-    }
+    public  Usuario criarUsuario(String nome, String senha, String email, String cpf) {return this.controleUsuario.criarUsuario(nome, senha, email, cpf);}
+    public Usuario criarUsuarioChef(Usuario usuario) throws NullPointerException{return controleUsuario.criarUsuarioChef(usuario);}
 
     //metodos de ControleUsuarioChef
 
-    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria){
-        this.controleUsuarioChef.criarReceita( titulo,  autor,  ingredientes,  preparo,  modoDePreparo,  tempoDePreparo, categoria);
-    }
+    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria){this.controleUsuarioChef.criarReceita( titulo,  autor,  ingredientes,  preparo,  modoDePreparo,  tempoDePreparo, categoria);}
 
     //metodos de  ControleReceita
+
+    //metodos de ControleIngrediente
+    public Ingrediente criarIngrediente(String nome){return this.controleIngrediente.criarIngrediente(nome);}
+    public void excluirIngrediente(Ingrediente ingrediente){this.controleIngrediente.excluirIngrediente(ingrediente);}
+    public Ingrediente buscarIngredientePorId(int id){return this.controleIngrediente.buscarIngredientePorId(id);}
+    public Ingrediente buscarIngredientePorNome(String nome){return this.controleIngrediente.buscarIngredientePorNome(nome);}
 
 }
