@@ -15,6 +15,7 @@ public class Usuario implements Serializable {
     private InternetAddress email;
     private final String cpf;
     private List<Receita> receitasFav;
+    private List<Ingrediente> listaDeCompra;
 
     //usuario não vai ser intanciado diretamente, quem vai intanciar vai ser controle, depois criar um factory
     public Usuario(String nome, String senha, InternetAddress email, String cpf  ) {
@@ -23,7 +24,8 @@ public class Usuario implements Serializable {
         this.senha = senha;
         this.email = email;
         this.cpf = cpf;
-        this.receitasFav = new ArrayList<Receita>();
+        this.receitasFav = new ArrayList<>();
+        this.listaDeCompra = new ArrayList<>();
     }
     //construtor que so vai ser usado para poder Criar a UsuarioChef
     public Usuario(String nome, String senha, InternetAddress email, String cpf, List<Receita> receitasFav, int id){
@@ -106,4 +108,9 @@ public class Usuario implements Serializable {
         this.receitasFav = receitasFav;
     }
 
+    public List<Ingrediente> getListaDeCompra() {return listaDeCompra; }
+
+    public void addListaDeCompra(Ingrediente ingrediente) {
+        this.listaDeCompra.add(ingrediente);
+    }
 }
