@@ -12,8 +12,8 @@ public class Principal {
         Usuario caio = controle.criarUsuario("caio", "4315","pedrocgsouza4fc@gmail", "123141");
         Usuario joaquim = controle.criarUsuario("Joaquim", "senha", "cesarpedrog23@gmail","3214");
 
-        Usuario caioc = controle.recuperarUsuarioPorId(1);
-        Usuario pedror= controle.recuperarUsuarioPorId(2);
+        Usuario caioc = controle.recuperarUsuarioPorId(2);
+        Usuario pedror= controle.recuperarUsuarioPorId(1);
         Usuario joaquimm = controle.recuperarUsuarioPorId(3);
 
         controle.criarIngrediente("batata");

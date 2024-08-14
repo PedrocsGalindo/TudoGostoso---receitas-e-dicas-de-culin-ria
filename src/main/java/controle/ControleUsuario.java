@@ -23,7 +23,7 @@ public class ControleUsuario {
 
             if (nome.isEmpty() || senha.isEmpty()|| email.isEmpty() || cpf.isEmpty()) {throw new NullPointerException();}
 
-            int id = controleRepositorioUsuario.getLastId();
+            int id = controleRepositorioUsuario.getLastId() + 1;
             Usuario usuario = new Usuario(nome, senha, emailAddress, cpf, id);
             controleRepositorioUsuario.salvarUsuario(usuario);
             return usuario;
