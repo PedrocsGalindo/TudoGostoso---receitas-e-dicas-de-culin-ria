@@ -1,6 +1,7 @@
 package controle;
 
 import exceptions.UsuarioJaExistenteException;
+import modelo.Receita;
 import modelo.Usuario;
 import modelo.UsuarioChef;
 
@@ -48,5 +49,10 @@ public class ControleUsuario {
             System.out.println(e.getMessage());
         }
         return usuarioChef;
+    }
+
+    public void addReceitasFav(Usuario usuario, Receita receita) {
+        usuario.addReceitasFav(receita);
+        controleRepositorioUsuario.atualizarUsuario(usuario);
     }
 }
