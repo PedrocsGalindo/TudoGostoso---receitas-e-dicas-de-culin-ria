@@ -1,11 +1,9 @@
 package modelo;
 
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class Receita implements Serializable, Comparable<Receita>{
     private static int numIds = 0;
@@ -21,7 +19,6 @@ public class Receita implements Serializable, Comparable<Receita>{
     private String tempoDePreparo;
     private String categoria;
 
-
     public Receita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo,String tempoDePreparo, String categoria) {
         this.id = numIds++;
         this.autor = autor;
@@ -34,6 +31,7 @@ public class Receita implements Serializable, Comparable<Receita>{
         this.modoDePreparo = modoDePreparo;
         this.categoria = categoria;
     }
+    
     //ordem natural de receitas é baseado no horario
     @Override
     public int compareTo(Receita o){
@@ -115,7 +113,6 @@ public class Receita implements Serializable, Comparable<Receita>{
     public LocalDateTime getHorario(){
         return this.horario;
     }
-
 
     @Override
     public String toString() {
