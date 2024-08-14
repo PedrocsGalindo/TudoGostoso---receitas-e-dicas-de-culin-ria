@@ -18,7 +18,10 @@ public class RepositorioReceita extends RepositorioGenerico<Receita> {
                 .filter(receita -> receita.getTitulo().equalsIgnoreCase(nome))
                 .collect(Collectors.toList());
     }
-
+    public int getLastId(){
+        List<Receita> receitas = buscar();
+        return receitas.getLast().getId();
+    }
     public List<Receita> buscarPorAutor(String autor) {
         List<Receita> items = this.buscar();
         return items.stream()

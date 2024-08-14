@@ -18,6 +18,7 @@ public class ControleUsuarioChef {
     }
 
     public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria){
-        autor.criarReceita(controleReceita.cadastrarReceita(new Receita(titulo, autor, ingredientes, preparo, modoDePreparo, tempoDePreparo, categoria)));
+
+        autor.criarReceita(controleReceita.cadastrarReceita(new Receita(titulo, autor, ingredientes, preparo, modoDePreparo, tempoDePreparo, categoria, id)));
     }
 }

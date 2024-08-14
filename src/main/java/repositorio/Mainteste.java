@@ -1,14 +1,13 @@
 package repositorio;
 
 import modelo.Receita;
-import modelo.Usuario;
 
 
 public class Mainteste {
     public static void main(String[] args) {
 
-        Receita a = new Receita("inicio",null,null,null,null,null,null);
-        Receita b = new Receita("inicio2",null,null,null,null,null,null);
+        Receita a = new Receita("inicio",null,null,null,null,null,null, id);
+        Receita b = new Receita("inicio2",null,null,null,null,null,null, id);
 
 
         RepositorioUsuario repositorioUsuario = new RepositorioUsuario();

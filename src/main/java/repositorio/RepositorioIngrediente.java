@@ -1,6 +1,7 @@
 package repositorio;
 
 import modelo.Ingrediente;
+import modelo.Receita;
 
 import java.util.Iterator;
 import java.util.List;
@@ -26,6 +27,10 @@ public class RepositorioIngrediente extends RepositorioGenerico<Ingrediente>{
             throw  new NoSuchElementException("Não existe nenhum ingrediente com o id "+id);
         }
         return ingrediente;
+    }
+    public int getLastId(){
+        List<Ingrediente> ingredientes = buscar();
+        return ingredientes.getLast().getId();
     }
 
     public Ingrediente buscarIngredientePorNome(String nome){

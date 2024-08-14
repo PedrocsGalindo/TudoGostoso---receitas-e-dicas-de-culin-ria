@@ -19,7 +19,7 @@ public class Receita implements Serializable, Comparable<Receita>{
     private String tempoDePreparo;
     private String categoria;
 
-    public Receita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo,String tempoDePreparo, String categoria) {
+    public Receita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria, int id) {
         this.id = numIds++;
         this.autor = autor;
         this.titulo = titulo;
