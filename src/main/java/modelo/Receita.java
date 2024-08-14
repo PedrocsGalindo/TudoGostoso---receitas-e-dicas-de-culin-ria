@@ -50,7 +50,9 @@ public class Receita implements Serializable, Comparable<Receita>{
         return titulo;
     }
 
-    public Usuario getAutor() { return  this.autor;}
+    public Usuario getAutor() { 
+        return  this.autor;
+    }
 
     public List<ItemIngrediente> getIngredientes() {
         return ingredientes;
@@ -67,10 +69,11 @@ public class Receita implements Serializable, Comparable<Receita>{
     public String getModoDePreparo(){
         return modoDePreparo;
     }
+    
     public String getCategoria(){
         return categoria;
-
     }
+    
     public  String getTempoDePreparo(){
         return tempoDePreparo;
     }
@@ -95,7 +98,9 @@ public class Receita implements Serializable, Comparable<Receita>{
         this.preparo = preparo;
     }
 
-    public List<Avaliacao> getAvaliacoes(){return this.avaliacoes;}
+    public List<Avaliacao> getAvaliacoes(){
+        return this.avaliacoes;
+    }
 
     public void adicioarAvaliacao(Avaliacao avaliacao) {
         this.avaliacoes.add(avaliacao);
