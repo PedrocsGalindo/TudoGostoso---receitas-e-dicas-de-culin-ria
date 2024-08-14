@@ -6,8 +6,8 @@ public class ItemIngrediente extends Ingrediente{
     private double quantidade;
     private UnidadeMedida medida;
 
-    public ItemIngrediente(String nome, double quantidade, UnidadeMedida medida) {
-        super(nome);
+    public ItemIngrediente(Ingrediente ingrediente, double quantidade, UnidadeMedida medida) {
+        super(ingrediente.getNome());
         this.quantidade = quantidade;
         this.medida = medida;
     }
