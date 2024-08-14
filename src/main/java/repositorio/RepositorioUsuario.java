@@ -3,6 +3,7 @@ package repositorio;
 import modelo.Usuario;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import javax.mail.internet.InternetAddress;
 
 
@@ -16,8 +17,14 @@ public class RepositorioUsuario extends repositorio.RepositorioGenerico<Usuario>
     //buscar, salvar e excluir herdados de Generico
 
     public int getLastId(){
+        int id;
         List<Usuario> usuarios = buscar();
-        return usuarios.getLast().getId();
+        try {
+            id = usuarios.getLast().getId();
+        } catch (NoSuchElementException e) {
+            id = 0;
+        }
+        return id;
     }
 
     //recuperar Usuario com id, se não achar retorna NULL
