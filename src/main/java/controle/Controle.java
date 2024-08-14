@@ -46,6 +46,9 @@ public class Controle {
     public List<Receita> buscarReceitaPorAutor(String autor) {return this.controleRepositorioReceita.buscarReceitaPorAutor(autor);}
     public List<Receita> buascarReceitaPorTitulo(String nome){return this.controleRepositorioReceita.buscarReceitaPorTitulo(nome);}
     public List<Receita> buscarReceitaPorAvaliacao (Avaliacao avalicao){return this.controleRepositorioReceita.buscarReceitaPorAvaliacao(avalicao);}
+    public Receita buscarReceitaPorAutorETitulo(Usuario autor, String titulo){
+        return this.controleRepositorioReceita.buscarReceitaPorAutorETitulo(autor, titulo);
+    }
 
     //metodos de ControleRepositorioIngrediente
 
@@ -53,6 +56,9 @@ public class Controle {
 
     public  Usuario criarUsuario(String nome, String senha, String email, String cpf) {return this.controleUsuario.criarUsuario(nome, senha, email, cpf);}
     public Usuario criarUsuarioChef(Usuario usuario) throws NullPointerException{return controleUsuario.criarUsuarioChef(usuario);}
+    public void addReceitafav(Usuario usuario, Receita receita){
+        controleUsuario.addReceitasFav(usuario,receita);
+    }
 
     //metodos de ControleUsuarioChef
 
