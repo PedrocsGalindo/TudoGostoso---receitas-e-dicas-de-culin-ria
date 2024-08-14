@@ -6,6 +6,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.Usuario;
+import modelo.Ingrediente;
+import modelo.Receita;
 
 public abstract class RepositorioGenerico <T> {
 
@@ -14,10 +17,8 @@ public abstract class RepositorioGenerico <T> {
     protected Path path;
 
     public RepositorioGenerico(String filePath) {
-
         this.path = Paths.get(filePath);
     }
-
     public List<T> buscar(){
 
         List<T> objetos = new ArrayList<>();
@@ -44,6 +45,43 @@ public abstract class RepositorioGenerico <T> {
             System.out.println("Erro ao abrir arquivo para escrever");
         }
     }
+
+    public void salvarAtributo(T objeto) {
+        String atributoASalvar = "";
+
+
+        if (objeto instanceof Usuario) {
+            Usuario usuario = (Usuario) objeto;
+            atributoASalvar = String.valueOf(usuario.getId());
+        } else if (objeto instanceof Receita) {
+            Receita receita = (Receita) objeto;
+            atributoASalvar = String.valueOf(receita.getId());
+        } else if (objeto instanceof Ingrediente) {
+            Ingrediente ingrediente = (Ingrediente) objeto;
+            atributoASalvar = String.valueOf(ingrediente.getId());
+        } else {
+            throw new IllegalArgumentException("Tipo de objeto não suportado");
+        }
+
+        List<String> atributos = buscarAtributos();
+        atributos.add(atributoASalvar);
+
+        try (ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(this.path))) {
+            output.writeObject(atributos);
+        } catch (IOException e) {
+            System.out.println("Erro ao abrir arquivo para escrever");
+        }
+    }
+
+    public List<String> buscarAtributos() {
+        try (ObjectInputStream input = new ObjectInputStream(Files.newInputStream(this.path))) {
+            return (List<String>) input.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Erro ao abrir arquivo para leitura");
+            return new ArrayList<>();
+        }
+    }
+
     //remove usuario existente
     public void excluir(T objeto) {
         List<T> objetos = buscar();

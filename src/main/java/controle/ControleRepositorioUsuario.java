@@ -1,5 +1,6 @@
 package controle;
 
+import exceptions.UsuarioInexistenteException;
 import exceptions.UsuarioJaExistenteException;
 import modelo.Usuario;
 import repositorio.RepositorioUsuario;
@@ -41,13 +42,23 @@ public class ControleRepositorioUsuario {
     }
 
     //retornar o usuario baseado no cpf
-    public Usuario recuperarUsuarioPorCpf(String cpf){
-        return repositorio.buscarPorCpf(cpf);
+    public Usuario recuperarUsuarioPorCpf(String cpf) throws UsuarioInexistenteException{
+        Usuario usuario = repositorio.buscarPorCpf(cpf);
+        if (usuario == null){
+            throw new UsuarioInexistenteException("Cpf invalido");
+        }else{
+            return usuario;
+        }
     }
 
     //retornar o usuario baseado no email
-    public Usuario recuperarUsuarioPorEmail(InternetAddress email){
-        return repositorio.buscarPorEmail(email);
+    public Usuario recuperarUsuarioPorEmail(InternetAddress email) throws UsuarioInexistenteException{
+        Usuario usuario = repositorio.buscarPorEmail(email);
+        if (usuario == null){
+            throw new UsuarioInexistenteException("Email invalido");
+        }else{
+            return usuario;
+        }
     }
 }
 
