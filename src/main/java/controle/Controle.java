@@ -1,5 +1,6 @@
 package controle;
 
+import exceptions.UsuarioInexistenteException;
 import modelo.*;
 
 import javax.mail.internet.InternetAddress;
@@ -29,8 +30,8 @@ public class Controle {
     public  void excluirUsuario(Usuario usuario){ this.controleRepositorioUsuario.excluirUsuario(usuario);}
     public void atualizarUsuario(Usuario usuario){this.controleRepositorioUsuario.atualizarUsuario(usuario);}
     public  Usuario recuperarUsuarioPorId(int id){return this.controleRepositorioUsuario.recuperarUsuarioPorId(id);}
-    public Usuario recuperarUsuarioPorCpf(String cpf){ return this.controleRepositorioUsuario.recuperarUsuarioPorCpf(cpf);}
-    public Usuario recuperarUsuarioPorEmail(InternetAddress email){return this.controleRepositorioUsuario.recuperarUsuarioPorEmail(email);}
+    public Usuario recuperarUsuarioPorCpf(String cpf) throws UsuarioInexistenteException{ return this.controleRepositorioUsuario.recuperarUsuarioPorCpf(cpf);}
+    public Usuario recuperarUsuarioPorEmail(InternetAddress email) throws UsuarioInexistenteException {return this.controleRepositorioUsuario.recuperarUsuarioPorEmail(email);}
 
     //metodos de ControleRepositorioReceita
 
