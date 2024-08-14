@@ -19,8 +19,8 @@ public class Receita implements Serializable, Comparable<Receita>{
     private String tempoDePreparo;
     private String categoria;
 
-    public Receita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo,String tempoDePreparo, String categoria) {
-        this.id = numIds++;
+    public Receita(int id, String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo,String tempoDePreparo, String categoria) {
+        this.id = id;
         this.autor = autor;
         this.titulo = titulo;
         this.ingredientes = ingredientes;
@@ -38,8 +38,17 @@ public class Receita implements Serializable, Comparable<Receita>{
         return this.horario.compareTo(o.getHorario());
     }
 
-    public boolean equals(Receita receita) {
-        return receita.getId() == getId();
+    //para ser diferente o id tem que ser diferente, ou o autor e titulo tem que ser diferente
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Receita receita = (Receita) o;
+        if ((id == receita.id) == false || (autor.equals(receita.getAutor()) == false && titulo.equals(receita.getTitulo()) == false)){
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public int getId() {
