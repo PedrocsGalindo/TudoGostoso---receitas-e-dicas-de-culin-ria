@@ -1,7 +1,9 @@
 package controle;
 
+import exceptions.ReceitaJaExistenteException;
 import modelo.ItemIngrediente;
 import modelo.Receita;
+import modelo.Usuario;
 import modelo.UsuarioChef;
 
 import java.util.List;
@@ -17,7 +19,13 @@ public class ControleUsuarioChef {
         this.controleReceita = controleReceita;
     }
 
-    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria){
-        autor.criarReceita(controleReceita.cadastrarReceita(new Receita(titulo, autor, ingredientes, preparo, modoDePreparo, tempoDePreparo, categoria)));
+    public void criarReceita(String titulo, Usuario autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria) {
+        int id = controleReceita.getLastId() + 1;
+        Receita receita = new Receita(id, titulo, (UsuarioChef) autor, ingredientes, preparo, modoDePreparo, tempoDePreparo, categoria);
+        try{
+            controleReceita.cadastrarReceita(receita);
+        } catch (ReceitaJaExistenteException e ){
+            System.out.println(e.getMessage());
+        }
     }
 }
