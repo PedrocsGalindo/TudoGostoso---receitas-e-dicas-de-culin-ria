@@ -34,4 +34,12 @@ public class Ingrediente implements Serializable, Comparable<Ingrediente>{
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Ingrediente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
+    }
 }

@@ -29,4 +29,13 @@ public class ItemIngrediente extends Ingrediente{
     public void setQuantidade(double quantidade) {
         this.quantidade = quantidade;
     }
+
+
+    @Override
+    public String toString() {
+        return "ItemIngrediente{" +
+                "quantidade=" + quantidade +
+                ", medida=" + medida +
+                '}';
+    }
 }

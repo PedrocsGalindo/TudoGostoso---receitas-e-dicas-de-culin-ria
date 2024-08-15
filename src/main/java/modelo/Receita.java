@@ -11,7 +11,7 @@ public class Receita implements Serializable, Comparable<Receita>{
     private String titulo;
     private final UsuarioChef autor;
     private List<ItemIngrediente> ingredientes;
-    private List<String> preparo;// o arraylist de preparo Seria um guia por para o leitor?
+    private List<String> preparo;
     private List<Avaliacao> avaliacoes;
     private int nota = 0;
     private LocalDateTime horario;
@@ -113,12 +113,11 @@ public class Receita implements Serializable, Comparable<Receita>{
 
     public void adicioarAvaliacao(Avaliacao avaliacao) {
         this.avaliacoes.add(avaliacao);
-    }// é pra esse método ser aqui mesmo?
+    }
 
     public  void removerAvaliacao(Avaliacao avaliacao) {
         this.avaliacoes.remove(avaliacao);
     }
-    // é pra esse método ser aqui mesmo?
 
     public void setHorario(LocalDateTime horario) {
         this.horario = horario;
