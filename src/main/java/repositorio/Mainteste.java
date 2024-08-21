@@ -1,7 +1,6 @@
 package repositorio;
 
 import controle.ControleReceita;
-import controle.ControleRepositorioReceita;
 import modelo.*;
 import controle.ControleUsuario;
 import exceptions.UsuarioJaExistenteException;

@@ -106,9 +106,16 @@ public class ControleUsuario {
         int id = controleReceita.getLastId() + 1;
         Receita receita = new Receita(id, titulo, autor, ingredientes, preparo, modoDePreparo, tempoDePreparo, categoria);
         try {
-            controleReceita.cadastrarReceita(receita);
+            cadastrarReceita(receita);
         } catch (ReceitaJaExistenteException e) {
             System.out.println(e.getMessage());
+        }
+    }
+    public void cadastrarReceita(Receita receita) throws ReceitaJaExistenteException{
+        if(controleReceita.buscarReceitaPorAutorETitulo(receita.getAutor(), receita.getTitulo()) == null) {
+            controleReceita.salvarReceita(receita);
+        }else {
+            throw new ReceitaJaExistenteException("Usuario "+ receita.getAutor().getNome() + " já possui receita com o titulo " + receita.getTitulo());
         }
     }
 }
