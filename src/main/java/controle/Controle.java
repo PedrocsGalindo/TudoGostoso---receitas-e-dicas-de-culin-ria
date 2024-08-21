@@ -12,16 +12,14 @@ public class Controle {
     private final ControleRepositorioIngrediente controleRepositorioIngrediente;
     private final ControleUsuario controleUsuario;
     private final ControleReceita controleReceita;
-    private final ControleUsuarioChef controleUsuarioChef;
     private final ControleIngrediente controleIngrediente;
 
-    public Controle(ControleRepositorioUsuario controleRepositorioUsuario, ControleRepositorioReceita controleRepositorioReceita, ControleRepositorioIngrediente controleRepositorioIngrediente, ControleUsuario controleUsuario, ControleReceita controleReceita, ControleUsuarioChef controleUsuarioChef, ControleIngrediente controleIngrediente) {
+    public Controle(ControleRepositorioUsuario controleRepositorioUsuario, ControleRepositorioReceita controleRepositorioReceita, ControleRepositorioIngrediente controleRepositorioIngrediente, ControleUsuario controleUsuario, ControleReceita controleReceita, ControleIngrediente controleIngrediente) {
         this.controleRepositorioUsuario = controleRepositorioUsuario;
         this.controleRepositorioReceita = controleRepositorioReceita;
         this.controleRepositorioIngrediente = controleRepositorioIngrediente;
         this.controleUsuario = controleUsuario;
         this.controleReceita = controleReceita;
-        this.controleUsuarioChef = controleUsuarioChef;
         this.controleIngrediente = controleIngrediente;
     }
 
@@ -62,7 +60,7 @@ public class Controle {
 
     //metodos de ControleUsuarioChef
 
-    public void criarReceita(String titulo, Usuario autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria){this.controleUsuarioChef.criarReceita( titulo,  autor,  ingredientes,  preparo,  modoDePreparo,  tempoDePreparo, categoria);}
+    public void criarReceita(String titulo, Usuario autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria){this.controleUsuario.criarReceita( titulo,  autor,  ingredientes,  preparo,  modoDePreparo,  tempoDePreparo, categoria);}
 
     //metodos de  ControleReceita
 

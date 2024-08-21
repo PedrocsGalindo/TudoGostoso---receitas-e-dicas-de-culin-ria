@@ -10,11 +10,10 @@ public class ControleFactory {
         ControleRepositorioUsuario controleRepositorioUsuario = new ControleRepositorioUsuario(new RepositorioUsuario());
         ControleRepositorioReceita controleRepositorioReceita = new ControleRepositorioReceita(new RepositorioReceita());
         ControleRepositorioIngrediente controleRepositorioIngrediente = new ControleRepositorioIngrediente(new RepositorioIngrediente());
-        ControleUsuario controleUsuario = new ControleUsuario(controleRepositorioUsuario);
         ControleReceita controleReceita = new ControleReceita(controleRepositorioReceita);
-        ControleUsuarioChef controleUsuarioChef = new ControleUsuarioChef(controleRepositorioUsuario, controleReceita);
+        ControleUsuario controleUsuario = new ControleUsuario(controleRepositorioUsuario,controleReceita);
         ControleIngrediente controleIngrediente = new ControleIngrediente(controleRepositorioIngrediente);
 
-        return new Controle(controleRepositorioUsuario, controleRepositorioReceita, controleRepositorioIngrediente, controleUsuario, controleReceita, controleUsuarioChef, controleIngrediente);
+        return new Controle(controleRepositorioUsuario, controleRepositorioReceita, controleRepositorioIngrediente, controleUsuario, controleReceita, controleIngrediente);
     }
 }
