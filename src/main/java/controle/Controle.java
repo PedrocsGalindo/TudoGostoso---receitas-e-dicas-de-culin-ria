@@ -7,15 +7,13 @@ import javax.mail.internet.InternetAddress;
 import java.util.List;
 
 public class Controle {
-    private final ControleRepositorioUsuario controleRepositorioUsuario;
     private final ControleRepositorioReceita controleRepositorioReceita;
     private final ControleRepositorioIngrediente controleRepositorioIngrediente;
     private final ControleUsuario controleUsuario;
     private final ControleReceita controleReceita;
     private final ControleIngrediente controleIngrediente;
 
-    public Controle(ControleRepositorioUsuario controleRepositorioUsuario, ControleRepositorioReceita controleRepositorioReceita, ControleRepositorioIngrediente controleRepositorioIngrediente, ControleUsuario controleUsuario, ControleReceita controleReceita, ControleIngrediente controleIngrediente) {
-        this.controleRepositorioUsuario = controleRepositorioUsuario;
+    public Controle(ControleRepositorioReceita controleRepositorioReceita, ControleRepositorioIngrediente controleRepositorioIngrediente, ControleUsuario controleUsuario, ControleReceita controleReceita, ControleIngrediente controleIngrediente) {
         this.controleRepositorioReceita = controleRepositorioReceita;
         this.controleRepositorioIngrediente = controleRepositorioIngrediente;
         this.controleUsuario = controleUsuario;
@@ -25,11 +23,11 @@ public class Controle {
 
     //metodos de ControleRepositorioUsuario
 
-    public  void excluirUsuario(Usuario usuario){ this.controleRepositorioUsuario.excluirUsuario(usuario);}
-    public void atualizarUsuario(Usuario usuario){this.controleRepositorioUsuario.atualizarUsuario(usuario);}
-    public  Usuario recuperarUsuarioPorId(int id){return this.controleRepositorioUsuario.recuperarUsuarioPorId(id);}
-    public Usuario recuperarUsuarioPorCpf(String cpf) throws UsuarioInexistenteException{ return this.controleRepositorioUsuario.recuperarUsuarioPorCpf(cpf);}
-    public Usuario recuperarUsuarioPorEmail(InternetAddress email) throws UsuarioInexistenteException {return this.controleRepositorioUsuario.recuperarUsuarioPorEmail(email);}
+    public  void excluirUsuario(Usuario usuario){ this.controleUsuario.excluirUsuario(usuario);}
+    public void atualizarUsuario(Usuario usuario){this.controleUsuario.atualizarUsuario(usuario);}
+    public  Usuario recuperarUsuarioPorId(int id){return this.controleUsuario.recuperarUsuarioPorId(id);}
+    public Usuario recuperarUsuarioPorCpf(String cpf) throws UsuarioInexistenteException{ return this.controleUsuario.recuperarUsuarioPorCpf(cpf);}
+    public Usuario recuperarUsuarioPorEmail(InternetAddress email) throws UsuarioInexistenteException {return this.controleUsuario.recuperarUsuarioPorEmail(email);}
 
     //metodos de ControleRepositorioReceita
 
