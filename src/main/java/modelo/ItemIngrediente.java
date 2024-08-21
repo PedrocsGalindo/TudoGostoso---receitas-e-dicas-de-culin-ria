@@ -1,21 +1,26 @@
 package modelo;
 
 //ItemIgrendientes são os igrendiente que vão em receitas, justamente por conta disso precisam tem quantidade e medida
-public class ItemIngrediente extends Ingrediente{
+public class ItemIngrediente {
 
+    private Ingrediente ingrediente;
     private double quantidade;
     private UnidadeMedida medida;
 
     public ItemIngrediente(Ingrediente ingrediente, double quantidade, UnidadeMedida medida) {
-        super(ingrediente.getNome());
+        this.ingrediente = ingrediente;
         this.quantidade = quantidade;
         this.medida = medida;
     }
 
 
-    //gets e setters adicionais
+
     public UnidadeMedida getMedida() {
         return medida;
+    }
+
+    public Ingrediente getIngrediente(){
+        return ingrediente;
     }
 
     public void setMedida(UnidadeMedida medida) {
@@ -34,7 +39,8 @@ public class ItemIngrediente extends Ingrediente{
     @Override
     public String toString() {
         return "ItemIngrediente{" +
-                "quantidade=" + quantidade +
+                "ingrediente=" + ingrediente +
+                ", quantidade=" + quantidade +
                 ", medida=" + medida +
                 '}';
     }

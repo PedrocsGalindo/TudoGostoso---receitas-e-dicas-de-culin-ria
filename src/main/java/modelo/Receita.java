@@ -15,7 +15,6 @@ public class Receita implements Serializable, Comparable<Receita>{
     private List<Avaliacao> avaliacoes;
     private int nota = 0;
     private LocalDateTime horario;
-    private String modoDePreparo;
     private String tempoDePreparo;
     private String categoria;
 
@@ -28,7 +27,6 @@ public class Receita implements Serializable, Comparable<Receita>{
         this.horario = LocalDateTime.now();
         this.avaliacoes = new ArrayList<>();
         this.tempoDePreparo= tempoDePreparo;
-        this.modoDePreparo = modoDePreparo;
         this.categoria = categoria;
     }
     
@@ -75,9 +73,6 @@ public class Receita implements Serializable, Comparable<Receita>{
         return nota;
     }
 
-    public String getModoDePreparo(){
-        return modoDePreparo;
-    }
     
     public String getCategoria(){
         return categoria;
@@ -138,7 +133,6 @@ public class Receita implements Serializable, Comparable<Receita>{
                 ", avaliacoes=" + avaliacoes +
                 ", nota=" + nota +
                 ", horario=" + horario +
-                ", modoDePreparo='" + modoDePreparo + '\'' +
                 ", tempoDePreparo='" + tempoDePreparo + '\'' +
                 ", categoria='" + categoria + '\'' +
                 '}';
