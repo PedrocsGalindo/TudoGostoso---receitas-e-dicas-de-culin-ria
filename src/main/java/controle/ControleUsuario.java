@@ -42,11 +42,11 @@ public class ControleUsuario {
         }
         return null;
     }
-    public Usuario criarUsuarioChef(Usuario usuario)throws NullPointerException{
+    public UsuarioChef criarUsuarioChef(Usuario usuario)throws NullPointerException{
         if (usuario == null) {
             throw new NullPointerException();
         }
-        Usuario usuarioChef = new UsuarioChef(usuario);
+        UsuarioChef usuarioChef = new UsuarioChef(usuario);
         controleRepositorioUsuario.excluirUsuario(usuario);
         try{
             controleRepositorioUsuario.salvarUsuario(usuarioChef);
@@ -61,9 +61,9 @@ public class ControleUsuario {
         controleRepositorioUsuario.atualizarUsuario(usuario);
     }
     //UsuarioChef
-    public void criarReceita(String titulo, Usuario autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria) {
+    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria) {
         int id = controleReceita.getLastId() + 1;
-        Receita receita = new Receita(id, titulo, (UsuarioChef) autor, ingredientes, preparo, modoDePreparo, tempoDePreparo, categoria);
+        Receita receita = new Receita(id, titulo, autor, ingredientes, preparo, modoDePreparo, tempoDePreparo, categoria);
         try {
             controleReceita.cadastrarReceita(receita);
         } catch (ReceitaJaExistenteException e) {

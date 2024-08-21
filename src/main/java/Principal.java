@@ -27,7 +27,7 @@ public class Principal {
         ItemIngrediente itemBatata = controle.criarItemIngrediente(batata, 300, UnidadeMedida.GRAMAS);
         List<ItemIngrediente> ingredientes = List.of(itemCenoura, itemBatata);
 
-        Usuario joaquimChef = controle.criarUsuarioChef(joaquimm);
+        UsuarioChef joaquimChef = controle.criarUsuarioChef(joaquimm);
 
         List<String> preparo = List.of("bater", "juntar tudo");
 
