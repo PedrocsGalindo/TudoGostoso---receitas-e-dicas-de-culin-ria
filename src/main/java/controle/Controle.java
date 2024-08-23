@@ -7,62 +7,51 @@ import javax.mail.internet.InternetAddress;
 import java.util.List;
 
 public class Controle {
-    private final ControleRepositorioUsuario controleRepositorioUsuario;
-    private final ControleRepositorioReceita controleRepositorioReceita;
     private final ControleRepositorioIngrediente controleRepositorioIngrediente;
     private final ControleUsuario controleUsuario;
     private final ControleReceita controleReceita;
-    private final ControleUsuarioChef controleUsuarioChef;
     private final ControleIngrediente controleIngrediente;
 
-    public Controle(ControleRepositorioUsuario controleRepositorioUsuario, ControleRepositorioReceita controleRepositorioReceita, ControleRepositorioIngrediente controleRepositorioIngrediente, ControleUsuario controleUsuario, ControleReceita controleReceita, ControleUsuarioChef controleUsuarioChef, ControleIngrediente controleIngrediente) {
-        this.controleRepositorioUsuario = controleRepositorioUsuario;
-        this.controleRepositorioReceita = controleRepositorioReceita;
+    public Controle(ControleRepositorioIngrediente controleRepositorioIngrediente, ControleUsuario controleUsuario, ControleReceita controleReceita, ControleIngrediente controleIngrediente) {
         this.controleRepositorioIngrediente = controleRepositorioIngrediente;
         this.controleUsuario = controleUsuario;
         this.controleReceita = controleReceita;
-        this.controleUsuarioChef = controleUsuarioChef;
         this.controleIngrediente = controleIngrediente;
     }
-
-    //metodos de ControleRepositorioUsuario
-
-    public  void excluirUsuario(Usuario usuario){ this.controleRepositorioUsuario.excluirUsuario(usuario);}
-    public void atualizarUsuario(Usuario usuario){this.controleRepositorioUsuario.atualizarUsuario(usuario);}
-    public  Usuario recuperarUsuarioPorId(int id){return this.controleRepositorioUsuario.recuperarUsuarioPorId(id);}
-    public Usuario recuperarUsuarioPorCpf(String cpf) throws UsuarioInexistenteException{ return this.controleRepositorioUsuario.recuperarUsuarioPorCpf(cpf);}
-    public Usuario recuperarUsuarioPorEmail(InternetAddress email) throws UsuarioInexistenteException {return this.controleRepositorioUsuario.recuperarUsuarioPorEmail(email);}
 
     //metodos de ControleRepositorioReceita
 
     public void salvarReceita(Receita receita) {
-        this.controleRepositorioReceita.salvarReceita(receita);
+        this.controleReceita.salvarReceita(receita);
     }
     public void excluirReceita(Receita receita) {
-        this.controleRepositorioReceita.excluirReceita(receita);
+        this.controleReceita.excluirReceita(receita);
     }
-    public void atualizarReceita(Receita receita) {this.controleRepositorioReceita.atualizarReceita(receita);}
-    public List<Receita> buscarReceitaPorAutor(Usuario autor) {return this.controleRepositorioReceita.buscarReceitaPorAutor(autor);}
-    public List<Receita> buscarReceitaPorAutor(String autor) {return this.controleRepositorioReceita.buscarReceitaPorAutor(autor);}
-    public List<Receita> buascarReceitaPorTitulo(String nome){return this.controleRepositorioReceita.buscarReceitaPorTitulo(nome);}
-    public List<Receita> buscarReceitaPorAvaliacao (Avaliacao avalicao){return this.controleRepositorioReceita.buscarReceitaPorAvaliacao(avalicao);}
+    public void atualizarReceita(Receita receita) {this.controleReceita.atualizarReceita(receita);}
+    public List<Receita> buscarReceitaPorAutor(Usuario autor) {return this.controleReceita.buscarReceitaPorAutor(autor);}
+    public List<Receita> buscarReceitaPorAutor(String autor) {return this.controleReceita.buscarReceitaPorAutor(autor);}
+    public List<Receita> buascarReceitaPorTitulo(String nome){return this.controleReceita.buscarReceitaPorTitulo(nome);}
+    public List<Receita> buscarReceitaPorAvaliacao (Avaliacao avalicao){return this.controleReceita.buscarReceitaPorAvaliacao(avalicao);}
     public Receita buscarReceitaPorAutorETitulo(Usuario autor, String titulo){
-        return this.controleRepositorioReceita.buscarReceitaPorAutorETitulo(autor, titulo);
+        return this.controleReceita.buscarReceitaPorAutorETitulo(autor, titulo);
     }
 
     //metodos de ControleRepositorioIngrediente
 
     //metodos de ControleUsuario
+    public  void excluirUsuario(Usuario usuario){ this.controleUsuario.excluirUsuario(usuario);}
+    public void atualizarUsuario(Usuario usuario){this.controleUsuario.atualizarUsuario(usuario);}
+    public  Usuario recuperarUsuarioPorId(int id){return this.controleUsuario.recuperarUsuarioPorId(id);}
+    public Usuario recuperarUsuarioPorCpf(String cpf) throws UsuarioInexistenteException{ return this.controleUsuario.recuperarUsuarioPorCpf(cpf);}
+    public Usuario recuperarUsuarioPorEmail(InternetAddress email) throws UsuarioInexistenteException {return this.controleUsuario.recuperarUsuarioPorEmail(email);}
 
     public  Usuario criarUsuario(String nome, String senha, String email, String cpf) {return this.controleUsuario.criarUsuario(nome, senha, email, cpf);}
-    public Usuario criarUsuarioChef(Usuario usuario) throws NullPointerException{return controleUsuario.criarUsuarioChef(usuario);}
+    public UsuarioChef criarUsuarioChef(Usuario usuario) throws NullPointerException{return controleUsuario.criarUsuarioChef(usuario);}
     public void addReceitafav(Usuario usuario, Receita receita){
         controleUsuario.addReceitasFav(usuario,receita);
     }
 
-    //metodos de ControleUsuarioChef
-
-    public void criarReceita(String titulo, Usuario autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria){this.controleUsuarioChef.criarReceita( titulo,  autor,  ingredientes,  preparo,  modoDePreparo,  tempoDePreparo, categoria);}
+    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria){this.controleUsuario.criarReceita( titulo,  autor,  ingredientes,  preparo,  modoDePreparo,  tempoDePreparo, categoria);}
 
     //metodos de  ControleReceita
 

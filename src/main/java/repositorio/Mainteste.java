@@ -1,10 +1,8 @@
 package repositorio;
 
 import controle.ControleReceita;
-import controle.ControleRepositorioReceita;
 import modelo.*;
 import controle.ControleUsuario;
-import controle.ControleRepositorioUsuario;
 import exceptions.UsuarioJaExistenteException;
 
 import javax.mail.internet.InternetAddress;
