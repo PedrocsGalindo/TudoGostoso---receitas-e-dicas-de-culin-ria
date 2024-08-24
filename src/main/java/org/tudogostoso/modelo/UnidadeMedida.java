@@ -1,6 +1,8 @@
 package org.tudogostoso.modelo;
 
-public enum UnidadeMedida {
+import java.io.Serializable;
+
+public enum UnidadeMedida implements Serializable {
 
     CHICARA("xícara"),
     COLHER_DE_CHA("colher de chá"),
