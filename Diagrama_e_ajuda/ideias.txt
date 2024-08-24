@@ -1,5 +1,0 @@
-pesquisa de receitas baseadas nos ingredientes
-
-mostrar no feed as ultimas receitas postadas
-
-adicionar atributo de horario em receitas
