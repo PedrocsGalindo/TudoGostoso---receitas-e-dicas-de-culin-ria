@@ -7,11 +7,10 @@ import repositorio.RepositorioUsuario;
 public class ControleFactory {
 
     public static Controle criarControleGeral() {
-        ControleRepositorioIngrediente controleRepositorioIngrediente = new ControleRepositorioIngrediente(new RepositorioIngrediente());
         ControleReceita controleReceita = new ControleReceita(new RepositorioReceita());
         ControleUsuario controleUsuario = new ControleUsuario(new RepositorioUsuario(),controleReceita);
-        ControleIngrediente controleIngrediente = new ControleIngrediente(controleRepositorioIngrediente);
+        ControleIngrediente controleIngrediente = new ControleIngrediente(new RepositorioIngrediente());
 
-        return new Controle(controleRepositorioIngrediente, controleUsuario, controleReceita, controleIngrediente);
+        return new Controle(controleUsuario, controleReceita, controleIngrediente);
     }
 }
