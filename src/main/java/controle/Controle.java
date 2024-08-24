@@ -7,13 +7,11 @@ import javax.mail.internet.InternetAddress;
 import java.util.List;
 
 public class Controle {
-    private final ControleRepositorioIngrediente controleRepositorioIngrediente;
     private final ControleUsuario controleUsuario;
     private final ControleReceita controleReceita;
     private final ControleIngrediente controleIngrediente;
 
-    public Controle(ControleRepositorioIngrediente controleRepositorioIngrediente, ControleUsuario controleUsuario, ControleReceita controleReceita, ControleIngrediente controleIngrediente) {
-        this.controleRepositorioIngrediente = controleRepositorioIngrediente;
+    public Controle(ControleUsuario controleUsuario, ControleReceita controleReceita, ControleIngrediente controleIngrediente) {
         this.controleUsuario = controleUsuario;
         this.controleReceita = controleReceita;
         this.controleIngrediente = controleIngrediente;
@@ -35,8 +33,6 @@ public class Controle {
     public Receita buscarReceitaPorAutorETitulo(Usuario autor, String titulo){
         return this.controleReceita.buscarReceitaPorAutorETitulo(autor, titulo);
     }
-
-    //metodos de ControleRepositorioIngrediente
 
     //metodos de ControleUsuario
     public  void excluirUsuario(Usuario usuario){ this.controleUsuario.excluirUsuario(usuario);}
