@@ -18,6 +18,7 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Busca");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
