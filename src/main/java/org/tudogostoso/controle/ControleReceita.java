@@ -5,7 +5,9 @@ import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.modelo.Usuario;
 import org.tudogostoso.repositorios.RepositorioReceitas;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ControleReceita {
 
@@ -45,6 +47,32 @@ public class ControleReceita {
             }
         }
         return receitaDesejada;
+    }
+    public List<Receita> buscarReceitasAleatorias() {
+        List<Receita> receitasAleatorias = new ArrayList<>();
+        Random random = new Random();
+
+        while (receitasAleatorias.size() < 3) {
+            int idAleatorio = random.nextInt(getLastId()) + 1;
+            Receita receita = buscarReceitaPorId(idAleatorio);
+
+            if (receita != null && !receitasAleatorias.contains(receita)) {
+                receitasAleatorias.add(receita);
+            }
+        }
+
+        return receitasAleatorias;
+    }
+
+    public Receita buscarReceitaPorId(int id) {
+        List<Receita> receitas = repositorioReceita.buscar();
+
+        for (Receita receita : receitas) {
+            if (receita.getId() == id) {
+                return receita;
+            }
+        }
+        return null; // Retorna null se a receita com o ID não for encontrada
     }
     public int getLastId() {
         int id;
