@@ -1,8 +1,9 @@
 package org.tudogostoso.fxcontroller;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.tudogostoso.controle.ControleReceita;
@@ -10,6 +11,7 @@ import org.tudogostoso.modelo.Receita;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 public class FxFeedController {
     @FXML
     private Label labelBemVindo;
@@ -18,23 +20,23 @@ public class FxFeedController {
     private Label labelReceitas;
 
     @FXML
-    private ListView<HBox> feedReceitas;
+    private GridPane feed;
 
     @FXML
     private Button btnPerfil;
+    private ControleReceita controleReceita;
 
-    private final ControleReceita controleReceita;
-
-    // Modificação: Remover o construtor padrão que cria uma nova instância de ControleReceita
-
-
-    public FxFeedController(ControleReceita controleReceita) {
+    public void setControleReceita(ControleReceita controleReceita) {
         this.controleReceita = controleReceita;
     }
+
 
     @FXML
     public void initialize() {
         List<Receita> receitas = controleReceita.buscarReceitasAleatorias();
+
+        int row = 0;
+
 
         for (Receita receita : receitas) {
             HBox receitaBox = new HBox();
@@ -57,9 +59,9 @@ public class FxFeedController {
             detalhesReceita.getChildren().addAll(titulo, autor, horario, tempoPreparo, categoria, btnVerMais);
             receitaBox.getChildren().add(detalhesReceita);
 
-            feedReceitas.getItems().add(receitaBox);
+
+            feed.add(receitaBox, 1, row);
+            row++;
         }
     }
-
-
 }
