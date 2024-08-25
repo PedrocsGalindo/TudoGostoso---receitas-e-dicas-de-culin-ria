@@ -26,10 +26,10 @@ public abstract class RepositorioGenerico <T> {
             try{
                 objetos = (List<T>) input.readObject();
             }catch (ClassNotFoundException e){
-                System.out.println("erro ao ler arquivo");
+                System.out.println("erro ao ler arquivo na busca");
             }
         }catch (IOException e){
-            System.out.println("Erro ao abrir arquivo");
+            System.out.println("Erro ao abrir arquivo na busca");
         }
         return objetos;
     }
@@ -42,7 +42,7 @@ public abstract class RepositorioGenerico <T> {
         try(ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(this.path))){
             output.writeObject(objetos);
         }catch (IOException e){
-            System.out.println("Erro ao abrir arquivo para escrever");
+            System.out.println("Erro ao abrir arquivo para salvar");
         }
     }
 
