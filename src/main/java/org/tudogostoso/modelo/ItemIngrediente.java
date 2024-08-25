@@ -1,7 +1,9 @@
 package org.tudogostoso.modelo;
 
+import java.io.Serializable;
+
 //ItemIgrendientes são os igrendiente que vão em receitas, justamente por conta disso precisam tem quantidade e medida
-public class ItemIngrediente {
+public class ItemIngrediente implements Serializable {
 
     private Ingrediente ingrediente;
     private double quantidade;

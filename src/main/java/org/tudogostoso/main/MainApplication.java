@@ -35,9 +35,19 @@ public class MainApplication extends Application {
         controle.criarIngrediente("cenoura");
         controle.criarIngrediente("batata");
 
-        controle.excluirUsuario(caioc);
-        Usuario caioteste = controle.recuperarUsuarioPorId(2);
-        System.out.println(caioteste.getEmail());
+        Ingrediente cenoura = controle.buscarIngredientePorNome("cenoura");
+        Ingrediente batata = controle.buscarIngredientePorNome("batata");
+
+        ItemIngrediente itemCenoura = controle.criarItemIngrediente(cenoura, 200, UnidadeMedida.GRAMAS);
+        ItemIngrediente itemBatata = controle.criarItemIngrediente(batata, 300, UnidadeMedida.GRAMAS);
+        List<ItemIngrediente> ingredientes = List.of(itemCenoura, itemBatata);
+
+        UsuarioChef joaquimChef = controle.criarUsuarioChef(joaquimm);
+
+        List<String> preparo = List.of("bater", "juntar tudo");
+
+        controle.criarReceita("bolo", joaquimChef, ingredientes, preparo, "assar", "2min", "larica");
+
 
 
         launch();
