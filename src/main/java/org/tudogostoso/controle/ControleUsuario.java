@@ -26,10 +26,14 @@ public class ControleUsuario {
     //repositorio
     public  void salvarUsuario(Usuario usuario) throws UsuarioJaExistenteException {
         if (repositorio.buscarPorEmail(usuario.getEmail()) != null){
-            throw new UsuarioJaExistenteException("Já existe uma conta com esse email");
+            if (usuario.getClass() != UsuarioChef.class){
+                throw new UsuarioJaExistenteException("Já existe uma conta com esse email");
+            }
         }
         if (repositorio.buscarPorCpf(usuario.getCpf()) != null){
-            throw new UsuarioJaExistenteException("Já existe uma conta com esse CPF");
+            if (usuario.getClass() != UsuarioChef.class){
+                throw new UsuarioJaExistenteException("Já existe uma conta com esse CPF");
+            }
         }
         repositorio.salvar(usuario);
     }

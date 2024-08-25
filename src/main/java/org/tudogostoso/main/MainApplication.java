@@ -44,6 +44,8 @@ public class MainApplication extends Application {
 
         UsuarioChef joaquimChef = controle.criarUsuarioChef(joaquimm);
 
+        System.out.println(joaquimChef.getEmail());
+
         List<String> preparo = List.of("bater", "juntar tudo");
 
         controle.criarReceita("bolo", joaquimChef, ingredientes, preparo, "assar", "2min", "larica");
