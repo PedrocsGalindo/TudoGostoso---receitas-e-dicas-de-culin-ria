@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tudogostoso.fxcontroller.FxBuscaController">
    <children>
       <GridPane>
@@ -22,7 +21,7 @@
           <RowConstraints maxHeight="337.0" minHeight="10.0" prefHeight="323.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField id="TextFildBusca" fx:id="TextFildBusca" alignment="CENTER" promptText="Buscar" />
+            <TextField id="TextFildBusca" fx:id="textFildBusca" alignment="CENTER" promptText="Buscar" />
             <GridPane GridPane.rowIndex="1">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="340.0" minWidth="10.0" prefWidth="302.0" />
@@ -34,10 +33,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <CheckBox fx:id="CheckBoxPorNome" mnemonicParsing="false" text="Nome" />
-                  <CheckBox fx:id="CheckBoxPorAutor" mnemonicParsing="false" text="Autor" GridPane.columnIndex="1" />
-                  <CheckBox fx:id="CheckBoxPorIngrediente" contentDisplay="CENTER" mnemonicParsing="false" text="Ingrediente" GridPane.columnIndex="2" />
-                  <CheckBox fx:id="CheckBoxPorAvaliacao" mnemonicParsing="false" text="Avaliação" GridPane.columnIndex="3" />
+                  <CheckBox fx:id="checkBoxPorNome" mnemonicParsing="false" onMouseClicked="#cliqueNome" text="Nome" />
+                  <CheckBox fx:id="checkBoxPorAutor" mnemonicParsing="false" onMouseClicked="#cliqueAutor" text="Autor" GridPane.columnIndex="1" />
+                  <CheckBox fx:id="checkBoxPorIngrediente" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#cliqueIngrediente" text="Ingrediente" GridPane.columnIndex="2" />
+                  <CheckBox fx:id="checkBoxPorAvaliacao" mnemonicParsing="false" onMouseClicked="#cliqueAvaliacao" text="Avaliação" GridPane.columnIndex="3" />
                </children>
             </GridPane>
             <GridPane GridPane.rowIndex="2">
@@ -72,7 +71,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextArea fx:id="TextArea1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                              <TextArea fx:id="textArea1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                               <ImageView fx:id="ImageView1" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </GridPane>
@@ -85,8 +84,8 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ImageView fx:id="ImageView2" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
-                              <TextArea fx:id="TextArea2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                              <ImageView fx:id="imageView2" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                              <TextArea fx:id="textArea2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <GridPane GridPane.rowIndex="2">
@@ -98,8 +97,8 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ImageView fx:id="ImageView3" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
-                              <TextArea fx:id="TextArea3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                              <ImageView fx:id="imageView3" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                              <TextArea fx:id="textArea3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <GridPane GridPane.rowIndex="3">
@@ -111,8 +110,8 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ImageView fx:id="ImageView4" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
-                              <TextArea fx:id="TextArea4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                              <ImageView fx:id="imageView4" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                              <TextArea fx:id="textArea4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                      </children>
