@@ -9,6 +9,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class FxBuscaController {
 
@@ -50,6 +54,22 @@ public class FxBuscaController {
 
     @FXML
     private TextArea textArea4;
+
+    @FXML
+    private CheckBox focus;
+
+    @FXML
+    private void handleEnterKey(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            if (checkBoxPorNome.isSelected() == true || checkBoxPorAutor.isSelected() == true || checkBoxPorIngrediente.isSelected() == true || checkBoxPorAvaliacao.isSelected() == true) {
+                String textoDigitado = textFildBusca.getText();
+            } else {
+                textFildBusca.clear();
+                textFildBusca.setPromptText("escolha uma opção de filtro");
+                focus.requestFocus();
+            }
+        }
+    }
 
     @FXML
     void cliqueAutor(MouseEvent event) {
