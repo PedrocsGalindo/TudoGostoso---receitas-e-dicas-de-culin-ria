@@ -101,6 +101,8 @@ public class Usuario implements Serializable {
     public List<Ingrediente> getListaDeCompra() {return listaDeCompra; }
 
     public void addListaDeCompra(Ingrediente ingrediente) {
-        this.listaDeCompra.add(ingrediente);
+        if (!this.listaDeCompra.contains(ingrediente)) {
+            this.listaDeCompra.add(ingrediente);
+        }
     }
 }

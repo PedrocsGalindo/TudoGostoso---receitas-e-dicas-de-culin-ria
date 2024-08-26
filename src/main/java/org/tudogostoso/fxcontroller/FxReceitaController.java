@@ -16,10 +16,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import org.tudogostoso.modelo.Avaliacao;
-import org.tudogostoso.modelo.ItemIngrediente;
-import org.tudogostoso.modelo.Receita;
-import org.tudogostoso.modelo.Sessao;
+import org.tudogostoso.controle.Controle;
+import org.tudogostoso.controle.ControleFactory;
+import org.tudogostoso.modelo.*;
 
 
 import java.io.File;
@@ -44,6 +43,9 @@ public class FxReceitaController {
     @FXML
     private TextField textFiledComentario;
 
+    List<ItemIngrediente> ingredientes;
+    Controle controle = ControleFactory.criarControleGeral();
+
     @FXML
     public void initialize() {
         Receita receita = Sessao.getReceitaSessao();
@@ -62,7 +64,7 @@ public class FxReceitaController {
 
         //setar os ingredientes
         StringBuilder stringIngrediente = new StringBuilder();
-        List<ItemIngrediente> ingredientes = receita.getIngredientes();
+        ingredientes = receita.getIngredientes();
         if (!ingredientes.isEmpty()) {
             for (ItemIngrediente ingrediente : ingredientes) {
                 stringIngrediente.append(ingrediente.getIngrediente().getNome()).append(": ").append(ingrediente.getQuantidade()).append(" ").append(ingrediente.getMedida()).append("\n\n");
@@ -86,6 +88,15 @@ public class FxReceitaController {
 
     @FXML
     void handllerBotaoAddListaCompra(ActionEvent event) {
+        Usuario usuario = Sessao.getUsuarioSessao();
+        for (ItemIngrediente itemIngrediente : ingredientes) {
+            usuario.addListaDeCompra(itemIngrediente.getIngrediente());
+        }
+        controle.atualizarUsuario(usuario);
+    }
+
+    @FXML
+    void handllerBotaoAddFav(ActionEvent event) {
 
     }
 
