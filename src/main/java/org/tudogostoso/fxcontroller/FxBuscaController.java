@@ -161,6 +161,7 @@ public class FxBuscaController {
             }
         }
     }
+
     @FXML
     void clicarReceitaGridPane(MouseEvent event) throws IOException {
 

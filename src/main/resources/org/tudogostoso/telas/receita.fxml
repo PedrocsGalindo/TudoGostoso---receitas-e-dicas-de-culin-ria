@@ -26,7 +26,7 @@
          <top>
             <HBox prefHeight="24.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="botaoVoltar" mnemonicParsing="false" text="Voltar">
+                  <Button fx:id="botaoVoltar" mnemonicParsing="false" onAction="#botaoVoltar" text="Voltar">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
