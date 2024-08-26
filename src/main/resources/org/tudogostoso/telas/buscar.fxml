@@ -33,10 +33,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <CheckBox fx:id="checkBoxPorNome" mnemonicParsing="false" onMouseClicked="#cliqueNome" text="Titulo" />
-                  <CheckBox fx:id="checkBoxPorAutor" mnemonicParsing="false" onMouseClicked="#cliqueAutor" text="Autor" GridPane.columnIndex="1" />
-                  <CheckBox fx:id="checkBoxPorIngrediente" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#cliqueIngrediente" text="Ingrediente" GridPane.columnIndex="2" />
-                  <CheckBox fx:id="checkBoxPorAvaliacao" mnemonicParsing="false" onMouseClicked="#cliqueAvaliacao" text="Avaliação" GridPane.columnIndex="3" />
+                  <CheckBox fx:id="checkBoxPorNome" mnemonicParsing="false" onAction="#cliqueNome" text="Titulo" />
+                  <CheckBox fx:id="checkBoxPorAutor" mnemonicParsing="false" onAction="#cliqueAutor" text="Autor" GridPane.columnIndex="1" />
+                  <CheckBox fx:id="checkBoxPorIngrediente" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cliqueIngrediente" text="Ingrediente" GridPane.columnIndex="2" />
+                  <CheckBox fx:id="checkBoxPorAvaliacao" mnemonicParsing="false" onAction="#cliqueAvaliacao" text="Avaliação" GridPane.columnIndex="3" />
                </children>
             </GridPane>
             <GridPane GridPane.rowIndex="2">
@@ -71,8 +71,8 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                               <ImageView fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" />
+                              <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <GridPane fx:id="receitaGridPane2" onMouseClicked="#clicarReceitaGridPane" GridPane.rowIndex="1">

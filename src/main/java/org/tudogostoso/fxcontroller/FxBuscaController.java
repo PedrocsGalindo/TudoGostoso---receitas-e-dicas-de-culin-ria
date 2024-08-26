@@ -181,7 +181,7 @@ public class FxBuscaController {
     }
 
     @FXML
-    void cliqueAutor(MouseEvent event) {
+    void cliqueAutor() {
         checkBoxPorAutor.setSelected(true);
         checkBoxPorNome.setSelected(false);
         checkBoxPorIngrediente.setSelected(false);
@@ -190,7 +190,7 @@ public class FxBuscaController {
     }
 
     @FXML
-    void cliqueAvaliacao(MouseEvent event) {
+    void cliqueAvaliacao() {
         checkBoxPorAvaliacao.setSelected(true);
         checkBoxPorNome.setSelected(false);
         checkBoxPorIngrediente.setSelected(false);
@@ -198,7 +198,7 @@ public class FxBuscaController {
     }
 
     @FXML
-    void cliqueIngrediente(MouseEvent event) {
+    void cliqueIngrediente() {
         checkBoxPorIngrediente.setSelected(true);
         checkBoxPorNome.setSelected(false);
         checkBoxPorAutor.setSelected(false);
@@ -206,7 +206,7 @@ public class FxBuscaController {
     }
 
     @FXML
-    void cliqueNome(MouseEvent event) {
+    void cliqueNome() {
         checkBoxPorNome.setSelected(true);
         checkBoxPorAutor.setSelected(false);
         checkBoxPorIngrediente.setSelected(false);
