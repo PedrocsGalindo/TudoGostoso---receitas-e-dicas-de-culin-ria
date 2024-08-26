@@ -91,7 +91,6 @@ public class FxBuscaController {
                         Collections.reverse(receitas);
                         }
                         try {
-                            //Vai ser aq que vai passar a receita para a sessão para ela puder ser acessada na cena de Receita
                             //Passa as receitas para os gridpanes
                             int i = 0;
                             for(GridPane gridPane : receitasGridPane) {
@@ -120,6 +119,8 @@ public class FxBuscaController {
     }
     @FXML
     void clicarReceitaGridPane(MouseEvent event) throws IOException {
+        //Vai ser aq que vai passar a receita para a sessão para ela puder ser acessada na cena de Receita
+
         root = FXMLLoader.load(getClass().getResource("/org/tudogostoso/telas/receita.fxml"));
         scene = new Scene(root);
 
