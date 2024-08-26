@@ -71,8 +71,8 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextArea fx:id="textArea1" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                              <ImageView fx:id="imageView1" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" />
+                              <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                              <ImageView fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" />
                            </children>
                         </GridPane>
                         <GridPane fx:id="receitaGridPane2" onMouseClicked="#clicarReceitaGridPane" GridPane.rowIndex="1">
@@ -84,8 +84,8 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ImageView fx:id="imageView2" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
-                              <TextArea fx:id="textArea2" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                              <ImageView fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                              <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <GridPane fx:id="receitaGridPane3" onMouseClicked="#clicarReceitaGridPane" GridPane.rowIndex="2">
@@ -97,8 +97,8 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ImageView fx:id="imageView3" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
-                              <TextArea fx:id="textArea3" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                              <ImageView fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                              <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <GridPane fx:id="receitaGridPane4" onMouseDragged="#clicarReceitaGridPane" GridPane.rowIndex="3">
@@ -110,8 +110,8 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ImageView fx:id="imageView4" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
-                              <TextArea fx:id="textArea4" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                              <ImageView fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                              <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                      </children>

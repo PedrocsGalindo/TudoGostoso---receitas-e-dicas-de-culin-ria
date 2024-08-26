@@ -38,12 +38,6 @@ public class FxBuscaController {
     private GridPane receitaGridPane1, receitaGridPane2, receitaGridPane3, receitaGridPane4;
 
     @FXML
-    private TextArea textArea1, textArea2, textArea3, textArea4;
-
-    @FXML
-    private ImageView imageView1, imageView2, imageView3, imageView4;
-
-    @FXML
     private CheckBox focus;
 
     private static Controle controle = ControleFactory.criarControleGeral();
