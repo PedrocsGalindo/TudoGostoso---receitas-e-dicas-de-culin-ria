@@ -177,7 +177,6 @@ public class FxBuscaController {
 
         stage.setScene(scene);
         stage.show();
-        System.out.println(Sessao.getReceitaSessao().getTitulo());
     }
 
     @FXML
