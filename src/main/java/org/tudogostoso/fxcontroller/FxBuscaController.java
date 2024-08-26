@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -75,37 +76,58 @@ public class FxBuscaController {
         imagem.setImage(new Image(new File(receita.getCaminhoImagem()).getAbsolutePath()));
     }
 
+    public void limpar(GridPane[] receitasGridPane){
+        for (GridPane gridPane : receitasGridPane) {
+            for (Node node : gridPane.getChildren()) {
+                if (node instanceof TextArea) {
+                    // Limpar o texto do TextArea
+                    ((TextArea) node).clear();
+                } else if (node instanceof ImageView) {
+                    // Limpar a imagem do ImageView
+                    ((ImageView) node).setImage(null);
+                }
+            }
+        }
+    }
+
     @FXML
     private void handleEnterKey(KeyEvent event) {
+        limpar(receitasGridPane);
+
+        List<Receita> receitas = new ArrayList<>();
+
         if (event.getCode() == KeyCode.ENTER) {
+
             if (checkBoxPorNome.isSelected() || checkBoxPorAutor.isSelected() || checkBoxPorIngrediente.isSelected() || checkBoxPorAvaliacao.isSelected() ) {
                 String textoDigitado = textFildBusca.getText();
+
                 if (checkBoxPorNome.isSelected()){
-                    List<Receita> receitas = controle.buascarReceitaPorTitulo(textoDigitado);
-                    if (!receitas.isEmpty()) {
-                        Collections.sort(receitas);
-                        Collections.reverse(receitas);
-                        }
-                        try {
-                            //Passa as receitas para os gridpanes
-                            int i = 0;
-                            for(GridPane gridPane : receitasGridPane) {
-                                if (gridPane != null){
-                                    prencher(receitas.get(i),gridPane);
-                                }
-                                i++;
-                                }
-                        } catch (IndexOutOfBoundsException e) {
-                            //não possui 4 receitas
-                        }
+                    receitas = controle.buascarReceitaPorTitulo(textoDigitado);
+
                 }else if (checkBoxPorAutor.isSelected() ){
+                    receitas = controle.buscarReceitaPorAutor(textoDigitado);
 
                 }else if (checkBoxPorIngrediente.isSelected()){
 
                 }else if (checkBoxPorAvaliacao.isSelected()){
 
                 }
-
+                if (!receitas.isEmpty()) {
+                    Collections.sort(receitas);
+                    Collections.reverse(receitas);
+                    try {
+                        //Passa as receitas para os gridpanes
+                        int i = 0;
+                        for(GridPane gridPane : receitasGridPane) {
+                            if (gridPane != null){
+                                prencher(receitas.get(i),gridPane);
+                            }
+                            i++;
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        //não possui 4 receitas
+                    }
+                }
             } else {
                 textFildBusca.clear();
                 textFildBusca.setPromptText("escolha uma opção de filtro");
