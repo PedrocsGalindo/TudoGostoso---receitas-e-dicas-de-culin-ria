@@ -28,10 +28,7 @@ public class ControllerCriarReceitas {
         File caminhoArquivoUsuario = fileChooser.showOpenDialog(stage);
 
         if (caminhoArquivoUsuario != null) {
-
-
-            System.out.println("Arquivo selecionado: " + caminhoArquivoUsuario.getAbsolutePath());
-            // Aqui você pode manipular o arquivo, por exemplo, carregá-lo em um ImageView
+            // logica para salvar o caminho do arquivo
         }
     }
 

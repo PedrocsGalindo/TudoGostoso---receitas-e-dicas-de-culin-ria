@@ -1,5 +1,6 @@
 package org.tudogostoso.fxcontroller;
 
+import javafx.scene.image.Image;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.controle.Controle;
@@ -12,10 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
-import java.util.Collection;
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,7 +41,7 @@ public class FxBuscaController {
     private TextArea textArea1;
 
     @FXML
-    private ImageView ImageView1;
+    private ImageView imageView1;
 
     @FXML
     private ImageView imageView2;
@@ -65,6 +64,12 @@ public class FxBuscaController {
     @FXML
     private CheckBox focus;
 
+    public void prencher(Receita receita, ImageView imagem, TextArea texto){
+        texto.setText(receita.getTitulo() + "\n" + receita.getAutor().getNome());
+        //pega o caminho absoluto do arquivo
+        imagem.setImage(new Image(new File(receita.getCaminhoImagem()).getAbsolutePath()));
+    }
+
     @FXML
     private void handleEnterKey(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
@@ -72,9 +77,17 @@ public class FxBuscaController {
                 String textoDigitado = textFildBusca.getText();
                 if (checkBoxPorNome.isSelected()){
                     List<Receita> receitas = controle.buascarReceitaPorTitulo(textoDigitado);
-                    if (receitas.size() > 0) {
+                    if (!receitas.isEmpty()) {
                         Collections.sort(receitas);
                         Collections.reverse(receitas);
+                        try {
+                            prencher(receitas.get(0),imageView1, textArea1);
+                            prencher(receitas.get(1),imageView2, textArea2);
+                            prencher(receitas.get(2),imageView3, textArea3);
+                            prencher(receitas.get(3),imageView4, textArea4);
+                        } catch (IndexOutOfBoundsException e) {
+                            //não possui 4 receitas
+                        }
 
                     }
 
@@ -129,10 +142,4 @@ public class FxBuscaController {
         checkBoxPorAvaliacao.setSelected(false);
 
     }
-
-    public void prencher(Receita receita, ImageView imagem, TextArea texto){
-        texto.setText(receita.getTitulo() + "/n" + receita.getAutor());
-        imagem.getImage();
-    }
-
 }
