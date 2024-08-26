@@ -72,7 +72,7 @@
                           </rowConstraints>
                            <children>
                               <TextArea fx:id="textArea1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                              <ImageView fx:id="imageView1" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView1" fitHeight="72.0" fitWidth="86.0" pickOnBounds="true" />
                            </children>
                         </GridPane>
                         <GridPane GridPane.rowIndex="1">
