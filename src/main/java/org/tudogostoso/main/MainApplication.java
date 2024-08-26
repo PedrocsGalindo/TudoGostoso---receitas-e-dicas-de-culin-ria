@@ -49,7 +49,7 @@ public class MainApplication extends Application {
 
         controle.criarReceita("bolo", joaquimChef, ingredientes, preparo, "2min", "larica");
 
-        
+
         launch();
     }
 }

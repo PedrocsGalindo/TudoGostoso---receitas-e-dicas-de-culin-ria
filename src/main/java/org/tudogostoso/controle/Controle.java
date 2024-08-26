@@ -33,6 +33,9 @@ public class Controle {
     public Receita buscarReceitaPorAutorETitulo(Usuario autor, String titulo){
         return this.controleReceita.buscarReceitaPorAutorETitulo(autor, titulo);
     }
+    public Receita buscarReceitaPorAutorETitulo(String autor, String titulo){
+        return this.controleReceita.buscarReceitaPorAutorETitulo(autor, titulo);
+    }
 
     //metodos de ControleUsuario
     public  void excluirUsuario(Usuario usuario){ this.controleUsuario.excluirUsuario(usuario);}

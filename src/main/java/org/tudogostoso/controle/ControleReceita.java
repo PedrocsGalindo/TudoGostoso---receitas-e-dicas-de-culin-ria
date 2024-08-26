@@ -48,6 +48,16 @@ public class ControleReceita {
         }
         return receitaDesejada;
     }
+    public Receita buscarReceitaPorAutorETitulo(String autor, String nome) {
+        List<Receita> receitasAutor = repositorioReceita.buscarPorAutor(autor);
+        Receita receitaDesejada = null;
+        for (Receita receita : receitasAutor) {
+            if (receita.getTitulo().equals(nome)) {
+                receitaDesejada = receita;
+            }
+        }
+        return receitaDesejada;
+    }
     public List<Receita> buscarReceitasAleatorias() {
         List<Receita> receitasAleatorias = new ArrayList<>();
         Random random = new Random();

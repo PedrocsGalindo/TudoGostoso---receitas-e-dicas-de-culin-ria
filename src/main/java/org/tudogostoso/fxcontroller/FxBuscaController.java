@@ -19,6 +19,8 @@ import javafx.scene.layout.GridPane;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.tudogostoso.modelo.Sessao;
+
 import java.io.IOException;
 
 import java.io.File;
@@ -90,6 +92,29 @@ public class FxBuscaController {
         }
     }
 
+    public Receita receitaAssociadaAoGridPane(GridPane gridPane){
+        Receita receita = null;
+        String texto = "vazio";
+
+        if (gridPane.getChildren().get(0) instanceof TextArea){
+            texto = ((TextArea) gridPane.getChildren().get(0)).getText();
+        } else if (gridPane.getChildren().get(1) instanceof TextArea){
+            texto = ((TextArea) gridPane.getChildren().get(1)).getText();
+        }
+        if (! texto.equals("vazio")){
+            String[] linhas = texto.split("\n");
+
+            // Verificar se existem pelo menos duas linhas
+            if (linhas.length >= 2) {
+                String titulo = linhas[0]; // A primeira linha é o título
+                String autor = linhas[1];
+
+                receita =  controle.buscarReceitaPorAutorETitulo(autor, titulo);
+            }
+        }
+        return receita;
+    }
+
     @FXML
     private void handleEnterKey(KeyEvent event) {
         limpar(receitasGridPane);
@@ -137,16 +162,22 @@ public class FxBuscaController {
     }
     @FXML
     void clicarReceitaGridPane(MouseEvent event) throws IOException {
-        //Vai ser aq que vai passar a receita para a sessão para ela puder ser acessada na cena de Receita
+
+        Node noClique = (Node) event.getSource();
+
+        //associa a receita do gridClicado à receita da sessao
+        GridPane gridClicado = (GridPane) noClique;
+        Sessao.setReceitaSessao(receitaAssociadaAoGridPane(gridClicado));
 
         root = FXMLLoader.load(getClass().getResource("/org/tudogostoso/telas/receita.fxml"));
         scene = new Scene(root);
 
         // Obtenha a Stage a partir do evento
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage = (Stage) noClique.getScene().getWindow();
 
         stage.setScene(scene);
         stage.show();
+        System.out.println(Sessao.getReceitaSessao().getTitulo());
     }
 
     @FXML
