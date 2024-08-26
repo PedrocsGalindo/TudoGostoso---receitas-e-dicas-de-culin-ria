@@ -16,13 +16,14 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import org.tudogostoso.modelo.Avaliacao;
+import org.tudogostoso.modelo.ItemIngrediente;
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.modelo.Sessao;
 
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class FxReceitaController {
     private Button botaoVoltar;
 
     @FXML
-    private TextArea textAreaAvaliações, textAreaIngrediente, textAreaTitulo, textAreaNota, textAreaPreparo;
+    private TextArea textAreaAvaliacoes, textAreaIngrediente, textAreaTitulo, textAreaNota, textAreaPreparo;
 
     @FXML
     private ImageView imagemReceita;
@@ -47,13 +48,34 @@ public class FxReceitaController {
     public void initialize() {
         Receita receita = Sessao.getReceitaSessao();
 
+        //setar os comentarios
+        StringBuilder stringAvaliacoes = new StringBuilder();
+        List<Avaliacao> avaliacaos = receita.getAvaliacoes();
+        if (!avaliacaos.isEmpty()) {
+            for (Avaliacao avaliacao : avaliacaos) {
+                stringAvaliacoes.append("\n\n").append(avaliacao.getComentario());
+            }
+            textAreaAvaliacoes.setText(stringAvaliacoes.toString());
+        }
+
         imagemReceita.setImage(new Image(new File(receita.getCaminhoImagem()).getAbsolutePath()));
+
+        //setar os ingredientes
+        StringBuilder stringIngrediente = new StringBuilder();
+        List<ItemIngrediente> ingredientes = receita.getIngredientes();
+        if (!ingredientes.isEmpty()) {
+            for (ItemIngrediente ingrediente : ingredientes) {
+                stringIngrediente.append(ingrediente.getIngrediente().getNome()).append(": ").append(ingrediente.getQuantidade()).append(" ").append(ingrediente.getMedida()).append("\n\n");
+            }
+            textAreaIngrediente.setText(stringIngrediente.toString());
+        }
+
         textAreaTitulo.setText(receita.getTitulo());
 
         String nota = String.valueOf(receita.getNota());
         textAreaNota.setText(nota);
 
-        String preparo = String.join(", " , receita.getPreparo());
+        String preparo = String.join("\n\n " , receita.getPreparo());
         textAreaPreparo.setText(preparo);
 
         ObservableList<Integer> opçõesNota = FXCollections.observableArrayList(Arrays.asList(0, 1, 2, 3, 4, 5));

@@ -28,12 +28,12 @@
             <Insets top="10.0" />
          </opaqueInsets>
       </Button>
-      <TextArea fx:id="textAreaAvaliações" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+      <TextArea fx:id="textAreaAvaliacoes" editable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets top="10.0" />
          </GridPane.margin>
       </TextArea>
-      <TextArea fx:id="textAreaIngrediente" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <TextArea fx:id="textAreaIngrediente" editable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -57,7 +57,7 @@
                </GridPane.margin>
             </Button>
             <ChoiceBox fx:id="choiceBoxNota" prefHeight="25.0" prefWidth="72.0" GridPane.columnIndex="2" />
-            <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Nota" GridPane.columnIndex="1" />
+            <TextArea editable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" text="Nota" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -69,8 +69,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextArea fx:id="textAreaTitulo" editable="false" />
-            <TextArea fx:id="textAreaNota" editable="false" GridPane.columnIndex="1" />
+            <TextArea fx:id="textAreaTitulo" editable="false" mouseTransparent="true" />
+            <TextArea fx:id="textAreaNota" editable="false" mouseTransparent="true" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handllerBotaoAddListaCompra" text="Adicionar ingredientes na lista de compra" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
@@ -86,7 +86,7 @@
             <TextField fx:id="textFiledComentario" prefHeight="168.0" prefWidth="240.0" />
          </children>
       </GridPane>
-      <TextArea fx:id="textAreaPreparo" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextArea fx:id="textAreaPreparo" editable="false" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <ImageView fx:id="imagemReceita" fitHeight="243.0" fitWidth="316.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
    </children>
 </GridPane>
