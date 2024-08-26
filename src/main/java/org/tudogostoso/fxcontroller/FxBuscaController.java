@@ -1,5 +1,6 @@
 package org.tudogostoso.fxcontroller;
 
+import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.controle.Controle;
 
@@ -14,7 +15,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 public class FxBuscaController {
+
+    public static Controle controle = ControleFactory.criarControleGeral();
 
     @FXML
     private TextField textFildBusca;
@@ -61,8 +68,26 @@ public class FxBuscaController {
     @FXML
     private void handleEnterKey(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            if (checkBoxPorNome.isSelected() == true || checkBoxPorAutor.isSelected() == true || checkBoxPorIngrediente.isSelected() == true || checkBoxPorAvaliacao.isSelected() == true) {
+            if (checkBoxPorNome.isSelected() || checkBoxPorAutor.isSelected() || checkBoxPorIngrediente.isSelected() || checkBoxPorAvaliacao.isSelected() ) {
                 String textoDigitado = textFildBusca.getText();
+                if (checkBoxPorNome.isSelected()){
+                    List<Receita> receitas = controle.buascarReceitaPorTitulo(textoDigitado);
+                    if (receitas.size() > 0) {
+                        Collections.sort(receitas);
+                        Collections.reverse(receitas);
+
+                    }
+
+
+                }else if (checkBoxPorAutor.isSelected() ){
+
+                }else if (checkBoxPorIngrediente.isSelected()){
+
+                }else if (checkBoxPorAvaliacao.isSelected()){
+
+                }
+
+
             } else {
                 textFildBusca.clear();
                 textFildBusca.setPromptText("escolha uma opção de filtro");
@@ -103,6 +128,11 @@ public class FxBuscaController {
         checkBoxPorIngrediente.setSelected(false);
         checkBoxPorAvaliacao.setSelected(false);
 
+    }
+
+    public void prencher(Receita receita, ImageView imagem, TextArea texto){
+        texto.setText(receita.getTitulo() + "/n" + receita.getAutor());
+        imagem.getImage();
     }
 
 }

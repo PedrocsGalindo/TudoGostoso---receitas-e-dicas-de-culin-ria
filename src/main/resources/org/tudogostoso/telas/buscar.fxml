@@ -33,7 +33,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <CheckBox fx:id="checkBoxPorNome" mnemonicParsing="false" onMouseClicked="#cliqueNome" text="Nome" />
+                  <CheckBox fx:id="checkBoxPorNome" mnemonicParsing="false" onMouseClicked="#cliqueNome" text="Titulo" />
                   <CheckBox fx:id="checkBoxPorAutor" mnemonicParsing="false" onMouseClicked="#cliqueAutor" text="Autor" GridPane.columnIndex="1" />
                   <CheckBox fx:id="checkBoxPorIngrediente" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#cliqueIngrediente" text="Ingrediente" GridPane.columnIndex="2" />
                   <CheckBox fx:id="checkBoxPorAvaliacao" mnemonicParsing="false" onMouseClicked="#cliqueAvaliacao" text="Avaliação" GridPane.columnIndex="3" />
