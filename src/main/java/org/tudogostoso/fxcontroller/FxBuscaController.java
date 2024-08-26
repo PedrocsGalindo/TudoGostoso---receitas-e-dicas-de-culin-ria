@@ -61,7 +61,9 @@ public class FxBuscaController {
     }
 
     public void prencher(Receita receita, GridPane gridPane) throws NullPointerException{
+        //deixa clicavel o gridpane
         gridPane.setMouseTransparent(false);
+
         ImageView imagem = null;
         TextArea texto = null;
 
