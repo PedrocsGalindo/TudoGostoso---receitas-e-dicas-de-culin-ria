@@ -1,16 +1,19 @@
 package org.tudogostoso.fxcontroller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.modelo.Sessao;
 
@@ -21,13 +24,19 @@ import java.io.IOException;
 public class FxReceitaController {
 
     @FXML
+    private Button botaoVoltar;
+
+    @FXML
+    private TextArea textAreaAvaliações, textAreaIngrediente, textAreaTitulo, textAreaNota, textAreaPreparo;
+
+    @FXML
     private ImageView imagemReceita;
 
     @FXML
-    private TextArea textAreaTitulo, textAreaNota, textAreaPreparo;
+    private ChoiceBox<?> choiceBoxNota;
 
     @FXML
-    private Button botaoVoltar;
+    private TextField textFiledComentario;
 
     @FXML
     public void initialize() {
@@ -42,9 +51,19 @@ public class FxReceitaController {
         textAreaPreparo.setText(preparo);
 
     }
-    @FXML
-    void botaoVoltar(ActionEvent event) throws IOException {
 
+    @FXML
+    void handllerBotaoAddListaCompra(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handllerBotaoAvaliar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handllerBotaoVoltar(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(Sessao.getUltimaCena()));
         Scene scene = new Scene(root);
 
@@ -53,6 +72,7 @@ public class FxReceitaController {
 
         stage.setScene(scene);
         stage.show();
-    }
 
+    }
 }
+
