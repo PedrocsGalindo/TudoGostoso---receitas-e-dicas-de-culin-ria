@@ -1,13 +1,15 @@
 package org.tudogostoso.fxcontroller;
 
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.image.Image;
+
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.controle.Controle;
+import org.tudogostoso.modelo.Sessao;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -19,7 +21,6 @@ import javafx.scene.layout.GridPane;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.tudogostoso.modelo.Sessao;
 
 import java.io.IOException;
 
