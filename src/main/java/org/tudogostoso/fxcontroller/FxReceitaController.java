@@ -1,5 +1,7 @@
 package org.tudogostoso.fxcontroller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -20,6 +22,9 @@ import org.tudogostoso.modelo.Sessao;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class FxReceitaController {
 
@@ -33,7 +38,7 @@ public class FxReceitaController {
     private ImageView imagemReceita;
 
     @FXML
-    private ChoiceBox<?> choiceBoxNota;
+    private ChoiceBox<Integer> choiceBoxNota;
 
     @FXML
     private TextField textFiledComentario;
@@ -41,6 +46,7 @@ public class FxReceitaController {
     @FXML
     public void initialize() {
         Receita receita = Sessao.getReceitaSessao();
+
         imagemReceita.setImage(new Image(new File(receita.getCaminhoImagem()).getAbsolutePath()));
         textAreaTitulo.setText(receita.getTitulo());
 
@@ -49,6 +55,10 @@ public class FxReceitaController {
 
         String preparo = String.join(", " , receita.getPreparo());
         textAreaPreparo.setText(preparo);
+
+        ObservableList<Integer> opçõesNota = FXCollections.observableArrayList(Arrays.asList(0, 1, 2, 3, 4, 5));
+        choiceBoxNota.setValue(5);
+        choiceBoxNota.setItems(opçõesNota);
 
     }
 
