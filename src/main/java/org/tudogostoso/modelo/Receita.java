@@ -16,8 +16,9 @@ public class Receita implements Serializable, Comparable<Receita>{
     private LocalDateTime horario;
     private String tempoDePreparo;
     private String categoria;
+    private String caminhoImagem;
 
-    public Receita(int id, String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria) {
+    public Receita(int id, String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria) {
         this.id = id;
         this.autor = autor;
         this.titulo = titulo;
@@ -27,7 +28,21 @@ public class Receita implements Serializable, Comparable<Receita>{
         this.avaliacoes = new ArrayList<>();
         this.tempoDePreparo= tempoDePreparo;
         this.categoria = categoria;
+        this.caminhoImagem = "src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg";
     }
+    public Receita(int id, String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria, String caminhoImagem) {
+        this.id = id;
+        this.autor = autor;
+        this.titulo = titulo;
+        this.ingredientes = ingredientes;
+        this.preparo = preparo;
+        this.horario = LocalDateTime.now();
+        this.avaliacoes = new ArrayList<>();
+        this.tempoDePreparo= tempoDePreparo;
+        this.categoria = categoria;
+        this.caminhoImagem = caminhoImagem;
+    }
+
 
     //ordem natural de receitas é baseado no horario
     @Override
@@ -46,6 +61,14 @@ public class Receita implements Serializable, Comparable<Receita>{
         } else {
             return true;
         }
+    }
+
+    public String getCaminhoImagem() {
+        return caminhoImagem;
+    }
+
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
     }
 
     public int getId() {

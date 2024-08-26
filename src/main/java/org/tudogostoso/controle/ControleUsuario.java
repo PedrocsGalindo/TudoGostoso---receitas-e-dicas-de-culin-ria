@@ -106,9 +106,9 @@ public class ControleUsuario {
     }
 
     //UsuarioChef
-    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String modoDePreparo, String tempoDePreparo, String categoria) {
+    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria) {
         int id = controleReceita.getLastId() + 1;
-        Receita receita = new Receita(id, titulo, autor, ingredientes, preparo, modoDePreparo, tempoDePreparo, categoria);
+        Receita receita = new Receita(id, titulo, autor, ingredientes, preparo, tempoDePreparo, categoria);
         try {
             cadastrarReceita(receita);
         } catch (ReceitaJaExistenteException e) {

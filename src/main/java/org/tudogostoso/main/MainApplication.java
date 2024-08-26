@@ -47,7 +47,7 @@ public class MainApplication extends Application {
 
         List<String> preparo = List.of("bater", "juntar tudo");
 
-        controle.criarReceita("bolo", joaquimChef, ingredientes, preparo, "assar", "2min", "larica");
+        controle.criarReceita("bolo", joaquimChef, ingredientes, preparo, "2min", "larica");
 
 
 
