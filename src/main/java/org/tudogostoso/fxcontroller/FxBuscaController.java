@@ -1,5 +1,7 @@
 package org.tudogostoso.fxcontroller;
 
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
@@ -13,59 +15,66 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
 
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
-public class FxBuscaController {
 
-    public static Controle controle = ControleFactory.criarControleGeral();
+public class FxBuscaController {
 
     @FXML
     private TextField textFildBusca;
 
     @FXML
-    private CheckBox checkBoxPorNome;
+    private CheckBox checkBoxPorNome, checkBoxPorAutor, checkBoxPorIngrediente, checkBoxPorAvaliacao;
 
     @FXML
-    private CheckBox checkBoxPorAutor;
+    private GridPane receitaGridPane1, receitaGridPane2, receitaGridPane3, receitaGridPane4;
 
     @FXML
-    private CheckBox checkBoxPorIngrediente;
+    private TextArea textArea1, textArea2, textArea3, textArea4;
 
     @FXML
-    private CheckBox checkBoxPorAvaliacao;
-
-    @FXML
-    private TextArea textArea1;
-
-    @FXML
-    private ImageView imageView1;
-
-    @FXML
-    private ImageView imageView2;
-
-    @FXML
-    private TextArea textArea2;
-
-    @FXML
-    private ImageView imageView3;
-
-    @FXML
-    private TextArea textArea3;
-
-    @FXML
-    private ImageView imageView4;
-
-    @FXML
-    private TextArea textArea4;
+    private ImageView imageView1, imageView2, imageView3, imageView4;
 
     @FXML
     private CheckBox focus;
 
-    public void prencher(Receita receita, ImageView imagem, TextArea texto){
+    private static Controle controle = ControleFactory.criarControleGeral();
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    private GridPane[] receitasGridPane;
+
+    @FXML
+    public void initialize() {
+        receitasGridPane = new GridPane[]{receitaGridPane1, receitaGridPane2, receitaGridPane3, receitaGridPane4};
+        for (GridPane gridPane : receitasGridPane) {
+            gridPane.setMouseTransparent(true);
+        }
+    }
+
+    public void prencher(Receita receita, GridPane gridPane) throws NullPointerException{
+        gridPane.setMouseTransparent(false);
+        ImageView imagem = null;
+        TextArea texto = null;
+
+        //pega os filhos do grid
+        for (Node node : gridPane.getChildren()) {
+            if (node instanceof ImageView) {
+                imagem = (ImageView) node;
+            } else if (node instanceof TextArea) {
+                texto = (TextArea) node;
+            }
+        }
         texto.setText(receita.getTitulo() + "\n" + receita.getAutor().getNome());
+        texto.setMouseTransparent(true);
         //pega o caminho absoluto do arquivo
         imagem.setImage(new Image(new File(receita.getCaminhoImagem()).getAbsolutePath()));
     }
@@ -80,18 +89,20 @@ public class FxBuscaController {
                     if (!receitas.isEmpty()) {
                         Collections.sort(receitas);
                         Collections.reverse(receitas);
+                        }
                         try {
-                            prencher(receitas.get(0),imageView1, textArea1);
-                            prencher(receitas.get(1),imageView2, textArea2);
-                            prencher(receitas.get(2),imageView3, textArea3);
-                            prencher(receitas.get(3),imageView4, textArea4);
+                            //Vai ser aq que vai passar a receita para a sessão para ela puder ser acessada na cena de Receita
+                            //Passa as receitas para os gridpanes
+                            int i = 0;
+                            for(GridPane gridPane : receitasGridPane) {
+                                if (gridPane != null){
+                                    prencher(receitas.get(i),gridPane);
+                                }
+                                i++;
+                                }
                         } catch (IndexOutOfBoundsException e) {
                             //não possui 4 receitas
                         }
-
-                    }
-
-
                 }else if (checkBoxPorAutor.isSelected() ){
 
                 }else if (checkBoxPorIngrediente.isSelected()){
@@ -100,13 +111,23 @@ public class FxBuscaController {
 
                 }
 
-
             } else {
                 textFildBusca.clear();
                 textFildBusca.setPromptText("escolha uma opção de filtro");
                 focus.requestFocus();
             }
         }
+    }
+    @FXML
+    void clicarReceitaGridPane(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/org/tudogostoso/telas/receita.fxml"));
+        scene = new Scene(root);
+
+        // Obtenha a Stage a partir do evento
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -142,4 +163,5 @@ public class FxBuscaController {
         checkBoxPorAvaliacao.setSelected(false);
 
     }
+
 }
