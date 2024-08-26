@@ -7,9 +7,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.modelo.Sessao;
 
 
@@ -22,11 +24,23 @@ public class FxReceitaController {
     private ImageView imagemReceita;
 
     @FXML
+    private TextArea textAreaTitulo, textAreaNota, textAreaPreparo;
+
+    @FXML
     private Button botaoVoltar;
 
     @FXML
     public void initialize() {
-        imagemReceita.setImage(new Image(new File(Sessao.getReceitaSessao().getCaminhoImagem()).getAbsolutePath()));
+        Receita receita = Sessao.getReceitaSessao();
+        imagemReceita.setImage(new Image(new File(receita.getCaminhoImagem()).getAbsolutePath()));
+        textAreaTitulo.setText(receita.getTitulo());
+
+        String nota = String.valueOf(receita.getNota());
+        textAreaNota.setText(nota);
+
+        String preparo = String.join(", " , receita.getPreparo());
+        textAreaPreparo.setText(preparo);
+
     }
     @FXML
     void botaoVoltar(ActionEvent event) throws IOException {

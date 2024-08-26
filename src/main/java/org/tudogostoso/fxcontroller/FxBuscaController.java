@@ -1,6 +1,7 @@
 package org.tudogostoso.fxcontroller;
 
 
+import javafx.event.ActionEvent;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.controle.Controle;
@@ -56,6 +57,19 @@ public class FxBuscaController {
         for (GridPane gridPane : receitasGridPane) {
             gridPane.setMouseTransparent(true);
         }
+    }
+
+    @FXML
+    void botaoVoltar(ActionEvent event) throws IOException {
+
+        root = FXMLLoader.load(getClass().getResource("/org/tudogostoso/telas/feed.fxml"));
+        scene = new Scene(root);
+
+        // Obtenha a Stage a partir do evento
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void prencher(Receita receita, GridPane gridPane) throws NullPointerException{
