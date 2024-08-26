@@ -31,7 +31,7 @@ public class FxReceitaController {
     @FXML
     void botaoVoltar(ActionEvent event) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/org/tudogostoso/telas/buscar.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(Sessao.getUltimaCena()));
         Scene scene = new Scene(root);
 
         // Obtenha a Stage a partir do evento

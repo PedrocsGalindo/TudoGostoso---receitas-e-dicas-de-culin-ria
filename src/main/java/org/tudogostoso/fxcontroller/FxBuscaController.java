@@ -170,6 +170,7 @@ public class FxBuscaController {
         //associa a receita do gridClicado à receita da sessao
         GridPane gridClicado = (GridPane) noClique;
         Sessao.setReceitaSessao(receitaAssociadaAoGridPane(gridClicado));
+        Sessao.setUltimaCena("/org/tudogostoso/telas/buscar.fxml");
 
         root = FXMLLoader.load(getClass().getResource("/org/tudogostoso/telas/receita.fxml"));
         scene = new Scene(root);
