@@ -58,7 +58,13 @@
                </GridPane.margin>
             </Button>
             <ChoiceBox fx:id="choiceBoxNota" prefHeight="25.0" prefWidth="72.0" GridPane.columnIndex="2" />
-            <TextArea editable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" text="Nota" GridPane.columnIndex="1" />
+            <TextArea editable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-control-inner-background: transparent; -fx-text-fill: #000000;" text="Nota" GridPane.columnIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" top="15.0" />
+               </padding></TextArea>
          </children>
       </GridPane>
       <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
