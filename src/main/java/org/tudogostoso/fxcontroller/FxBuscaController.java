@@ -143,17 +143,13 @@ public class FxBuscaController {
 
                 if (checkBoxPorNome.isSelected()){
                     receitas = controle.buascarReceitaPorTitulo(textoDigitado);
-
                 }else if (checkBoxPorAutor.isSelected() ){
                     receitas = controle.buscarReceitaPorAutor(textoDigitado);
-
                 }else if (checkBoxPorIngrediente.isSelected()){
-
+                    receitas = controle.buscarReceitaPorIngrediente(textoDigitado);
                 }else if (checkBoxPorAvaliacao.isSelected()){
                     int nota = Integer.parseInt(textoDigitado);
-                    System.out.println(nota);
                     receitas = controle.buscarReceitaPorAvaliacao(nota);
-
                 }
                 if (!receitas.isEmpty()) {
                     Collections.sort(receitas);
