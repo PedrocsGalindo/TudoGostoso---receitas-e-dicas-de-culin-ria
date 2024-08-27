@@ -12,7 +12,7 @@ public class UsuarioChef extends Usuario {
         this.minhasReceitas = new ArrayList<>();
     }
 
-    public void criarReceita(Receita receita) {
+    public void addMinhasReceita(Receita receita) {
         this.minhasReceitas.add(receita);
     }
 

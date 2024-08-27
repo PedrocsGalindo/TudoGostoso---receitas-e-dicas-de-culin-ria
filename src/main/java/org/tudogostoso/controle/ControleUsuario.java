@@ -111,12 +111,10 @@ public class ControleUsuario {
             UsuarioChef autor = (UsuarioChef) receita.getAutor();
             receita.adicioarAvaliacao(avaliacao);
             List<Receita> receitas = autor.getMinhasReceitas();
-            for (Receita rece : receitas){
-                if (rece.equals(receita)){
-                    rece = receita;
-                }
+            int indice = receitas.indexOf(receita);
+            if (indice != -1){
+                receitas.set(indice, receita);
             }
-
             controleReceita.atualizarReceita(receita);
             controleAvaliacao.salvar(avaliacao);
             atualizarUsuario(autor);
@@ -130,6 +128,8 @@ public class ControleUsuario {
         Receita receita = new Receita(id, titulo, autor, ingredientes, preparo, tempoDePreparo, categoria);
         try {
             cadastrarReceita(receita);
+            autor.addMinhasReceita(receita);
+            atualizarUsuario(autor);
         } catch (ReceitaJaExistenteException e) {
             System.out.println(e.getMessage());
         }

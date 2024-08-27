@@ -101,7 +101,9 @@ public class FxReceitaController {
 
     @FXML
     void handllerBotaoAvaliar(ActionEvent event) {
-
+        String comentario = textFiledComentario.getText();
+        int nota = choiceBoxNota.getValue();
+        controle.criarAvaliacao(nota, comentario, usuario, receita);
     }
 
     @FXML
