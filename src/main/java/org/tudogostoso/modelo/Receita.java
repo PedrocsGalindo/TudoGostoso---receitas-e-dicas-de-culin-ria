@@ -130,6 +130,7 @@ public class Receita implements Serializable, Comparable<Receita>{
 
     public void adicioarAvaliacao(Avaliacao avaliacao) {
         this.avaliacoes.add(avaliacao);
+        atualizarNota();
     }
 
     public  void removerAvaliacao(Avaliacao avaliacao) {

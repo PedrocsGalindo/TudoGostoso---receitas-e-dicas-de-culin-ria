@@ -150,6 +150,9 @@ public class FxBuscaController {
                 }else if (checkBoxPorIngrediente.isSelected()){
 
                 }else if (checkBoxPorAvaliacao.isSelected()){
+                    int nota = Integer.parseInt(textoDigitado);
+                    System.out.println(nota);
+                    receitas = controle.buscarReceitaPorAvaliacao(nota);
 
                 }
                 if (!receitas.isEmpty()) {

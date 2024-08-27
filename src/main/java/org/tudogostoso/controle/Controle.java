@@ -32,6 +32,7 @@ public class Controle {
     public List<Receita> buscarReceitaPorAutor(String autor) {return this.controleReceita.buscarReceitaPorAutor(autor);}
     public List<Receita> buascarReceitaPorTitulo(String nome){return this.controleReceita.buscarReceitaPorTitulo(nome);}
     public List<Receita> buscarReceitaPorAvaliacao (Avaliacao avalicao){return this.controleReceita.buscarReceitaPorAvaliacao(avalicao);}
+    public List<Receita> buscarReceitaPorAvaliacao (int avalicao){return this.controleReceita.buscarReceitaPorAvaliacao(avalicao);}
     public Receita buscarReceitaPorAutorETitulo(Usuario autor, String titulo){
         return this.controleReceita.buscarReceitaPorAutorETitulo(autor, titulo);
     }

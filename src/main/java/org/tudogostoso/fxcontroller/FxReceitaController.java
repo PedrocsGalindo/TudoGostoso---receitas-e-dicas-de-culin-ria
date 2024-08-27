@@ -108,6 +108,8 @@ public class FxReceitaController {
         try {
             controle.criarAvaliacao(nota, comentario, usuario, receita);
             setComentarios(receita);
+            textAreaNota.setText(String.valueOf(receita.getNota()));
+
         } catch (NullPointerException e) {
             Alert alertaCriarAvaliacao = new Alert(Alert.AlertType.ERROR);
             alertaCriarAvaliacao.setTitle("Erro Avaliação");

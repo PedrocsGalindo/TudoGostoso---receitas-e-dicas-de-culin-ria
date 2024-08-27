@@ -38,6 +38,10 @@ public class ControleReceita {
     public List<Receita> buscarReceitaPorAvaliacao(Avaliacao avaliacao) {
         return repositorioReceita.buscarPorAvaliacao(avaliacao);
     }
+    public List<Receita> buscarReceitaPorAvaliacao(int avaliacao) {
+        return repositorioReceita.buscarPorAvaliacao(avaliacao);
+    }
+
     public Receita buscarReceitaPorAutorETitulo(Usuario autor, String nome) {
         List<Receita> receitasAutor = repositorioReceita.buscarPorAutor(autor.getNome());
         Receita receitaDesejada = null;
