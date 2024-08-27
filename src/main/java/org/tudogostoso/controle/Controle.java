@@ -51,7 +51,7 @@ public class Controle {
     public void addReceitafav(Usuario usuario, Receita receita){
         controleUsuario.addReceitasFav(usuario,receita);
     }
-    public void criarAvaliacao(int nota, String comentario, Usuario usuario, Receita receita){
+    public void criarAvaliacao(int nota, String comentario, Usuario usuario, Receita receita) throws NullPointerException{
         controleUsuario.criarAvalizacao(nota, comentario, usuario, receita);
     }
 

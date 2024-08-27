@@ -3,10 +3,7 @@ package org.tudogostoso.fxcontroller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -48,17 +45,22 @@ public class FxReceitaController {
     Usuario usuario = Sessao.getUsuarioSessao();
     Receita receita = Sessao.getReceitaSessao();
 
-    @FXML
-    public void initialize() {
-        //setar os comentarios
+    public void setComentarios(Receita receita){
+        textAreaAvaliacoes.clear();
         StringBuilder stringAvaliacoes = new StringBuilder();
         List<Avaliacao> avaliacaos = receita.getAvaliacoes();
         if (!avaliacaos.isEmpty()) {
             for (Avaliacao avaliacao : avaliacaos) {
-                stringAvaliacoes.append("\n\n").append(avaliacao.getComentario());
+                stringAvaliacoes.append(avaliacao.getComentario()).append("\nNota: ").append(avaliacao.getNota()).append("\n");
             }
             textAreaAvaliacoes.setText(stringAvaliacoes.toString());
         }
+    }
+
+    @FXML
+    public void initialize() {
+
+        setComentarios(receita);
 
         imagemReceita.setImage(new Image(new File(receita.getCaminhoImagem()).getAbsolutePath()));
 
@@ -103,7 +105,16 @@ public class FxReceitaController {
     void handllerBotaoAvaliar(ActionEvent event) {
         String comentario = textFiledComentario.getText();
         int nota = choiceBoxNota.getValue();
-        controle.criarAvaliacao(nota, comentario, usuario, receita);
+        try {
+            controle.criarAvaliacao(nota, comentario, usuario, receita);
+            setComentarios(receita);
+        } catch (NullPointerException e) {
+            Alert alertaCriarAvaliacao = new Alert(Alert.AlertType.ERROR);
+            alertaCriarAvaliacao.setTitle("Erro Avaliação");
+            alertaCriarAvaliacao.setHeaderText(e.getMessage());
+            alertaCriarAvaliacao.setContentText("Por favor, insira uma avaliação válido.");
+            alertaCriarAvaliacao.showAndWait();
+        }
     }
 
     @FXML

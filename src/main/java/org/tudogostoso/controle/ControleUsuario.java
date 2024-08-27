@@ -103,21 +103,27 @@ public class ControleUsuario {
         usuario.addReceitasFav(receita);
         atualizarUsuario(usuario);
     }
-    public void criarAvalizacao(int nota, String comentario, Usuario usuario, Receita receita){
+    public void criarAvalizacao(int nota, String comentario, Usuario usuario, Receita receita) throws NullPointerException {
         if (!comentario.isEmpty()){
-            int id = controleAvaliacao.getLastId() + 1;
-            Avaliacao avaliacao = new Avaliacao(nota, comentario, usuario, receita, id);
+            if (usuario != null){
+                int id = controleAvaliacao.getLastId() + 1;
+                Avaliacao avaliacao = new Avaliacao(nota, comentario, usuario, receita, id);
 
-            UsuarioChef autor = (UsuarioChef) receita.getAutor();
-            receita.adicioarAvaliacao(avaliacao);
-            List<Receita> receitas = autor.getMinhasReceitas();
-            int indice = receitas.indexOf(receita);
-            if (indice != -1){
-                receitas.set(indice, receita);
-            }
-            controleReceita.atualizarReceita(receita);
-            controleAvaliacao.salvar(avaliacao);
-            atualizarUsuario(autor);
+                UsuarioChef autor = (UsuarioChef) receita.getAutor();
+                receita.adicioarAvaliacao(avaliacao);
+                List<Receita> receitas = autor.getMinhasReceitas();
+                int indice = receitas.indexOf(receita);
+                if (indice != -1) {
+                    receitas.set(indice, receita);
+                }
+                controleReceita.atualizarReceita(receita);
+                controleAvaliacao.salvar(avaliacao);
+                atualizarUsuario(autor);
+            }else {
+                    throw new NullPointerException("Usuario é null");
+                }
+        } else {
+            throw new NullPointerException("comentario esta vazio");
         }
 
     }
