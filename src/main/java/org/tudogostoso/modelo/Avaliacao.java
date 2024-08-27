@@ -1,23 +1,23 @@
 package org.tudogostoso.modelo;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Avaliacao implements Serializable {
-    private static int ids = 0;
     private final int id;
     private int nota;
     private String comentario;
-    private final Date data;
+    private final LocalDateTime data;
     private final Usuario usuario;
     private final Receita receita;
 
 
-    public Avaliacao(int nota, String comentario, Date data, Usuario usuario, Receita receita) {
-        this.id = gerarId();
+    public Avaliacao(int nota, String comentario, Usuario usuario, Receita receita, int id) {
+        this.id = id;
         this.nota = nota;
         this.comentario = comentario;
-        this.data = data;
+        this.data = LocalDateTime.now();
         this.usuario = usuario;
         this.receita = receita;
     }
@@ -28,10 +28,6 @@ public class Avaliacao implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Avaliacao avaliacao = (Avaliacao) o;
         return id == avaliacao.id;
-    }
-
-    public int gerarId(){
-        return ++ ids;
     }
 
     public int getId() {
@@ -54,7 +50,7 @@ public class Avaliacao implements Serializable {
         this.comentario = comentario;
     }
 
-    public Date getData() {
+    public LocalDateTime getData() {
         return data;
     }
 

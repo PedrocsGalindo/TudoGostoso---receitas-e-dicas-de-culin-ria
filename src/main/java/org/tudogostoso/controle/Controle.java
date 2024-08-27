@@ -10,11 +10,13 @@ public class Controle {
     private final ControleUsuario controleUsuario;
     private final ControleReceita controleReceita;
     private final ControleIngrediente controleIngrediente;
+    private final ControleAvaliacao controleAvaliacao;
 
-    public Controle(ControleUsuario controleUsuario, ControleReceita controleReceita, ControleIngrediente controleIngrediente) {
+    public Controle(ControleUsuario controleUsuario, ControleReceita controleReceita, ControleIngrediente controleIngrediente, ControleAvaliacao controleAvaliacao) {
         this.controleUsuario = controleUsuario;
         this.controleReceita = controleReceita;
         this.controleIngrediente = controleIngrediente;
+        this.controleAvaliacao = controleAvaliacao;
     }
 
     //metodos de ControleRepositorioReceita
@@ -48,6 +50,9 @@ public class Controle {
     public UsuarioChef criarUsuarioChef(Usuario usuario) throws NullPointerException{return controleUsuario.criarUsuarioChef(usuario);}
     public void addReceitafav(Usuario usuario, Receita receita){
         controleUsuario.addReceitasFav(usuario,receita);
+    }
+    public void criarAvaliacao(int nota, String comentario, Usuario usuario, Receita receita){
+        controleUsuario.criarAvalizacao(nota, comentario, usuario, receita);
     }
 
     public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria){this.controleUsuario.criarReceita( titulo,  autor,  ingredientes,  preparo,  tempoDePreparo, categoria);}

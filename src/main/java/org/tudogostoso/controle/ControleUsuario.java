@@ -3,10 +3,7 @@ package org.tudogostoso.controle;
 import org.tudogostoso.exceptions.ReceitaJaExistenteException;
 import org.tudogostoso.exceptions.UsuarioInexistenteException;
 import org.tudogostoso.exceptions.UsuarioJaExistenteException;
-import org.tudogostoso.modelo.ItemIngrediente;
-import org.tudogostoso.modelo.Receita;
-import org.tudogostoso.modelo.Usuario;
-import org.tudogostoso.modelo.UsuarioChef;
+import org.tudogostoso.modelo.*;
 import org.tudogostoso.repositorios.RepositorioUsuarios;
 
 import javax.mail.internet.AddressException;
@@ -17,10 +14,12 @@ public class ControleUsuario {
 
     private final RepositorioUsuarios repositorio;
     private final ControleReceita controleReceita;
+    private final ControleAvaliacao controleAvaliacao;
 
-    public ControleUsuario(RepositorioUsuarios repositorio, ControleReceita controleReceita) {
+    public ControleUsuario(RepositorioUsuarios repositorio, ControleReceita controleReceita, ControleAvaliacao controleAvaliacao) {
         this.repositorio = repositorio;
         this.controleReceita = controleReceita;
+        this.controleAvaliacao = controleAvaliacao;
     }
 
     //repositorio
@@ -103,6 +102,26 @@ public class ControleUsuario {
     public void addReceitasFav(Usuario usuario, Receita receita) {
         usuario.addReceitasFav(receita);
         atualizarUsuario(usuario);
+    }
+    public void criarAvalizacao(int nota, String comentario, Usuario usuario, Receita receita){
+        if (!comentario.isEmpty()){
+            int id = controleAvaliacao.getLastId() + 1;
+            Avaliacao avaliacao = new Avaliacao(nota, comentario, usuario, receita, id);
+
+            UsuarioChef autor = (UsuarioChef) receita.getAutor();
+            receita.adicioarAvaliacao(avaliacao);
+            List<Receita> receitas = autor.getMinhasReceitas();
+            for (Receita rece : receitas){
+                if (rece.equals(receita)){
+                    rece = receita;
+                }
+            }
+
+            controleReceita.atualizarReceita(receita);
+            controleAvaliacao.salvar(avaliacao);
+            atualizarUsuario(autor);
+        }
+
     }
 
     //UsuarioChef

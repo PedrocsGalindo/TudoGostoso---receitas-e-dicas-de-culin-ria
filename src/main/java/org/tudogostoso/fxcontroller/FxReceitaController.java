@@ -45,11 +45,11 @@ public class FxReceitaController {
 
     List<ItemIngrediente> ingredientes;
     Controle controle = ControleFactory.criarControleGeral();
+    Usuario usuario = Sessao.getUsuarioSessao();
+    Receita receita = Sessao.getReceitaSessao();
 
     @FXML
     public void initialize() {
-        Receita receita = Sessao.getReceitaSessao();
-
         //setar os comentarios
         StringBuilder stringAvaliacoes = new StringBuilder();
         List<Avaliacao> avaliacaos = receita.getAvaliacoes();
@@ -88,7 +88,6 @@ public class FxReceitaController {
 
     @FXML
     void handllerBotaoAddListaCompra(ActionEvent event) {
-        Usuario usuario = Sessao.getUsuarioSessao();
         for (ItemIngrediente itemIngrediente : ingredientes) {
             usuario.addListaDeCompra(itemIngrediente.getIngrediente());
         }
@@ -97,7 +96,7 @@ public class FxReceitaController {
 
     @FXML
     void handllerBotaoAddFav(ActionEvent event) {
-
+        controle.addReceitafav(usuario, receita);
     }
 
     @FXML

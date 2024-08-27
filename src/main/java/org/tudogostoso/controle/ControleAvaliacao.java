@@ -24,6 +24,8 @@ public class ControleAvaliacao {
     }
     public List<Avaliacao> buscar(){
         return repositorio.buscar();
-
+    }
+    public int getLastId(){
+        return repositorio.getLastId();
     }
 }
