@@ -77,7 +77,7 @@ public class FxReceitaController {
         textAreaTitulo.setText(receita.getTitulo());
 
         String nota = String.valueOf(receita.getNota());
-        textAreaNota.setText(nota);
+        textAreaNota.setText(nota + "/5");
 
         String preparo = String.join("\n\n " , receita.getPreparo());
         textAreaPreparo.setText(preparo);
