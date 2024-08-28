@@ -6,7 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.tudogostoso.controle.ControleReceita;
+import org.tudogostoso.controle.Controle;
+import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
 
 import java.time.format.DateTimeFormatter;
@@ -24,16 +25,12 @@ public class FxFeedController {
 
     @FXML
     private Button btnPerfil;
-    private ControleReceita controleReceita;
-
-    public void setControleReceita(ControleReceita controleReceita) {
-        this.controleReceita = controleReceita;
-    }
-
+    private Controle controle;
 
     @FXML
     public void initialize() {
-        List<Receita> receitas = controleReceita.buscarReceitasAleatorias();
+        controle = ControleFactory.criarControleGeral();
+        List<Receita> receitas = controle.buscarReceitasAleatorias();
 
         int row = 0;
 
