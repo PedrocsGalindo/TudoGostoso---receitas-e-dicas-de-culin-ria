@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tudogostoso.fxcontroller.FxPerfilCozinheiroController">
+   <children>
+      <Button fx:id="BTNVoltar" layoutX="47.0" layoutY="343.0" mnemonicParsing="false" text="Voltar" />
+      <VBox layoutX="62.0" layoutY="59.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagens/vecteezy_illustration-of-a-chef-holding-a-platter-and-showing-thumbs-up_37219950.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="LabelD" text="ID" />
+            <Label fx:id="LabelNomeDeUsuario" text="Nome de Usuario" />
+            <Label fx:id="LabelEmail" text="Email" />
+            <Label fx:id="LabelCPF" text="CPF" />
+         </children>
+      </VBox>
+      <HBox layoutX="131.0" layoutY="301.0" prefHeight="67.0" prefWidth="423.0" spacing="30.0">
+         <children>
+            <Button fx:id="BTNMinhaReceitasFavoritas" mnemonicParsing="false" text="Minha Receitas Favoritas" />
+            <Button fx:id="BTNListaDeCompras" mnemonicParsing="false" text="Lista de Compras" />
+            <Button fx:id="BTNMinhasReceitas" mnemonicParsing="false" text="Minhas Receitas" />
+         </children>
+      </HBox>
+   </children>
+</Pane>
