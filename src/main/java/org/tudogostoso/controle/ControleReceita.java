@@ -44,6 +44,21 @@ public class ControleReceita {
     public List<Receita> buscarReceitaPorIngrediente(String ingredietne){
         return repositorioReceita.buscarPorIngrediente(ingredietne);
     }
+    public List<Receita> buscarReceitasAleatorias() {
+        List<Receita> receitasAleatorias = new ArrayList<>();
+        Random random = new Random();
+
+        while (receitasAleatorias.size() < 3) {
+            int idAleatorio = random.nextInt(getLastId()) + 1;
+            Receita receita = buscarReceitaPorId(idAleatorio);
+
+            if (receita != null && !receitasAleatorias.contains(receita)) {
+                receitasAleatorias.add(receita);
+            }
+        }
+
+        return receitasAleatorias;
+    }
 
     public Receita buscarReceitaPorAutorETitulo(Usuario autor, String nome) {
         List<Receita> receitasAutor = repositorioReceita.buscarPorAutor(autor.getNome());
@@ -64,21 +79,6 @@ public class ControleReceita {
             }
         }
         return receitaDesejada;
-    }
-    public List<Receita> buscarReceitasAleatorias() {
-        List<Receita> receitasAleatorias = new ArrayList<>();
-        Random random = new Random();
-
-        while (receitasAleatorias.size() < 3) {
-            int idAleatorio = random.nextInt(getLastId()) + 1;
-            Receita receita = buscarReceitaPorId(idAleatorio);
-
-            if (receita != null && !receitasAleatorias.contains(receita)) {
-                receitasAleatorias.add(receita);
-            }
-        }
-
-        return receitasAleatorias;
     }
 
     public Receita buscarReceitaPorId(int id) {
