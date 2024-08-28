@@ -27,8 +27,4 @@ public class UsuarioChef extends Usuario {
     public void setMinhasReceitas(List<Receita> minhasReceitas) {
         this.minhasReceitas = minhasReceitas;
     }
-
-
 }
-
-
