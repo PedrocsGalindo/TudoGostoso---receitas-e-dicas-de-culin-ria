@@ -59,12 +59,12 @@ public class FxCadastroController {
         //cria usuarioChef e linka a sessao
         if (checkBoxChef.isSelected()) {
             try {
-                mostrarAlerta(AlertType.INFORMATION, "Cadastro Realizado",
-                        "UsuárioChef: " + usuario + "\nEmail: " + email + "\nSenha: " + senha + "\nTipo de Usuário: "
-                                + tipoUsuario);
                 Sessao.setUsuarioSessao(controle.criarUsuarioChef(usuario));
                 limparCampos();
                 mudarTela("/org/tudogostoso/telas/feed.fxml", event);
+                mostrarAlerta(AlertType.INFORMATION, "Cadastro Realizado",
+                        "UsuárioChef: " + usuario + "\nEmail: " + email + "\nSenha: " + senha + "\nTipo de Usuário: "
+                                + tipoUsuario);
             } catch (NullPointerException e){
                 //mensagem de erro, esse erro acontece pq o usuario que usou para criar o Usuairio Chef é vazio
             }
