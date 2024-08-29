@@ -6,8 +6,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
+import org.tudogostoso.exceptions.UsuarioJaExistenteException;
 import org.tudogostoso.modelo.*;
 
+import javax.mail.internet.AddressException;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,9 +27,33 @@ public class MainApplication extends Application {
     public static void main(String[] args) {
         Controle controle = ControleFactory.criarControleGeral();
 
-        Usuario pedro = controle.criarUsuario("pedro", "4315","pedrocgsouza23@gmail", "31321");
-        Usuario caio = controle.criarUsuario("caio", "4315","pedrocgsouza4fc@gmail", "123141");
-        Usuario joaquim = controle.criarUsuario("Joaquim", "senha", "cesarpedrog23@gmail","3214");
+        try {
+            Usuario pedro = controle.criarUsuario("pedro", "4315","pedrocgsouza23@gmail", "31321");
+        }catch (AddressException e) {
+            System.out.println("email invalido");
+        } catch (NullPointerException e){
+            System.out.println("algum dos campos esta vazio");
+        } catch (UsuarioJaExistenteException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            Usuario caio = controle.criarUsuario("caio", "4315","pedrocgsouza4fc@gmail", "123141");
+        }catch (AddressException e) {
+            System.out.println("email invalido");
+        } catch (NullPointerException e){
+            System.out.println("algum dos campos esta vazio");
+        } catch (UsuarioJaExistenteException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            Usuario joaquim = controle.criarUsuario("Joaquim", "senha", "cesarpedrog23@gmail","3214");
+        }catch (AddressException e) {
+            System.out.println("email invalido");
+        } catch (NullPointerException e){
+            System.out.println("algum dos campos esta vazio");
+        } catch (UsuarioJaExistenteException e) {
+            System.out.println(e.getMessage());
+        }
 
         Usuario caioc = controle.recuperarUsuarioPorId(2);
         Usuario pedror= controle.recuperarUsuarioPorId(1);
