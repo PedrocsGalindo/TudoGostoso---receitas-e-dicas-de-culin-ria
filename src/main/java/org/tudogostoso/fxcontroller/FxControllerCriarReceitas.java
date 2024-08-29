@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.File;
 
 
-public class ControllerCriarReceitas {
+public class FxControllerCriarReceitas {
 
     @FXML
     private Button arquivos;
