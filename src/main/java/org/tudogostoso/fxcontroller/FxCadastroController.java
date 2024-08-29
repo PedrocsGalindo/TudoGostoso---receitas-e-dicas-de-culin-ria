@@ -7,23 +7,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
+import org.tudogostoso.exceptions.UsuarioJaExistenteException;
+import org.tudogostoso.modelo.Sessao;
+import org.tudogostoso.modelo.Usuario;
+
+import javax.mail.internet.AddressException;
 
 public class FxCadastroController {
 
     @FXML
-    private TextField campoUsuario;
-    @FXML
-    private TextField campoEmail;
+    private TextField campoUsuario, campoEmail, campoCpf;
     @FXML
     private PasswordField campoSenha;
+    @FXML
+    private CheckBox checkBoxChef;
     @FXML
     private Button botaoCadastro;
 
@@ -33,29 +35,43 @@ public class FxCadastroController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private Usuario usuario;
 
     @FXML
     private void cadastrarUsuario() {
-        String usuario = campoUsuario.getText();
+        String nomeUsuario = campoUsuario.getText();
         String email = campoEmail.getText();
         String senha = campoSenha.getText();
+        String cpf = campoCpf.getText();
 
-        mostrarAlerta(AlertType.INFORMATION, "Cadastro Realizado",
-                "Usuário: " + usuario + "\nEmail: " + email + "\nSenha: " + senha + "\nTipo de Usuário: "
-                        + tipoUsuario);
-        limparCampos();
-    }
+        //validações, vai criar o usuario
+        try{
+            usuario = controle.criarUsuario(nomeUsuario, senha, email, cpf);
 
-    @FXML
-    private void selecionarUsuarioPadrao() {
-        tipoUsuario = "Usuário Padrão";
-        mostrarAlerta(AlertType.INFORMATION, "Tipo de Usuário Selecionado", "Você selecionou: Usuário Padrão");
-    }
+        } catch (AddressException e){
+            //alerta de email invalido
+        } catch (NullPointerException e){
+            //um dos campos esta vazio
+        } catch(UsuarioJaExistenteException e){
+         //ja existe usario com determinado elemento, use o e.getMessage para exebir ao usuario oque ja existe
+        }
 
-    @FXML
-    private void selecionarUsuarioChef() {
-        tipoUsuario = "Usuário Chef";
-        mostrarAlerta(AlertType.INFORMATION, "Tipo de Usuário Selecionado", "Você selecionou: Usuário Chef");
+        //cria usuarioChef e linka a sessao
+        if (checkBoxChef.isSelected()) {
+            try {
+                Sessao.setUsuarioSessao(controle.criarUsuarioChef(usuario));
+            } catch (NullPointerException e){
+                //mensagem de erro, esse erro acontece pq o usuario que usou para criar o Usuairio Chef é vazio
+            }
+
+        //linka o Usuario comun a sessao
+        } else {
+            mostrarAlerta(AlertType.INFORMATION, "Cadastro Realizado",
+                    "Usuário: " + usuario + "\nEmail: " + email + "\nSenha: " + senha + "\nTipo de Usuário: "
+                            + tipoUsuario);
+            Sessao.setUsuarioSessao(usuario);
+            limparCampos();
+        }
     }
 
     @FXML
