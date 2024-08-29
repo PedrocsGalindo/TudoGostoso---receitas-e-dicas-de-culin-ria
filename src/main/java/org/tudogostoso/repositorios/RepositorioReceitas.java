@@ -9,12 +9,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-public class RepositorioReceitas extends RepositorioGenerico<Receita> {
+public class RepositorioReceitas extends RepositorioGenerico<Receita> implements IRepositorioReceitas {
 
     public RepositorioReceitas() {
         super("src/main/resources/org/tudogostoso/repositorios/RepositorioReceitas/repositorio.ser");
     }
 
+    @Override
     public List<Receita> buscarPorTitulo(String nome) {
         List<Receita> items = this.buscar();
         return items.stream()
@@ -22,6 +23,7 @@ public class RepositorioReceitas extends RepositorioGenerico<Receita> {
                 .collect(Collectors.toList());
     }
 
+    @Override
     public List<Receita> buscarPorAutor(String autor) {
         List<Receita> items = this.buscar();
         return items.stream()
@@ -29,6 +31,7 @@ public class RepositorioReceitas extends RepositorioGenerico<Receita> {
                 .collect(Collectors.toList());
     }
 
+    @Override
     public List<Receita> buscarPorAvaliacao(Avaliacao avaliacao) {
         List<Receita> items = this.buscar();
         return items.stream()
@@ -36,6 +39,7 @@ public class RepositorioReceitas extends RepositorioGenerico<Receita> {
                         .anyMatch(a -> a.equals(avaliacao)))
                 .collect(Collectors.toList());
     }
+    @Override
     public List<Receita> buscarPorAvaliacao(int avaliacao) {
         List<Receita> items = this.buscar();
         List<Receita> itemsDesejados = new ArrayList<>();
@@ -47,6 +51,7 @@ public class RepositorioReceitas extends RepositorioGenerico<Receita> {
         }
         return itemsDesejados;
     }
+    @Override
     public List<Receita> buscarPorIngrediente(String ingrediente) {
         List<Receita> items = this.buscar();
         List<Receita> itemsDesejados = new ArrayList<>();
@@ -65,9 +70,7 @@ public class RepositorioReceitas extends RepositorioGenerico<Receita> {
         List<Receita> receitas = buscar();
         try {
             id = receitas.get(receitas.size() - 1).getId();
-        } catch (NoSuchElementException e) {
-            id = 0;
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NoSuchElementException | IndexOutOfBoundsException e) {
             id = 0;
         }
         return id;

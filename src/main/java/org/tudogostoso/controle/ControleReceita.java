@@ -3,7 +3,7 @@ package org.tudogostoso.controle;
 import org.tudogostoso.modelo.Avaliacao;
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.modelo.Usuario;
-import org.tudogostoso.repositorios.RepositorioReceitas;
+import org.tudogostoso.repositorios.IRepositorioReceitas;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,9 +12,9 @@ import java.util.Random;
 
 public class ControleReceita {
 
-    private final RepositorioReceitas repositorioReceita;
+    private final IRepositorioReceitas repositorioReceita;
 
-    public ControleReceita(RepositorioReceitas repositorioReceita) {
+    public ControleReceita(IRepositorioReceitas repositorioReceita) {
         this.repositorioReceita = repositorioReceita;
     }
 
