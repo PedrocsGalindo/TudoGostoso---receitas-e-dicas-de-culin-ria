@@ -64,27 +64,19 @@ public class ControleUsuario {
         }
     }
 
-    //Usuario
-    public  Usuario criarUsuario(String nome, String senha, String email, String cpf) {
+    //Usuario, tem que tratar as exceções
+    public  Usuario criarUsuario(String nome, String senha, String email, String cpf) throws AddressException, NullPointerException, UsuarioJaExistenteException{
         //validações
-        try {
-            InternetAddress emailAddress = new InternetAddress(email);
-            emailAddress.validate();
 
-            if (nome.isEmpty() || senha.isEmpty()|| email.isEmpty() || cpf.isEmpty()) {throw new NullPointerException();}
+        InternetAddress emailAddress = new InternetAddress(email);
+        emailAddress.validate();
 
-            int id = getLastId() + 1;
-            Usuario usuario = new Usuario(nome, senha, emailAddress, cpf, id);
-            salvarUsuario(usuario);
-            return usuario;
-        } catch (AddressException e) {
-            System.out.println("email invalido");
-        } catch (NullPointerException e){
-            System.out.println("algum dos campos esta vazio");
-        } catch (UsuarioJaExistenteException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        if (nome.isEmpty() || senha.isEmpty()|| email.isEmpty() || cpf.isEmpty()) {throw new NullPointerException();}
+
+        int id = getLastId() + 1;
+        Usuario usuario = new Usuario(nome, senha, emailAddress, cpf, id);
+        salvarUsuario(usuario);
+        return usuario;
     }
     public UsuarioChef criarUsuarioChef(Usuario usuario)throws NullPointerException{
         if (usuario == null) {
