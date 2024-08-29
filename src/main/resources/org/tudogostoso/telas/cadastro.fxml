@@ -5,33 +5,43 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="grid" alignment="CENTER" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml"
-    fx:controller="TelaCadastroController">
+<GridPane fx:id="grid" alignment="CENTER" hgap="10" prefHeight="610.0" prefWidth="840.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="org.tudogostoso.fxcontroller.FxCadastroController">
     <padding>
-        <Insets top="25" right="25" bottom="25" left="25" />
+        <Insets bottom="25" left="25" right="25" top="25" />
     </padding>
 
-    <Label text="Usuário:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-    <TextField fx:id="campoUsuario" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+    <Label text="Usuário:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <TextField fx:id="campoUsuario" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-    <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-    <TextField fx:id="campoEmail" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField fx:id="campoEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <Label text="Senha:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-    <PasswordField fx:id="campoSenha" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+    <Label text="Senha:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <PasswordField fx:id="campoSenha" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     <!-- Botões para escolher o tipo de usuário -->
-    <Button text="Usuário Padrão" onAction="#selecionarUsuarioPadrao" GridPane.rowIndex="3"
-        GridPane.columnIndex="0" />
-    <Button text="Usuário Chef" onAction="#selecionarUsuarioChef" GridPane.rowIndex="3"
-        GridPane.columnIndex="1" />
+    <Button onAction="#selecionarUsuarioPadrao" text="Usuário Padrão" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <Button onAction="#selecionarUsuarioChef" text="Usuário Chef" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
     <!-- Botão de Cadastro -->
-    <Button text="Cadastrar" onAction="#cadastrarUsuario" GridPane.rowIndex="4"
-        GridPane.columnIndex="1" />
+    <Button onAction="#cadastrarUsuario" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
     <!-- Botão para voltar à tela de login -->
-    <Button text="Voltar" onAction="#voltarParaLogin" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+    <Button onAction="#voltarParaLogin" text="Voltar" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
 </GridPane>

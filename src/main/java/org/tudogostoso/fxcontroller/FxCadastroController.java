@@ -1,13 +1,22 @@
 package org.tudogostoso.fxcontroller;
 
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
+import org.tudogostoso.controle.Controle;
+import org.tudogostoso.controle.ControleFactory;
 
-public class TelaCadastroController {
+public class FxCadastroController {
 
     @FXML
     private TextField campoUsuario;
@@ -19,6 +28,11 @@ public class TelaCadastroController {
     private Button botaoCadastro;
 
     private String tipoUsuario = "Usuário Padrão"; // Por padrão, o tipo de usuário é "Usuário Padrão"
+
+    private static Controle controle = ControleFactory.criarControleGeral();
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     private void cadastrarUsuario() {
@@ -45,13 +59,27 @@ public class TelaCadastroController {
     }
 
     @FXML
-    private void voltarParaLogin() {
+    private void voltarParaLogin(ActionEvent event) {
         try {
-            AppPrincipal.mudarTela("TelaLogin.fxml"); // Chama a troca para a tela de login
+            mudarTela("/org/tudogostoso/telas/login.fxml", event); // Chama a troca para a tela de login
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    private void mudarTela(String tela, Event evento) {
+        try {root = FXMLLoader.load(getClass().getResource(tela));
+            scene = new Scene(root);
+
+            // Obtenha a Stage a partir do evento
+            stage = (Stage) ((Node) evento.getSource()).getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.show();;  // Chama a troca para a tela de cadastro ou feed
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void mostrarAlerta(AlertType tipoAlerta, String titulo, String mensagem) {
         Alert alerta = new Alert(tipoAlerta);
