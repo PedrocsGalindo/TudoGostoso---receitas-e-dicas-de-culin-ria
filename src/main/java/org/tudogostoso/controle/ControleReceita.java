@@ -89,7 +89,7 @@ public class ControleReceita {
                 return receita;
             }
         }
-        return null; // Retorna null se a receita com o ID não for encontrada
+        return null;
     }
     public int getLastId() {
         int id;

@@ -14,8 +14,8 @@ import java.util.List;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/org/tudogostoso/telas/buscar.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 840, 610);
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/org/tudogostoso/telas/feed.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 800);
         stage.setTitle("Busca");
         stage.setScene(scene);
         stage.setResizable(false);
@@ -47,9 +47,10 @@ public class MainApplication extends Application {
 
         List<String> preparo = List.of("bater", "juntar tudo");
 
-        controle.criarReceita("bolo", joaquimChef, ingredientes, preparo, "2min", "larica");
-
-
+        controle.criarReceita("Lasanha", joaquimChef, ingredientes, preparo, "2min", "larica");
+        controle.criarReceita("Espaguete", joaquimChef, ingredientes, preparo, "2min", "larica");
+        controle.criarReceita("Ensopado", joaquimChef, ingredientes, preparo, "2min", "larica");
+        controle.criarReceita("Frango Assado", joaquimChef, ingredientes, preparo, "2min", "larica");
         launch();
     }
 }

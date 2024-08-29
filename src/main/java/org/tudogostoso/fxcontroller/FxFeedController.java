@@ -44,7 +44,7 @@ public class FxFeedController {
 
             Label titulo = new Label("Título: " + receita.getTitulo());
             Label autor = new Label("Autor: " + receita.getAutor().getNome());
-            Label horario = new Label("Horário: " + receita.getHorario().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
             Label tempoPreparo = new Label("Tempo de Preparo: " + receita.getTempoDePreparo());
             Label categoria = new Label("Categoria: " + receita.getCategoria());
 
@@ -53,11 +53,12 @@ public class FxFeedController {
 
             });
 
-            detalhesReceita.getChildren().addAll(titulo, autor, horario, tempoPreparo, categoria, btnVerMais);
+            detalhesReceita.getChildren().addAll(titulo, autor, tempoPreparo, categoria);
             receitaBox.getChildren().add(detalhesReceita);
 
 
             feed.add(receitaBox, 1, row);
+            feed.add(btnVerMais, 2, row);
             row++;
         }
     }
