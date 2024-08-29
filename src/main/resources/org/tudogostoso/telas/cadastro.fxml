@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="grid" alignment="CENTER" hgap="10" prefHeight="610.0" prefWidth="840.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="org.tudogostoso.fxcontroller.FxCadastroController">
+   <padding>
+       <Insets bottom="25" left="25" right="25" top="25" />
+   </padding>
+
+   <Label text="Usuário:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+   <TextField fx:id="campoUsuario" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+   <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+   <TextField fx:id="campoEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+   <Label text="Senha:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+   <PasswordField fx:id="campoSenha" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+   <Button onAction="#cadastrarUsuario" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
