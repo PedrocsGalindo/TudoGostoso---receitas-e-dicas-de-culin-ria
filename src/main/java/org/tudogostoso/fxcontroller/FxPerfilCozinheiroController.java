@@ -35,12 +35,12 @@ public class FxPerfilCozinheiroController {
     @FXML
     public void initialize() {
 
-        UsuarioChef usuarioChef = Sessao.getUsuarioSessao();
+       // UsuarioChef usuarioChef = Sessao.getUsuarioSessao();
 
-        LabelD.setText(String.valueOf(usuarioChef.getId()));
-        LabelNomeDeUsuario.setText(usuarioChef.getNome());
-        LabelCPF.setText(usuarioChef.getCpf());
-        LabelEmail.setText(String.valueOf(usuarioChef.getEmail()));
+        //LabelD.setText(String.valueOf(usuarioChef.getId()));
+        //LabelNomeDeUsuario.setText(usuarioChef.getNome());
+        //LabelCPF.setText(usuarioChef.getCpf());
+        //LabelEmail.setText(String.valueOf(usuarioChef.getEmail()));
 
     }
 
