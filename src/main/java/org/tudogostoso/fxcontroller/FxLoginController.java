@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
+import org.tudogostoso.modelo.Sessao;
 
 public class FxLoginController {
 
@@ -40,6 +41,7 @@ public class FxLoginController {
         // Simulação de verificação de login
         if ("admin".equals(usuario) && "1234".equals(senha)) {
             mostrarAlerta(AlertType.INFORMATION, "Login Sucesso", "Bem-vindo, " + usuario + "!");
+            //Sessao.setUsuarioSessao(usuario); tem que fazer a verificação e intanciar o objeto para essa linha funcionar
             mudarTela("/org/tudogostoso/telas/feed.fxml", event);
         } else {
             mostrarAlerta(AlertType.ERROR, "Falha no Login", "Usuário ou senha incorretos.");
@@ -52,6 +54,7 @@ public class FxLoginController {
         mudarTela("/org/tudogostoso/telas/cadastro.fxml", event);
 
     }
+
     private void mudarTela(String tela, Event evento) {
         try {
             root = FXMLLoader.load(getClass().getResource(tela));
