@@ -18,7 +18,7 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/org/tudogostoso/telas/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 840, 610);
-        stage.setTitle("Busca");
+        stage.setTitle("Login");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
