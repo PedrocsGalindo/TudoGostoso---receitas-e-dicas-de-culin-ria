@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import org.tudogostoso.controle.ControleReceita;
 import org.tudogostoso.controle.ControleUsuario;
+import org.tudogostoso.modelo.Sessao;
 import org.tudogostoso.modelo.Usuario;
 import org.tudogostoso.repositorios.RepositorioReceitas;
 import org.tudogostoso.repositorios.RepositorioUsuarios;
@@ -31,17 +32,11 @@ public class FxPerfilController {
     @FXML
     private Label LabelNomeDeUsuario;
 
-    private Usuario usuario;
-    private ControleUsuario controleUsuario;
-
-
-
-    public void setControleUsuario(ControleUsuario controleUsuario) {
-        this.controleUsuario = controleUsuario;
-    }
 
     @FXML
     public void initialize() {
+// Serve para saber o usuário da sessão, precisa testar
+        Usuario usuario = Sessao.getUsuarioSessao();
 
         LabelNomeDeUsuario.setText(usuario.getNome());
         LabelD.setText(String.valueOf(usuario.getId()));

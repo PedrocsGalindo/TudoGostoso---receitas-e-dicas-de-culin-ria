@@ -3,6 +3,8 @@ package org.tudogostoso.fxcontroller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import org.tudogostoso.modelo.Sessao;
+import org.tudogostoso.modelo.UsuarioChef;
 
 public class FxPerfilCozinheiroController {
 
@@ -29,5 +31,18 @@ public class FxPerfilCozinheiroController {
 
     @FXML
     private Label LabelNomeDeUsuario;
+
+    @FXML
+    public void initialize() {
+
+        UsuarioChef usuarioChef = Sessao.getUsuarioSessao();
+
+        LabelD.setText(String.valueOf(usuarioChef.getId()));
+        LabelNomeDeUsuario.setText(usuarioChef.getNome());
+        LabelCPF.setText(usuarioChef.getCpf());
+        LabelEmail.setText(String.valueOf(usuarioChef.getEmail()));
+
+    }
+
 
 }
