@@ -5,31 +5,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="grid" alignment="CENTER" hgap="10" prefHeight="610.0" prefWidth="840.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tudogostoso.fxcontroller.FxLoginController">
+<GridPane fx:id="grid" alignment="CENTER" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml"
+    fx:controller="TelaLoginController">
     <padding>
-        <Insets bottom="25" left="25" right="25" top="25" />
+        <Insets top="25" right="25" bottom="25" left="25" />
     </padding>
 
-    <Label text="Usuário:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    <TextField fx:id="campoUsuario" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <Label text="Usuário:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+    <TextField fx:id="campoUsuario" GridPane.rowIndex="0" GridPane.columnIndex="1" />
 
-    <Label text="Senha:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-    <PasswordField fx:id="campoSenha" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label text="Senha:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+    <PasswordField fx:id="campoSenha" GridPane.rowIndex="1" GridPane.columnIndex="1" />
 
-    <Button onAction="#fazerLogin" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-    <Button onAction="#irParaTelaCadastro" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-   <columnConstraints>
-      <ColumnConstraints />
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
+    <Button text="Login" onAction="#fazerLogin" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+    <Button text="Cadastrar" onAction="#irParaTelaCadastro" GridPane.rowIndex="3"
+        GridPane.columnIndex="1" />
 </GridPane>
