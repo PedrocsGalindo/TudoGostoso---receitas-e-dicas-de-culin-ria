@@ -53,7 +53,8 @@ public class FxLoginController {
         if (usuarios.containsKey(usuario) && usuarios.get(usuario).equals(senha)) {
             mostrarAlerta(AlertType.INFORMATION, "Login Sucesso", "Bem-vindo, " + usuario + "!");
             //Sessao.setUsuarioSessao(usuario); tem que fazer a verificação e intanciar o objeto para essa linha funcionar
-            mudarTela("/org/tudogostoso/telas/feed.fxml", event);
+            mudarTela("Feed","/org/tudogostoso/telas/feed.fxml", event);
+
         } else {
             mostrarAlerta(AlertType.ERROR, "Falha no Login", "Usuário ou senha incorretos.");
         }
@@ -64,19 +65,21 @@ public class FxLoginController {
     @FXML
     private void irParaTelaCadastro (ActionEvent event) {
         try {
-            mudarTela("/org/tudogostoso/telas/cadastro.fxml", event); // Chama a troca para a tela de cadastro
+            mudarTela("cadastro","/org/tudogostoso/telas/cadastro.fxml", event); // Chama a troca para a tela de cadastro
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private void mudarTela(String tela, Event evento) {
-        try {root = FXMLLoader.load(getClass().getResource(tela));
+    private void mudarTela(String titulo, String tela, Event evento) {
+        try {
+            root = FXMLLoader.load(getClass().getResource(tela));
             scene = new Scene(root);
 
             // Obtenha a Stage a partir do evento
             stage = (Stage) ((Node) evento.getSource()).getScene().getWindow();
 
             stage.setScene(scene);
+            stage.setTitle(titulo);
             stage.show();;  // Chama a troca para a tela de cadastro ou feed
         } catch (Exception e) {
             e.printStackTrace();
