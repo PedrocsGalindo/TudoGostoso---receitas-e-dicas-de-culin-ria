@@ -40,7 +40,7 @@ public class FxGerenciadorTelas {
             stage.setTitle(nomeTela);
             stage.show();
         }else {
-            System.out.println("Tela não foi encontrada"+ nomeTela);
+            System.out.println("Tela não foi encontrada"+ nomeTela);// talvez mudar aqui
         }
     }
 
