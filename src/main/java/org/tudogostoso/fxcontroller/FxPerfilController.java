@@ -3,6 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import org.tudogostoso.controle.ControleReceita;
 import org.tudogostoso.controle.ControleUsuario;
 import org.tudogostoso.modelo.Sessao;
@@ -38,6 +39,7 @@ public class FxPerfilController {
     public void initialize() {
 // Serve para saber o usuário da sessão
         Usuario usuario = Sessao.getUsuarioSessao();
+
 
         LabelNomeDeUsuario.setText(usuario.getNome());
         LabelD.setText(String.valueOf(usuario.getId()));
