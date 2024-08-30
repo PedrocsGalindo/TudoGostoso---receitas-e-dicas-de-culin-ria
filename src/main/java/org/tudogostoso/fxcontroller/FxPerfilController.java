@@ -32,7 +32,7 @@ public class FxPerfilController {
     private Label LabelNomeDeUsuario;
 
     //Serve para instânciar o gerenciador de Telas
-    private FxGerenciadorTelas gerenciadorTelas = new FxGerenciadorTelas();
+    private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
 
     @FXML

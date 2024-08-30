@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class FxGerenciadorTelas {
 
+    private static FxGerenciadorTelas instancia;
     private Stage stage;
     private Scene scene;
     private Map<String, Parent> telasCarregadas = new HashMap<>();
@@ -54,5 +55,14 @@ public class FxGerenciadorTelas {
         } else {
             System.out.println("Tela não foi encontrada: " + nomeTela); // Melhorando a mensagem de erro
         }
+
     }
+    // Método para ser singleton, pode ser mudado para outro, caso necessário
+    public static synchronized FxGerenciadorTelas getInstance() {
+        if (instancia == null) {
+            instancia = new FxGerenciadorTelas();
+        }
+        return instancia;
+    }
+
 }
