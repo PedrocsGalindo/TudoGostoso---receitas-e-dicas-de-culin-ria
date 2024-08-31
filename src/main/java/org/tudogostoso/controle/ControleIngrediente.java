@@ -4,6 +4,7 @@ import org.tudogostoso.modelo.Ingrediente;
 import org.tudogostoso.modelo.ItemIngrediente;
 import org.tudogostoso.modelo.UnidadeMedida;
 import org.tudogostoso.repositorios.IRepositorioIngredientes;
+import java.util.List;
 
 public class ControleIngrediente {
 
@@ -11,6 +12,9 @@ public class ControleIngrediente {
 
     public ControleIngrediente(IRepositorioIngredientes repositorioIngrediente){
         this.repositorio = repositorioIngrediente;
+    }
+    public List<Ingrediente> buscarIngrediente(){
+        return repositorio.buscar();
     }
     public int getLastId(){
         return repositorio.getLastId();

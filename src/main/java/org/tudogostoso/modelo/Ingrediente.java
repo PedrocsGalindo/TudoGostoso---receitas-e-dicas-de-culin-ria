@@ -32,9 +32,6 @@ public class Ingrediente implements Serializable, Comparable<Ingrediente>{
 
     @Override
     public String toString() {
-        return "Ingrediente{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                '}';
+        return nome;
     }
 }

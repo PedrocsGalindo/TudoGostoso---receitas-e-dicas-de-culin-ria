@@ -13,12 +13,14 @@ public class Controle {
     private final ControleReceita controleReceita;
     private final ControleIngrediente controleIngrediente;
     private final ControleAvaliacao controleAvaliacao;
+    private final  ControleUnidadeDeMedida controleUnidadeDeMedida;
 
-    public Controle(ControleUsuario controleUsuario, ControleReceita controleReceita, ControleIngrediente controleIngrediente, ControleAvaliacao controleAvaliacao) {
+    public Controle(ControleUsuario controleUsuario, ControleReceita controleReceita, ControleIngrediente controleIngrediente, ControleAvaliacao controleAvaliacao, ControleUnidadeDeMedida controleUnidadeDeMedida) {
         this.controleUsuario = controleUsuario;
         this.controleReceita = controleReceita;
         this.controleIngrediente = controleIngrediente;
         this.controleAvaliacao = controleAvaliacao;
+        this.controleUnidadeDeMedida = controleUnidadeDeMedida;
     }
 
     //metodos de ControleRepositorioReceita
@@ -76,5 +78,12 @@ public class Controle {
     public Ingrediente buscarIngredientePorNome(String nome){return this.controleIngrediente.buscarIngredientePorNome(nome);}
     public ItemIngrediente criarItemIngrediente(Ingrediente ingrediente, double quantidade, UnidadeMedida medida){
         return this.controleIngrediente.criarItemIngrediente(ingrediente, quantidade, medida);
+    }
+    public List<Ingrediente> buscarIngrediente(){
+        return controleIngrediente.buscarIngrediente();
+    }
+
+    public List<UnidadeMedida> buscarUnidadeDeMedida(){
+        return controleUnidadeDeMedida.buscarUnidadeMedidas();
     }
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public enum UnidadeMedida implements Serializable {
 
-    CHICARA("xícara"),
+    XICARA("xícara"),
     COLHER_DE_CHA("colher de chá"),
     COLHER_DE_SOPA("colher de sopa"),
     GRAMAS("gramas"),
@@ -17,4 +17,9 @@ public enum UnidadeMedida implements Serializable {
         this.tipo = tipo;
     }
     public String getTipo(){return this.tipo;}
+
+    @Override
+    public String toString() {
+        return this.tipo;
+    }
 }

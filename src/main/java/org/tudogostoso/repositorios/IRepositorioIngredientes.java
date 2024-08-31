@@ -2,6 +2,7 @@ package org.tudogostoso.repositorios;
 
 import org.tudogostoso.modelo.Ingrediente;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public interface IRepositorioIngredientes {
@@ -14,5 +15,7 @@ public interface IRepositorioIngredientes {
     void salvar(Ingrediente ingrediente);
 
     void excluir(Ingrediente ingrediente);
+
+    List<Ingrediente> buscar();
 
 }
