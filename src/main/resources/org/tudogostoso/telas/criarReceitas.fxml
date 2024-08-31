@@ -32,7 +32,7 @@
           <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="arquivos" mnemonicParsing="false" onAction="#arquivosHandle" prefHeight="25.0" prefWidth="87.0" text="arquivos" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="arquivos" mnemonicParsing="false" onAction="#arquivosHandle" prefHeight="25.0" prefWidth="162.0" text="Adicione uma imagem" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <ImageView fx:id="imagemEscolhida" fitHeight="125.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" />
          </children>
       </GridPane>

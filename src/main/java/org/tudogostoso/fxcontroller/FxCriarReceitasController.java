@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
@@ -50,6 +51,8 @@ public class FxCriarReceitasController {
 
         choicheBoxIngrediente.setItems(observableIngredientes);
         choiceBoxUnidadeDeMedida.setItems(observableUnidadesDeMedida);
+
+        imagemEscolhida.setImage(new Image(new File("src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg").getAbsolutePath()));;
     }
 
     @FXML
