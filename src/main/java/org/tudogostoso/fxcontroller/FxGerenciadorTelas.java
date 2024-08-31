@@ -13,14 +13,14 @@ import java.util.Map;
 
 public class FxGerenciadorTelas {
 
-    private static FxGerenciadorTelas instancia;
+    private static FxGerenciadorTelas instancia = new FxGerenciadorTelas();
     private Stage stage;
     private Scene scene;
     private Map<String, Parent> telasCarregadas = new HashMap<>();
     private Map<String, String> titulosDasTelas = new HashMap<>(); // Adicionando um Map para armazenar os títulos
 
     // Fazer semelhante ao primeiro para carregar as outras telas também
-    public FxGerenciadorTelas() {
+    private FxGerenciadorTelas() {
         carregarTelas("Login", "/org/tudogostoso/telas/login.fxml", "Login");
         carregarTelas("perfil", "/org/tudogostoso/telas/perfil.fxml", "Perfil do Usuário");
         carregarTelas("feed", "/org/tudogostoso/telas/feed.fxml", "Feed de Receitas");
@@ -58,10 +58,7 @@ public class FxGerenciadorTelas {
 
     }
     // Método para ser singleton, pode ser mudado para outro, caso necessário
-    public static synchronized FxGerenciadorTelas getInstance() {
-        if (instancia == null) {
-            instancia = new FxGerenciadorTelas();
-        }
+    public static FxGerenciadorTelas getInstance() {
         return instancia;
     }
 
