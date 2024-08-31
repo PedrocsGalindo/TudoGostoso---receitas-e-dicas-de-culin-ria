@@ -61,8 +61,12 @@ public class MainApplication extends Application {
         Usuario joaquimm = controle.recuperarUsuarioPorId(3);
 
         try {
-            controle.criarIngrediente("cenoura");
             controle.criarIngrediente("batata");
+        } catch (ObjetoJaExiste e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            controle.criarIngrediente("cenoura");
         } catch (ObjetoJaExiste e){
             System.out.println(e.getMessage());
         }
