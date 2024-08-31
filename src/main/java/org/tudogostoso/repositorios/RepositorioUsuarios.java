@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import javax.mail.internet.InternetAddress;
 
-public class RepositorioUsuarios extends RepositorioGenerico<Usuario> {
+public class RepositorioUsuarios extends RepositorioGenerico<Usuario> implements IRepositorioUsuarios {
 
     // Define o caminho do arquivo específico para usuários
     public RepositorioUsuarios() {
@@ -15,20 +15,20 @@ public class RepositorioUsuarios extends RepositorioGenerico<Usuario> {
 
     //buscar, salvar e excluir herdados de Generico
 
+    @Override
     public int getLastId(){
         int id;
         List<Usuario> usuarios = buscar();
         try {
             id = usuarios.get(usuarios.size() - 1).getId();
-        } catch (NoSuchElementException e) {
-            id = 0;
-        }catch (IndexOutOfBoundsException e) {
+        } catch (NoSuchElementException | IndexOutOfBoundsException e) {
             id = 0;
         }
         return id;
     }
 
     //recuperar Usuario com id, se não achar retorna NULL
+    @Override
     public Usuario buscarPorId(int id) {
 
         List<Usuario> usuarios = buscar();
@@ -42,6 +42,7 @@ public class RepositorioUsuarios extends RepositorioGenerico<Usuario> {
     }
 
     //recuperar Usuario com cpf, se não achar retorna NULL
+    @Override
     public Usuario buscarPorCpf(String cpf){
 
         List<Usuario> usuarios = buscar();
@@ -54,7 +55,8 @@ public class RepositorioUsuarios extends RepositorioGenerico<Usuario> {
         return usuario;
     }
     //recuperar Usuario com emaill, se não achar retorna NULL
-    public Usuario buscarPorEmail(InternetAddress  email){
+    @Override
+    public Usuario buscarPorEmail(InternetAddress email){
 
         List<Usuario> usuarios = buscar();
         Usuario usuario = null;

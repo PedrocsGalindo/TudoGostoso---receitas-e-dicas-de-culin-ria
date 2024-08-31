@@ -10,8 +10,8 @@ public class ControleFactory {
     public static Controle criarControleGeral() {
         ControleAvaliacao controleAvaliacao = new ControleAvaliacao(new RepositorioAvaliacoes());
         ControleReceita controleReceita = new ControleReceita(new RepositorioReceitas());
-        ControleUsuario controleUsuario = new ControleUsuario(new RepositorioUsuarios(),controleReceita, controleAvaliacao);
         ControleIngrediente controleIngrediente = new ControleIngrediente(new RepositorioIngredientes());
+        ControleUsuario controleUsuario = new ControleUsuario(new RepositorioUsuarios(),controleReceita, controleAvaliacao,controleIngrediente);
 
         return new Controle(controleUsuario, controleReceita, controleIngrediente, controleAvaliacao);
     }

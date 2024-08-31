@@ -12,16 +12,8 @@ public class ControleIngrediente {
     public ControleIngrediente(IRepositorioIngredientes repositorioIngrediente){
         this.repositorio = repositorioIngrediente;
     }
-
-    public Ingrediente criarIngrediente(String nome){
-        Ingrediente ingrediente = buscarIngredientePorNome(nome);
-        if(ingrediente == null){
-            ingrediente = new Ingrediente(nome);
-            salvarIngrediente(ingrediente);
-        } else {
-            System.out.println("O ingrediente ja existe");
-        }
-        return ingrediente;
+    public int getLastId(){
+        return repositorio.getLastId();
     }
     public void salvarIngrediente(Ingrediente ingrediente) {this.repositorio.salvar(ingrediente);}
     public void excluirIngrediente(Ingrediente ingrediente) {this.repositorio.excluir(ingrediente);}

@@ -64,13 +64,13 @@ public class Controle {
     public void criarAvaliacao(int nota, String comentario, Usuario usuario, Receita receita) throws NullPointerException{
         controleUsuario.criarAvalizacao(nota, comentario, usuario, receita);
     }
+    public Ingrediente criarIngrediente(String nome){return this.controleUsuario.criarIngrediente(nome);}
 
     public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria){this.controleUsuario.criarReceita( titulo,  autor,  ingredientes,  preparo,  tempoDePreparo, categoria);}
 
     //metodos de  ControleReceita
 
     //metodos de ControleIngrediente
-    public Ingrediente criarIngrediente(String nome){return this.controleIngrediente.criarIngrediente(nome);}
     public void excluirIngrediente(Ingrediente ingrediente){this.controleIngrediente.excluirIngrediente(ingrediente);}
     public Ingrediente buscarIngredientePorId(int id){return this.controleIngrediente.buscarIngredientePorId(id);}
     public Ingrediente buscarIngredientePorNome(String nome){return this.controleIngrediente.buscarIngredientePorNome(nome);}

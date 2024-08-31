@@ -4,7 +4,7 @@ import org.tudogostoso.exceptions.ReceitaJaExistenteException;
 import org.tudogostoso.exceptions.UsuarioInexistenteException;
 import org.tudogostoso.exceptions.UsuarioJaExistenteException;
 import org.tudogostoso.modelo.*;
-import org.tudogostoso.repositorios.RepositorioUsuarios;
+import org.tudogostoso.repositorios.IRepositorioUsuarios;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -12,14 +12,16 @@ import java.util.List;
 
 public class ControleUsuario {
 
-    private final RepositorioUsuarios repositorio;
+    private final IRepositorioUsuarios repositorio;
     private final ControleReceita controleReceita;
     private final ControleAvaliacao controleAvaliacao;
+    private final ControleIngrediente controleIngrediente;
 
-    public ControleUsuario(RepositorioUsuarios repositorio, ControleReceita controleReceita, ControleAvaliacao controleAvaliacao) {
+    public ControleUsuario(IRepositorioUsuarios repositorio, ControleReceita controleReceita, ControleAvaliacao controleAvaliacao, ControleIngrediente controleIngrediente) {
         this.repositorio = repositorio;
         this.controleReceita = controleReceita;
         this.controleAvaliacao = controleAvaliacao;
+        this.controleIngrediente = controleIngrediente;
     }
 
     //repositorio
@@ -114,6 +116,17 @@ public class ControleUsuario {
             throw new NullPointerException("comentario esta vazio");
         }
 
+    }
+    public Ingrediente criarIngrediente(String nome){
+        Ingrediente ingrediente = controleIngrediente.buscarIngredientePorNome(nome);
+        if(ingrediente == null){
+            int id = controleIngrediente.getLastId();
+            ingrediente = new Ingrediente(nome, id);
+            controleIngrediente.salvarIngrediente(ingrediente);
+        } else {
+            System.out.println("O ingrediente ja existe");
+        }
+        return ingrediente;
     }
 
     //UsuarioChef

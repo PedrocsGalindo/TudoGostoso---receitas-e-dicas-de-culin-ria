@@ -3,13 +3,12 @@ package org.tudogostoso.modelo;
 import java.io.Serializable;
 
 public class Ingrediente implements Serializable, Comparable<Ingrediente>{
-    private static int ids;
     private int id;
     private String nome;
 
 
-    public Ingrediente(String nome) {
-        this.id = gerarId();
+    public Ingrediente(String nome, int id) {
+        this.id = id;
         this.nome = nome;
     }
     //a ordem naturel é baseado no nome, ordem alfabetica
@@ -23,10 +22,6 @@ public class Ingrediente implements Serializable, Comparable<Ingrediente>{
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public int gerarId() {
-        return ++ids;
     }
 
     public int getId() {return id;}
