@@ -2,6 +2,7 @@ package org.tudogostoso.fxcontroller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -43,6 +44,7 @@ public class FxCriarReceitasController {
     List<ItemIngrediente> itemIngredientes = new ArrayList<>();
     private final Controle controle = ControleFactory.criarControleGeral();
     private File caminhoArquivoUsuario;
+    private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
     @FXML
     public void initialize() {
@@ -59,8 +61,8 @@ public class FxCriarReceitasController {
     }
 
     @FXML
-    void HandllerButtonVoltar() {
-
+    void HandllerButtonVoltar(ActionEvent event) {
+        gerenciadorTelas.mudarTela("feed",event);
     }
 
     @FXML

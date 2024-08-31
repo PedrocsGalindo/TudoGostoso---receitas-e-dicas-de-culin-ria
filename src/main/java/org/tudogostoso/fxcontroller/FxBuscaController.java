@@ -50,6 +50,7 @@ public class FxBuscaController {
     private Scene scene;
     private Parent root;
     private GridPane[] receitasGridPane;
+    private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
     @FXML
     public void initialize() {

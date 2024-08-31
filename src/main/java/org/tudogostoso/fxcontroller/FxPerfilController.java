@@ -62,7 +62,7 @@ public class FxPerfilController {
     //Método para voltar na tela anterior, talvez seja possível mapear a tela anterior para facilitar
     @FXML
     private void voltar(ActionEvent event){
-        gerenciadorTelas.mudarTela("TelaAnterior",event);
+        gerenciadorTelas.mudarTela("feed",event);
     }
 
 
