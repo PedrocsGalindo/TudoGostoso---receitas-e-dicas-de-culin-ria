@@ -23,7 +23,5 @@ public class ControleIngrediente {
     public void excluirIngrediente(Ingrediente ingrediente) {this.repositorio.excluir(ingrediente);}
     public Ingrediente buscarIngredientePorId(int id) {return this.repositorio.busarIngredientePorId(id);}
     public Ingrediente buscarIngredientePorNome(String nome) {return this.repositorio.buscarIngredientePorNome(nome);}
-    public ItemIngrediente criarItemIngrediente(Ingrediente ingrediente, double quantidade, UnidadeMedida medida){
-        return new ItemIngrediente(ingrediente, quantidade, medida);
-    }
+
 }

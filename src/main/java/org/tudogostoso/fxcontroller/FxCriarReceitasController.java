@@ -3,18 +3,16 @@ package org.tudogostoso.fxcontroller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Ingrediente;
+import org.tudogostoso.modelo.ItemIngrediente;
 import org.tudogostoso.modelo.UnidadeMedida;
 
 import java.io.File;
@@ -62,6 +60,21 @@ public class FxCriarReceitasController {
 
     @FXML
     void handllerButtonAdicionarItemIngrediente(ActionEvent event) {
+        Ingrediente ingrediente = choicheBoxIngrediente.getValue();
+        UnidadeMedida unidadeMedida = choiceBoxUnidadeDeMedida.getValue();
+        try {
+            double quantidade = Double.parseDouble(textFieldQuantidade.getText());
+            ItemIngrediente itemIngrediente = controle.criarItemIngrediente(ingrediente, quantidade, unidadeMedida);
+
+            String textoItem = textAreaItemnsIngredientes.getText();
+            textoItem = textoItem + itemIngrediente + "\n";
+            textAreaItemnsIngredientes.setText(textoItem);
+        }catch (NullPointerException e ){
+            mostrarAlerta(Alert.AlertType.ERROR, "Campo vazio", "Algum dos campos para adicionar item esta vazio");
+        } catch (NumberFormatException e){
+            mostrarAlerta(Alert.AlertType.ERROR, "Dado invalido", "Preencha a quantidade com um numero valido");
+        }
+
 
     }
 
@@ -91,6 +104,13 @@ public class FxCriarReceitasController {
     @FXML
     void handllerButtonCriarReceita(ActionEvent event) {
 
+    }
+    private void mostrarAlerta(Alert.AlertType tipoAlerta, String titulo, String mensagem) {
+        Alert alerta = new Alert(tipoAlerta);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensagem);
+        alerta.showAndWait();
     }
 }
 

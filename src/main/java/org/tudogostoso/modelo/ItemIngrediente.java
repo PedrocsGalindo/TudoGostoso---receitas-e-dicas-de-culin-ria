@@ -40,11 +40,7 @@ public class ItemIngrediente implements Serializable {
 
     @Override
     public String toString() {
-        return "ItemIngrediente{" +
-                "ingrediente=" + ingrediente +
-                ", quantidade=" + quantidade +
-                ", medida=" + medida +
-                '}';
+        return ingrediente + "\t" + quantidade + "\t" + medida;
     }
 }
 

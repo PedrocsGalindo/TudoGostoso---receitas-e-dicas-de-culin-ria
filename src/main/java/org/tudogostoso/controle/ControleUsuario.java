@@ -128,7 +128,13 @@ public class ControleUsuario {
         }
         return ingrediente;
     }
-
+    public ItemIngrediente criarItemIngrediente(Ingrediente ingrediente, double quantidade, UnidadeMedida medida) throws NullPointerException{
+        if(ingrediente == null || quantidade == 0 || medida == null){
+            throw new NullPointerException("Preencha todos os campos");
+        } else {
+            return new ItemIngrediente(ingrediente, quantidade, medida);
+        }
+    }
     //UsuarioChef
     public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria) {
         int id = controleReceita.getLastId() + 1;

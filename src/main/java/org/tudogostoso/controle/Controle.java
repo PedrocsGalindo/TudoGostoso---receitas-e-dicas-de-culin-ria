@@ -67,6 +67,9 @@ public class Controle {
         controleUsuario.criarAvalizacao(nota, comentario, usuario, receita);
     }
     public Ingrediente criarIngrediente(String nome){return this.controleUsuario.criarIngrediente(nome);}
+    public ItemIngrediente criarItemIngrediente(Ingrediente ingrediente, double quantidade, UnidadeMedida medida) throws NullPointerException{
+        return this.controleUsuario.criarItemIngrediente(ingrediente, quantidade, medida);
+    }
 
     public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria){this.controleUsuario.criarReceita( titulo,  autor,  ingredientes,  preparo,  tempoDePreparo, categoria);}
 
@@ -76,13 +79,11 @@ public class Controle {
     public void excluirIngrediente(Ingrediente ingrediente){this.controleIngrediente.excluirIngrediente(ingrediente);}
     public Ingrediente buscarIngredientePorId(int id){return this.controleIngrediente.buscarIngredientePorId(id);}
     public Ingrediente buscarIngredientePorNome(String nome){return this.controleIngrediente.buscarIngredientePorNome(nome);}
-    public ItemIngrediente criarItemIngrediente(Ingrediente ingrediente, double quantidade, UnidadeMedida medida){
-        return this.controleIngrediente.criarItemIngrediente(ingrediente, quantidade, medida);
-    }
     public List<Ingrediente> buscarIngrediente(){
         return controleIngrediente.buscarIngrediente();
     }
 
+    //metodos de ControleUnidadeDeMedida
     public List<UnidadeMedida> buscarUnidadeDeMedida(){
         return controleUnidadeDeMedida.buscarUnidadeMedidas();
     }
