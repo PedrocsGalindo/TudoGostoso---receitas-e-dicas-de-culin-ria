@@ -2,14 +2,14 @@ package org.tudogostoso.controle;
 
 
 import org.tudogostoso.modelo.Avaliacao;
-import org.tudogostoso.repositorios.RepositorioAvaliacoes;
+import org.tudogostoso.repositorios.IRepositorioAvaliacoes;
 
 import java.util.List;
 
 public class ControleAvaliacao {
-    private final RepositorioAvaliacoes repositorio;
+    private final IRepositorioAvaliacoes repositorio;
 
-    public ControleAvaliacao(RepositorioAvaliacoes repositorioAvaliacao){
+    public ControleAvaliacao(IRepositorioAvaliacoes repositorioAvaliacao){
         this.repositorio= repositorioAvaliacao;
 
     }
