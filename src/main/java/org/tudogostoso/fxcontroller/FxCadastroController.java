@@ -37,6 +37,8 @@ public class FxCadastroController {
     private Parent root;
     private Usuario usuario;
 
+    private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
+
     @FXML
     private void cadastrarUsuario(ActionEvent event) {
         String nomeUsuario = campoUsuario.getText();
@@ -82,11 +84,7 @@ public class FxCadastroController {
 
     @FXML
     private void voltarParaLogin(ActionEvent event) {
-        try {
-            mudarTela("/org/tudogostoso/telas/login.fxml", event); // Chama a troca para a tela de login
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        gerenciadorTelas.mudarTela("Login",event);
     }
     private void mudarTela(String tela, Event evento) {
         try {root = FXMLLoader.load(getClass().getResource(tela));
