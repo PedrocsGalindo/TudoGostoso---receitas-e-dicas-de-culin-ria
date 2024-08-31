@@ -42,6 +42,7 @@ public class FxReceitasFavoritasController {
         favoritosList.setAll(receitasFavoritas);
     }
 
+    @FXML
     private void verReceita(Receita receita) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Detalhes da Receita");
@@ -50,6 +51,7 @@ public class FxReceitasFavoritasController {
         alert.showAndWait();
     }
 
+    @FXML
     private void removerFavorito(Receita receita) {
         controleReceita.removerReceitaFavorita(receita); // Método para remover receita dos favoritos
         carregarFavoritos();
