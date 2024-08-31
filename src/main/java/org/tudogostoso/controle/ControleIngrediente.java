@@ -1,8 +1,6 @@
 package org.tudogostoso.controle;
 
 import org.tudogostoso.modelo.Ingrediente;
-import org.tudogostoso.modelo.ItemIngrediente;
-import org.tudogostoso.modelo.UnidadeMedida;
 import org.tudogostoso.repositorios.IRepositorioIngredientes;
 import java.util.List;
 
