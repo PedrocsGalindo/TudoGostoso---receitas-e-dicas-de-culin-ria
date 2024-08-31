@@ -47,7 +47,7 @@ public abstract class RepositorioGenerico <T> {
     }
 
     public void salvarAtributo(T objeto) {
-        String atributoASalvar = "";
+        String atributoASalvar;
 
 
         if (objeto instanceof Usuario) {

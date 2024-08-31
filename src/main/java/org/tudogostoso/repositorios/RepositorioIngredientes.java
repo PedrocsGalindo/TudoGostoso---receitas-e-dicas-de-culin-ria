@@ -6,25 +6,25 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class RepositorioIngredientes extends RepositorioGenerico<Ingrediente>{
+public class RepositorioIngredientes extends RepositorioGenerico<Ingrediente> implements IRepositorioIngredientes {
 
     public RepositorioIngredientes(){
         super("src/main/resources/org/tudogostoso/repositorios/RepositorioIngredientes/repositorio.ser");
     }
 
+    @Override
     public int getLastId(){
         int id;
         List<Ingrediente> ingredientes = buscar();
         try {
             id = ingredientes.get(ingredientes.size() - 1).getId();
-        } catch (NoSuchElementException e) {
-            id = 0;
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NoSuchElementException | IndexOutOfBoundsException e) {
             id = 0;
         }
         return id;
     }
 
+    @Override
     public Ingrediente busarIngredientePorId(int id) throws NoSuchElementException{
         List<Ingrediente> ingredientes = buscar();
         Iterator <Ingrediente> interador= ingredientes.iterator();
@@ -41,6 +41,7 @@ public class RepositorioIngredientes extends RepositorioGenerico<Ingrediente>{
         return ingrediente;
     }
 
+    @Override
     public Ingrediente buscarIngredientePorNome(String nome){
         List<Ingrediente> ingredientes = buscar();
         Iterator <Ingrediente> iterador= ingredientes.iterator();

@@ -3,13 +3,13 @@ package org.tudogostoso.controle;
 import org.tudogostoso.modelo.Ingrediente;
 import org.tudogostoso.modelo.ItemIngrediente;
 import org.tudogostoso.modelo.UnidadeMedida;
-import org.tudogostoso.repositorios.RepositorioIngredientes;
+import org.tudogostoso.repositorios.IRepositorioIngredientes;
 
 public class ControleIngrediente {
 
-    private final RepositorioIngredientes repositorio;
+    private final IRepositorioIngredientes repositorio;
 
-    public ControleIngrediente(RepositorioIngredientes repositorioIngrediente){
+    public ControleIngrediente(IRepositorioIngredientes repositorioIngrediente){
         this.repositorio = repositorioIngrediente;
     }
 
