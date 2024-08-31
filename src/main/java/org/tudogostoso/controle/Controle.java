@@ -1,5 +1,6 @@
 package org.tudogostoso.controle;
 
+import org.tudogostoso.exceptions.ObjetoJaExiste;
 import org.tudogostoso.exceptions.UsuarioInexistenteException;
 import org.tudogostoso.exceptions.UsuarioJaExistenteException;
 import org.tudogostoso.modelo.*;
@@ -66,7 +67,7 @@ public class Controle {
     public void criarAvaliacao(int nota, String comentario, Usuario usuario, Receita receita) throws NullPointerException{
         controleUsuario.criarAvalizacao(nota, comentario, usuario, receita);
     }
-    public Ingrediente criarIngrediente(String nome){return this.controleUsuario.criarIngrediente(nome);}
+    public Ingrediente criarIngrediente(String nome) throws ObjetoJaExiste, NullPointerException {return this.controleUsuario.criarIngrediente(nome);}
     public ItemIngrediente criarItemIngrediente(Ingrediente ingrediente, double quantidade, UnidadeMedida medida) throws NullPointerException{
         return this.controleUsuario.criarItemIngrediente(ingrediente, quantidade, medida);
     }

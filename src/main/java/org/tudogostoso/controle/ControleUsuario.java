@@ -1,5 +1,6 @@
 package org.tudogostoso.controle;
 
+import org.tudogostoso.exceptions.ObjetoJaExiste;
 import org.tudogostoso.exceptions.ReceitaJaExistenteException;
 import org.tudogostoso.exceptions.UsuarioInexistenteException;
 import org.tudogostoso.exceptions.UsuarioJaExistenteException;
@@ -117,14 +118,17 @@ public class ControleUsuario {
         }
 
     }
-    public Ingrediente criarIngrediente(String nome){
+    public Ingrediente criarIngrediente(String nome) throws ObjetoJaExiste, NullPointerException {
+        if (nome == null){
+            throw new NullPointerException();
+        }
         Ingrediente ingrediente = controleIngrediente.buscarIngredientePorNome(nome);
         if(ingrediente == null){
             int id = controleIngrediente.getLastId();
             ingrediente = new Ingrediente(nome, id);
             controleIngrediente.salvarIngrediente(ingrediente);
         } else {
-            System.out.println("O ingrediente ja existe");
+            throw new ObjetoJaExiste("Ingrediente já existe");
         }
         return ingrediente;
     }

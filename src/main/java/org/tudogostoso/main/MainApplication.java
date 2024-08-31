@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
+import org.tudogostoso.exceptions.ObjetoJaExiste;
 import org.tudogostoso.exceptions.UsuarioJaExistenteException;
 import org.tudogostoso.modelo.*;
 
@@ -59,8 +60,12 @@ public class MainApplication extends Application {
         Usuario pedror= controle.recuperarUsuarioPorId(1);
         Usuario joaquimm = controle.recuperarUsuarioPorId(3);
 
-        controle.criarIngrediente("cenoura");
-        controle.criarIngrediente("batata");
+        try {
+            controle.criarIngrediente("cenoura");
+            controle.criarIngrediente("batata");
+        } catch (ObjetoJaExiste e){
+            System.out.println(e.getMessage());
+        }
 
         Ingrediente cenoura = controle.buscarIngredientePorNome("cenoura");
         Ingrediente batata = controle.buscarIngredientePorNome("batata");

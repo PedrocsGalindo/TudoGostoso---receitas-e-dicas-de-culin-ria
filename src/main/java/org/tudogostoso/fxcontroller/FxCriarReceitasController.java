@@ -11,11 +11,13 @@ import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
+import org.tudogostoso.exceptions.ObjetoJaExiste;
 import org.tudogostoso.modelo.Ingrediente;
 import org.tudogostoso.modelo.ItemIngrediente;
 import org.tudogostoso.modelo.UnidadeMedida;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -38,6 +40,7 @@ public class FxCriarReceitasController {
     @FXML
     private TextArea textAreaItemnsIngredientes;
 
+    List<ItemIngrediente> itemIngredientes = new ArrayList<>();
     private Controle controle = ControleFactory.criarControleGeral();
 
     @FXML
@@ -50,7 +53,7 @@ public class FxCriarReceitasController {
         choicheBoxIngrediente.setItems(observableIngredientes);
         choiceBoxUnidadeDeMedida.setItems(observableUnidadesDeMedida);
 
-        imagemEscolhida.setImage(new Image(new File("src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg").getAbsolutePath()));;
+        imagemEscolhida.setImage(new Image(new File("src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg").getAbsolutePath()));
     }
 
     @FXML
@@ -59,7 +62,7 @@ public class FxCriarReceitasController {
     }
 
     @FXML
-    void handllerButtonAdicionarItemIngrediente(ActionEvent event) {
+    void handllerButtonAdicionarItemIngrediente() {
         Ingrediente ingrediente = choicheBoxIngrediente.getValue();
         UnidadeMedida unidadeMedida = choiceBoxUnidadeDeMedida.getValue();
         try {
@@ -69,6 +72,8 @@ public class FxCriarReceitasController {
             String textoItem = textAreaItemnsIngredientes.getText();
             textoItem = textoItem + itemIngrediente + "\n";
             textAreaItemnsIngredientes.setText(textoItem);
+            itemIngredientes.add(itemIngrediente);
+
         }catch (NullPointerException e ){
             mostrarAlerta(Alert.AlertType.ERROR, "Campo vazio", "Algum dos campos para adicionar item esta vazio");
         } catch (NumberFormatException e){
@@ -80,7 +85,17 @@ public class FxCriarReceitasController {
 
     @FXML
     void handllerButtonCriarIngrediente(ActionEvent event) {
+        try {
+            String nomeIngrediente = textFieldNomeIngrediente.getText();
+            Ingrediente ingrediente = controle.criarIngrediente(nomeIngrediente);
+            ObservableList<Ingrediente> lista = choicheBoxIngrediente.getItems();
+            lista.add(ingrediente);
 
+        } catch (ObjetoJaExiste e ) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Ingrediente Já existe", "Esse ingrediente ja existe, procure na lista de ingrediente a cima");
+        }catch (NullPointerException e){
+            mostrarAlerta(Alert.AlertType.ERROR, "Campo vazio", "Preencha o campo com o nome do ingrediente");
+        }
     }
 
     @FXML
