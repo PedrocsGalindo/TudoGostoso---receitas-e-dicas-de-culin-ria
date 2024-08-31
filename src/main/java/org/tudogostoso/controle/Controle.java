@@ -1,12 +1,15 @@
 package org.tudogostoso.controle;
 
 import org.tudogostoso.exceptions.ObjetoJaExiste;
+import org.tudogostoso.exceptions.ReceitaJaExistenteException;
 import org.tudogostoso.exceptions.UsuarioInexistenteException;
 import org.tudogostoso.exceptions.UsuarioJaExistenteException;
 import org.tudogostoso.modelo.*;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class Controle {
@@ -72,8 +75,13 @@ public class Controle {
         return this.controleUsuario.criarItemIngrediente(ingrediente, quantidade, medida);
     }
 
-    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria){this.controleUsuario.criarReceita( titulo,  autor,  ingredientes,  preparo,  tempoDePreparo, categoria);}
-
+    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria)throws ReceitaJaExistenteException {this.controleUsuario.criarReceita( titulo,  autor,  ingredientes,  preparo,  tempoDePreparo, categoria);}
+    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria, String caminhoImagem) throws ReceitaJaExistenteException {
+        controleUsuario.criarReceita(titulo, autor, ingredientes, preparo, tempoDePreparo, categoria, caminhoImagem);
+    }
+    public String salvarImagem(File arquivo, String nomeArquivo) throws IOException {
+        return controleUsuario.salvarImagem(arquivo, nomeArquivo);
+    }
     //metodos de  ControleReceita
 
     //metodos de ControleIngrediente

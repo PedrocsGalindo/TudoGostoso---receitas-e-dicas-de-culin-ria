@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.exceptions.ObjetoJaExiste;
+import org.tudogostoso.exceptions.ReceitaJaExistenteException;
 import org.tudogostoso.exceptions.UsuarioJaExistenteException;
 import org.tudogostoso.modelo.*;
 
@@ -81,8 +82,12 @@ public class MainApplication extends Application {
         UsuarioChef joaquimChef = controle.criarUsuarioChef(joaquimm);
 
         List<String> preparo = List.of("bater", "juntar tudo");
+        try{
+            controle.criarReceita("bolo", joaquimChef, ingredientes, preparo, "2min", "larica");
+        } catch (ReceitaJaExistenteException e){
+            System.out.println(e.getMessage());
+        }
 
-        controle.criarReceita("bolo", joaquimChef, ingredientes, preparo, "2min", "larica");
 
 
         launch();

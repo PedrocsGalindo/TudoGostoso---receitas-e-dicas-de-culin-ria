@@ -6,9 +6,12 @@ import org.tudogostoso.exceptions.UsuarioInexistenteException;
 import org.tudogostoso.exceptions.UsuarioJaExistenteException;
 import org.tudogostoso.modelo.*;
 import org.tudogostoso.repositorios.IRepositorioUsuarios;
+import org.tudogostoso.repositorios.RepositorioImagens;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class ControleUsuario {
@@ -17,12 +20,14 @@ public class ControleUsuario {
     private final ControleReceita controleReceita;
     private final ControleAvaliacao controleAvaliacao;
     private final ControleIngrediente controleIngrediente;
+    private final RepositorioImagens repositorioImagens;
 
-    public ControleUsuario(IRepositorioUsuarios repositorio, ControleReceita controleReceita, ControleAvaliacao controleAvaliacao, ControleIngrediente controleIngrediente) {
+    public ControleUsuario(IRepositorioUsuarios repositorio, ControleReceita controleReceita, ControleAvaliacao controleAvaliacao, ControleIngrediente controleIngrediente, RepositorioImagens repositorioImagens) {
         this.repositorio = repositorio;
         this.controleReceita = controleReceita;
         this.controleAvaliacao = controleAvaliacao;
         this.controleIngrediente = controleIngrediente;
+        this.repositorioImagens = repositorioImagens;
     }
 
     //repositorio
@@ -140,16 +145,29 @@ public class ControleUsuario {
         }
     }
     //UsuarioChef
-    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria) {
+    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria) throws ReceitaJaExistenteException {
         int id = controleReceita.getLastId() + 1;
-        Receita receita = new Receita(id, titulo, autor, ingredientes, preparo, tempoDePreparo, categoria);
-        try {
-            cadastrarReceita(receita);
-            autor.addMinhasReceita(receita);
-            atualizarUsuario(autor);
-        } catch (ReceitaJaExistenteException e) {
-            System.out.println(e.getMessage());
+        if (titulo.isEmpty() || autor == null || ingredientes.isEmpty() || preparo.isEmpty() || tempoDePreparo.isEmpty() || categoria.isEmpty()){
+            throw new NullPointerException("Campo vazio");
         }
+        Receita receita = new Receita(id, titulo, autor, ingredientes, preparo, tempoDePreparo, categoria);
+        cadastrarReceita(receita);
+        autor.addMinhasReceita(receita);
+        atualizarUsuario(autor);
+    }
+    public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria, String caminhoImagem) throws ReceitaJaExistenteException {
+        int id = controleReceita.getLastId() + 1;
+        if (titulo.isEmpty() || autor == null || ingredientes.isEmpty() || preparo.isEmpty() || tempoDePreparo.isEmpty() || categoria.isEmpty()){
+            throw new NullPointerException("Campo vazio");
+        }
+        Receita receita = new Receita(id, titulo, autor, ingredientes, preparo, tempoDePreparo, categoria, caminhoImagem);
+        cadastrarReceita(receita);
+        autor.addMinhasReceita(receita);
+        atualizarUsuario(autor);
+    }
+    public String salvarImagem(File arquivo, String nomeArquivo) throws IOException {
+
+       return repositorioImagens.salvar(arquivo,nomeArquivo);
     }
     public void cadastrarReceita(Receita receita) throws ReceitaJaExistenteException{
         if(controleReceita.buscarReceitaPorAutorETitulo(receita.getAutor(), receita.getTitulo()) == null) {
