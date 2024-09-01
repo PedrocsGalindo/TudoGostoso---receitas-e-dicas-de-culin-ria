@@ -29,6 +29,7 @@ public class FxGerenciadorTelas {
         carregarTelas("receita", "/org/tudogostoso/telas/receita.fxml", "Receita");
         carregarTelas("perfilCozinheiro", "/org/tudogostoso/telas/perfilCozinheiro.fxml", "Perfil Cozinheiro");
         carregarTelas("receitasFavoritas","/org/tudogostoso/telas/receitasFavoritas.fxml","Receitas Favoritas");
+        carregarTelas("listaDeCompra", "/org/tudogostoso/telas/listadecompra.fxml", "Lista de Compra");
         // Adicionar mais telas conforme necessário
     }
 
