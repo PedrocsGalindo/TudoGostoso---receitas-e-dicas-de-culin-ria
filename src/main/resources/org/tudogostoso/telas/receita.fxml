@@ -108,7 +108,7 @@
             <TextField fx:id="textFiledComentario" prefHeight="168.0" prefWidth="240.0" />
          </children>
       </GridPane>
-      <TextArea fx:id="textAreaPreparo" editable="false" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextArea fx:id="textAreaPreparo" editable="false" mouseTransparent="true" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <ImageView fx:id="imagemReceita" fitHeight="243.0" fitWidth="316.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#handllerBotaoAddFav" text="Adicionar receita favorita" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
    </children>

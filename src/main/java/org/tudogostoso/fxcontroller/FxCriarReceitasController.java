@@ -40,10 +40,10 @@ public class FxCriarReceitasController {
     private ChoiceBox<UnidadeMedida> choiceBoxUnidadeDeMedida;
 
     @FXML
-    private TextField textFieldQuantidade, textFieldPreparo, textFieldTitulo, textFieldTempodDePreapro,textFieldCateogira, textFieldNomeIngrediente;
+    private TextField textFieldQuantidade, textFieldTitulo, textFieldTempodDePreapro,textFieldCateogira, textFieldNomeIngrediente;
 
     @FXML
-    private TextArea textAreaItemnsIngredientes;
+    private TextArea textAreaItemnsIngredientes, textAreaPreparo;
 
     List<ItemIngrediente> itemIngredientes = new ArrayList<>();
     private final Controle controle = ControleFactory.criarControleGeral();
@@ -152,7 +152,7 @@ public class FxCriarReceitasController {
         String tempoPreparo = textFieldTempodDePreapro.getText();
         String categoria = textFieldCateogira.getText();
         //tem que separar cada etapa por linha
-        List<String> preparo = Arrays.asList(textFieldPreparo.getText().split("\n"));
+        List<String> preparo = Arrays.asList(textAreaPreparo.getText().split("\n"));
         try {
             if (caminhoArquivoUsuario.exists() && caminhoArquivoUsuario != null) {
                 String caminhoImagem = controle.salvarImagem(caminhoArquivoUsuario, usuarioChef.getNome() + titulo.replace(" ", ""));
@@ -184,7 +184,7 @@ public class FxCriarReceitasController {
         imagemEscolhida.setImage(new Image(new File("src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg").getAbsolutePath()));
         textAreaItemnsIngredientes.clear();
         textFieldCateogira.clear();
-        textFieldPreparo.clear();
+        textAreaPreparo.clear();
         textFieldQuantidade.clear();
         textFieldTempodDePreapro.clear();
         textFieldTitulo.clear();
