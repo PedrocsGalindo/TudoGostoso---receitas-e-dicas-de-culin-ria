@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
@@ -28,6 +29,9 @@ public class FxCriarReceitasController {
     private Button arquivos;
 
     @FXML
+    private Text textIngrediente, textUnidadeDeMedida;
+
+    @FXML
     private ImageView imagemEscolhida;
 
     @FXML
@@ -44,7 +48,7 @@ public class FxCriarReceitasController {
     List<ItemIngrediente> itemIngredientes = new ArrayList<>();
     private final Controle controle = ControleFactory.criarControleGeral();
     private File caminhoArquivoUsuario;
-    private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
+    private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
     @FXML
     public void initialize() {
@@ -58,6 +62,19 @@ public class FxCriarReceitasController {
         choiceBoxUnidadeDeMedida.setItems(observableUnidadesDeMedida);
 
         imagemEscolhida.setImage(new Image(new File("src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg").getAbsolutePath()));
+
+        choicheBoxIngrediente.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            // Verifica se um valor foi selecionado
+            if (newValue != null) {
+                textIngrediente.setVisible(false); // Oculta o texto
+            }
+        });
+        choiceBoxUnidadeDeMedida.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            // Verifica se um valor foi selecionado
+            if (newValue != null) {
+                textUnidadeDeMedida.setVisible(false); // Oculta o texto
+            }
+        });
     }
 
     @FXML
@@ -80,6 +97,8 @@ public class FxCriarReceitasController {
             choicheBoxIngrediente.setValue(null);
             choiceBoxUnidadeDeMedida.setValue(null);
             textFieldQuantidade.clear();
+            textUnidadeDeMedida.setVisible(true);
+            textIngrediente.setVisible(true);
 
         }catch (NullPointerException e ){
             mostrarAlerta(Alert.AlertType.ERROR, "Campo vazio", "Algum dos campos para adicionar item esta vazio");
