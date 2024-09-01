@@ -21,8 +21,6 @@ import org.tudogostoso.modelo.Usuario;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.PrivateKey;
-import java.util.List;
 
 public class FxReceitasFavoritasController {
 
@@ -58,7 +56,7 @@ public class FxReceitasFavoritasController {
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
-            Stage stage = (Stage) listaFavoritos.getScene().getWindow(); 
+            Stage stage = (Stage) listaFavoritos.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -68,8 +66,7 @@ public class FxReceitasFavoritasController {
 
     @FXML
     private void removerFavorito(Receita receita) {
-        usuario.getReceitasFav().remove(receita);
-        controle.atualizarUsuario(usuario);
+        controle.removerReceitaFavorita(usuario, receita);
         carregarFavoritos();
     }
 
