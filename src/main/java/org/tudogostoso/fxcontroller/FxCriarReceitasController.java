@@ -77,6 +77,9 @@ public class FxCriarReceitasController {
             textoItem = textoItem + itemIngrediente + "\n";
             textAreaItemnsIngredientes.setText(textoItem);
             itemIngredientes.add(itemIngrediente);
+            choicheBoxIngrediente.setValue(null);
+            choiceBoxUnidadeDeMedida.setValue(null);
+            textFieldQuantidade.clear();
 
         }catch (NullPointerException e ){
             mostrarAlerta(Alert.AlertType.ERROR, "Campo vazio", "Algum dos campos para adicionar item esta vazio");
@@ -124,7 +127,7 @@ public class FxCriarReceitasController {
 
     }
     @FXML
-    void handllerButtonCriarReceita() {
+    void handllerButtonCriarReceita(ActionEvent event) {
         UsuarioChef usuarioChef = (UsuarioChef) Sessao.getUsuarioSessao();
         String titulo = textFieldTitulo.getText();
         String tempoPreparo = textFieldTempodDePreapro.getText();
@@ -135,9 +138,13 @@ public class FxCriarReceitasController {
             if (caminhoArquivoUsuario.exists() && caminhoArquivoUsuario != null) {
                 String caminhoImagem = controle.salvarImagem(caminhoArquivoUsuario, usuarioChef.getNome() + titulo.replace(" ", ""));
                 controle.criarReceita(titulo, usuarioChef, itemIngredientes, preparo, tempoPreparo, categoria, caminhoImagem);
+                mostrarAlerta(Alert.AlertType.CONFIRMATION, "Receita criada com sucesso", "Sua Receita "+ titulo +" foi criada com sucesso");
             } else {
                 controle.criarReceita(titulo, usuarioChef, itemIngredientes, preparo, tempoPreparo, categoria);
+                mostrarAlerta(Alert.AlertType.CONFIRMATION, "Receita criada com sucesso", "Sua Receita "+ titulo +" foi criada com sucesso");
             }
+            limparTela();
+            gerenciadorTelas.mudarTela("feed", event);
         }catch (IOException e){
             mostrarAlerta(Alert.AlertType.ERROR, "Erro ao salvar imagem", "Erro ao salvar imagem: " +  e.getMessage());
         } catch (NullPointerException e){
@@ -153,6 +160,18 @@ public class FxCriarReceitasController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
         alerta.showAndWait();
+    }
+    private void limparTela(){
+        imagemEscolhida.setImage(new Image(new File("src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg").getAbsolutePath()));
+        textAreaItemnsIngredientes.clear();
+        textFieldCateogira.clear();
+        textFieldPreparo.clear();
+        textFieldQuantidade.clear();
+        textFieldTempodDePreapro.clear();
+        textFieldTitulo.clear();
+        choicheBoxIngrediente.setValue(null);
+        choiceBoxUnidadeDeMedida.setValue(null);
+        caminhoArquivoUsuario = null;
     }
 }
 
