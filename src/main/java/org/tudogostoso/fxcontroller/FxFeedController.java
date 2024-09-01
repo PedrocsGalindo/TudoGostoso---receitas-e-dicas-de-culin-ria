@@ -33,13 +33,12 @@ public class FxFeedController {
     private Button BTNBuscarReceitas;
 
 
-    private Controle controle;
+    private final Controle controle = ControleFactory.criarControleGeral();
 
-    private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
+    private  final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
     @FXML
     public void initialize() {
-        controle = ControleFactory.criarControleGeral();
         List<Receita> receitas = controle.buscarReceitasAleatorias();
 
         for (Receita receita : receitas) {
@@ -55,27 +54,12 @@ public class FxFeedController {
             Label categoria = new Label("Categoria: " + receita.getCategoria());
 
             Button btnVerMais = new Button("Ver Mais");
-            btnVerMais.setOnAction(event -> {
-                mostrarMaisInformacoes(event, receita);
-            });
+            btnVerMais.setOnAction(event -> mostrarMaisInformacoes(event, receita));
 
             detalhesReceita.getChildren().addAll(titulo, autor, tempoPreparo, categoria);
             receitaBox.getChildren().addAll(detalhesReceita, btnVerMais);
 
             feed.getChildren().add(receitaBox);
-        }
-    }
-    private void abrirPerfil() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/tudogostoso/telas/perfil.fxml"));
-            VBox perfilLayout = loader.load();
-            Scene scene = new Scene(perfilLayout);
-            Stage perfilStage = new Stage();
-            perfilStage.setScene(scene);
-            perfilStage.setTitle("Meu Perfil");
-            perfilStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
