@@ -83,6 +83,7 @@ public class FxPerfilController {
 
     @FXML
     private void telaCriarReceita(ActionEvent event){
+        Sessao.setUltimaCena("perfil");
         gerenciadorTelas.mudarTela("criarReceitas",event);
     }
 

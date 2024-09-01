@@ -79,7 +79,7 @@ public class FxCriarReceitasController {
 
     @FXML
     void HandllerButtonVoltar(ActionEvent event) {
-        gerenciadorTelas.mudarTela("feed",event);
+        gerenciadorTelas.mudarTela(Sessao.getUltimaCena(),event);
     }
 
     @FXML
