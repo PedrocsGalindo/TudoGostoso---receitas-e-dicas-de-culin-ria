@@ -8,6 +8,7 @@ import org.tudogostoso.controle.ControleReceita;
 import org.tudogostoso.controle.ControleUsuario;
 import org.tudogostoso.modelo.Sessao;
 import org.tudogostoso.modelo.Usuario;
+import org.tudogostoso.modelo.UsuarioChef;
 import org.tudogostoso.repositorios.RepositorioReceitas;
 import org.tudogostoso.repositorios.RepositorioUsuarios;
 
@@ -21,6 +22,12 @@ public class FxPerfilController {
 
     @FXML
     private Button BTNVoltar;
+
+    @FXML
+    private Button BTNcriarReceitas;
+
+    @FXML
+    private Button BTNMinhasReceita;
 
     @FXML
     private Label LabelD;
@@ -44,6 +51,15 @@ public class FxPerfilController {
         LabelNomeDeUsuario.setText(usuario.getNome());
         LabelD.setText(String.valueOf(usuario.getId()));
         LabelEmail.setText(String.valueOf(usuario.getEmail()));
+
+        if(usuario instanceof UsuarioChef){
+            BTNcriarReceitas.setVisible(true);
+            BTNMinhasReceita.setVisible(true);
+
+        }else{
+            BTNcriarReceitas.setVisible(false);
+            BTNMinhasReceita.setVisible(false);
+        }
     }
 
     //Método do para ir na lista de Compras
