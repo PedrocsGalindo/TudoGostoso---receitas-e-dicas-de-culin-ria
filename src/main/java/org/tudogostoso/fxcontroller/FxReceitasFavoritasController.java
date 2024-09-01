@@ -70,6 +70,21 @@ public class FxReceitasFavoritasController {
         carregarFavoritos();
     }
 
+    @FXML
+    private void voltarParaFeed() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/tudogostoso/view/feed.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) listaFavoritos.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public class ReceitaListCell extends ListCell<Receita> {
         private HBox content;
         private ImageView imageView;
