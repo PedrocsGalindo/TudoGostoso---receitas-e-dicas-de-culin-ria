@@ -1,4 +1,4 @@
-package org.tudogostoso.telas;
+package org.tudogostoso.fxcontroller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
