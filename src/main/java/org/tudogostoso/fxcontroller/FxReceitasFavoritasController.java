@@ -13,11 +13,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.tudogostoso.controle.Controle;
+import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.modelo.Sessao;
+import org.tudogostoso.modelo.Usuario;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.PrivateKey;
 import java.util.List;
 
 public class FxReceitasFavoritasController {
@@ -26,8 +30,8 @@ public class FxReceitasFavoritasController {
     private ListView<Receita> listaFavoritos;
 
     private ObservableList<Receita> favoritosList;
-
-    private ControleReceita controleReceita;
+    private Usuario usuario = Sessao.getUsuarioSessao();
+    private Controle controle = ControleFactory.criarControleGeral();
 
     @FXML
     public void initialize() {
@@ -43,8 +47,7 @@ public class FxReceitasFavoritasController {
     }
 
     private void carregarFavoritos() {
-        List<Receita> receitasFavoritas = controleReceita.buscarReceitasFavoritas();
-        favoritosList.setAll(receitasFavoritas);
+        favoritosList.setAll(usuario.getReceitasFav());
     }
 
     @FXML
@@ -65,12 +68,8 @@ public class FxReceitasFavoritasController {
 
     @FXML
     private void removerFavorito(Receita receita) {
-        controleReceita.removerReceitaFavorita(receita);
-        carregarFavoritos();
-    }
-
-    public void setControleReceita(ControleReceita controleReceita) {
-        this.controleReceita = controleReceita;
+        usuario.getReceitasFav().remove(receita);
+        controle.atualizarUsuario(usuario);
         carregarFavoritos();
     }
 

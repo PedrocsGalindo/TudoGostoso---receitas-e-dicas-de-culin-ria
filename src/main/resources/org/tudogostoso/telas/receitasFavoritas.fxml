@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
 
-<VBox alignment="TOP_CENTER" spacing="10.0" xmlns:fx="http://javafx.com/fxml" fx:controller="org.tudogostoso.controle.FxReceitasFavoritasController">
+<VBox alignment="TOP_CENTER" spacing="10.0" xmlns:fx="http://javafx.com/fxml" fx:controller="org.tudogostoso.fxcontroller.FxReceitasFavoritasController">
     <Label text="Receitas Favoritas" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
     
     <ListView fx:id="listaFavoritos" prefHeight="400.0" prefWidth="600.0">
