@@ -79,30 +79,10 @@ public class FxFeedController {
         }
     }
 
-<<<<<<< HEAD
-    private void mostrarMaisInformacoes(Receita receita) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/tudogostoso/telas/receitavermais.fxml"));
-            VBox verMaisLayout = loader.load();
-
-
-            FxReceitaDetalhesController verMaisController = loader.getController();
-            verMaisController.setReceita(receita);
-
-            Scene scene = new Scene(verMaisLayout);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Detalhes da Receita");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-=======
     private void mostrarMaisInformacoes(ActionEvent event, Receita receita) {
         Sessao.setReceitaSessao(receita);
         Sessao.setUltimaCena("/org/tudogostoso/telas/feed.fxml");
         gerenciadorTelas.mudarTela("receita", event);
->>>>>>> origin/main
     }
 
 
