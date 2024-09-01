@@ -30,8 +30,8 @@ public class ControleUsuario {
         this.repositorioImagens = repositorioImagens;
     }
 
-    //repositorio
-    public  void salvarUsuario(Usuario usuario) throws UsuarioJaExistenteException {
+    // Repositório
+    public void salvarUsuario(Usuario usuario) throws UsuarioJaExistenteException {
         if (repositorio.buscarPorEmail(usuario.getEmail()) != null){
             throw new UsuarioJaExistenteException("Já existe uma conta com esse email");
         }
@@ -40,71 +40,87 @@ public class ControleUsuario {
         }
         repositorio.salvar(usuario);
     }
-    public  void excluirUsuario(Usuario usuario){ repositorio.excluir(usuario);}
+
+    public void excluirUsuario(Usuario usuario) {
+        repositorio.excluir(usuario);
+    }
+
     public void atualizarUsuario(Usuario usuario) {
         repositorio.update(usuario);
     }
-    public int getLastId(){
+
+    public int getLastId() {
         return repositorio.getLastId();
     }
-    //como a busca retorna um usuario, caso estejamos buscando um UsuarioChef deve ser feito um cast
-    public  Usuario recuperarUsuarioPorId(int id){
+
+    public Usuario recuperarUsuarioPorId(int id) {
         return repositorio.buscarPorId(id);
     }
+
     public Usuario recuperarUsuarioPorCpf(String cpf) throws UsuarioInexistenteException {
         Usuario usuario = repositorio.buscarPorCpf(cpf);
-        if (usuario == null){
-            throw new UsuarioInexistenteException("Cpf invalido");
-        }else{
+        if (usuario == null) {
+            throw new UsuarioInexistenteException("Cpf inválido");
+        } else {
             return usuario;
         }
     }
-    public Usuario recuperarUsuarioPorEmail(InternetAddress email) throws UsuarioInexistenteException{
+
+    public Usuario recuperarUsuarioPorEmail(InternetAddress email) throws UsuarioInexistenteException {
         Usuario usuario = repositorio.buscarPorEmail(email);
-        if (usuario == null){
-            throw new UsuarioInexistenteException("Email invalido");
-        }else{
+        if (usuario == null) {
+            throw new UsuarioInexistenteException("Email inválido");
+        } else {
             return usuario;
         }
     }
+
     public void adicionarItemListaCompras(Usuario usuario, Ingrediente item) {
         usuario.getListaDeCompra().add(item);
         repositorio.update(usuario);
     }
-    //Usuario, tem que tratar as exceções
-    public  Usuario criarUsuario(String nome, String senha, String email, String cpf) throws AddressException, NullPointerException, UsuarioJaExistenteException{
-        //validações
 
+    public Usuario criarUsuario(String nome, String senha, String email, String cpf) throws AddressException, NullPointerException, UsuarioJaExistenteException {
         InternetAddress emailAddress = new InternetAddress(email);
         emailAddress.validate();
 
-        if (nome.isEmpty() || senha.isEmpty()|| email.isEmpty() || cpf.isEmpty()) {throw new NullPointerException();}
+        if (nome.isEmpty() || senha.isEmpty() || email.isEmpty() || cpf.isEmpty()) {
+            throw new NullPointerException();
+        }
 
         int id = getLastId() + 1;
         Usuario usuario = new Usuario(nome, senha, emailAddress, cpf, id);
         salvarUsuario(usuario);
         return usuario;
     }
-    public UsuarioChef criarUsuarioChef(Usuario usuario)throws NullPointerException{
+
+    public UsuarioChef criarUsuarioChef(Usuario usuario) throws NullPointerException {
         if (usuario == null) {
             throw new NullPointerException();
         }
         UsuarioChef usuarioChef = new UsuarioChef(usuario);
         excluirUsuario(usuario);
-        try{
+        try {
             salvarUsuario(usuarioChef);
-        }catch (UsuarioJaExistenteException e){
+        } catch (UsuarioJaExistenteException e) {
             System.out.println(e.getMessage());
         }
         return usuarioChef;
     }
+
     public void addReceitasFav(Usuario usuario, Receita receita) {
         usuario.addReceitasFav(receita);
         atualizarUsuario(usuario);
     }
+
+    public void removerReceitaFavorita(Usuario usuario, Receita receita) {
+        usuario.getReceitasFav().remove(receita);
+        atualizarUsuario(usuario);
+    }
+
     public void criarAvalizacao(int nota, String comentario, Usuario usuario, Receita receita) throws NullPointerException {
-        if (!comentario.isEmpty()){
-            if (usuario != null){
+        if (!comentario.isEmpty()) {
+            if (usuario != null) {
                 int id = controleAvaliacao.getLastId() + 1;
                 Avaliacao avaliacao = new Avaliacao(nota, comentario, usuario, receita, id);
 
@@ -118,20 +134,20 @@ public class ControleUsuario {
                 controleReceita.atualizarReceita(receita);
                 controleAvaliacao.salvar(avaliacao);
                 atualizarUsuario(autor);
-            }else {
-                    throw new NullPointerException("Usuario é null");
-                }
+            } else {
+                throw new NullPointerException("Usuário é null");
+            }
         } else {
-            throw new NullPointerException("comentario esta vazio");
+            throw new NullPointerException("Comentário está vazio");
         }
-
     }
+
     public Ingrediente criarIngrediente(String nome) throws ObjetoJaExiste, NullPointerException {
-        if (nome == null){
+        if (nome == null) {
             throw new NullPointerException();
         }
         Ingrediente ingrediente = controleIngrediente.buscarIngredientePorNome(nome);
-        if(ingrediente == null){
+        if (ingrediente == null) {
             int id = controleIngrediente.getLastId();
             ingrediente = new Ingrediente(nome, id);
             controleIngrediente.salvarIngrediente(ingrediente);
@@ -140,17 +156,18 @@ public class ControleUsuario {
         }
         return ingrediente;
     }
-    public ItemIngrediente criarItemIngrediente(Ingrediente ingrediente, double quantidade, UnidadeMedida medida) throws NullPointerException{
-        if(ingrediente == null || quantidade == 0 || medida == null){
+
+    public ItemIngrediente criarItemIngrediente(Ingrediente ingrediente, double quantidade, UnidadeMedida medida) throws NullPointerException {
+        if (ingrediente == null || quantidade == 0 || medida == null) {
             throw new NullPointerException("Preencha todos os campos");
         } else {
             return new ItemIngrediente(ingrediente, quantidade, medida);
         }
     }
-    //UsuarioChef
+
     public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria) throws ReceitaJaExistenteException {
         int id = controleReceita.getLastId() + 1;
-        if (titulo.isEmpty() || autor == null || ingredientes.isEmpty() || preparo.isEmpty() || tempoDePreparo.isEmpty() || categoria.isEmpty()){
+        if (titulo.isEmpty() || autor == null || ingredientes.isEmpty() || preparo.isEmpty() || tempoDePreparo.isEmpty() || categoria.isEmpty()) {
             throw new NullPointerException("Campo vazio");
         }
         Receita receita = new Receita(id, titulo, autor, ingredientes, preparo, tempoDePreparo, categoria);
@@ -158,9 +175,10 @@ public class ControleUsuario {
         autor.addMinhasReceita(receita);
         atualizarUsuario(autor);
     }
+
     public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria, String caminhoImagem) throws ReceitaJaExistenteException {
         int id = controleReceita.getLastId() + 1;
-        if (titulo.isEmpty() || autor == null || ingredientes.isEmpty() || preparo.isEmpty() || tempoDePreparo.isEmpty() || categoria.isEmpty()){
+        if (titulo.isEmpty() || autor == null || ingredientes.isEmpty() || preparo.isEmpty() || tempoDePreparo.isEmpty() || categoria.isEmpty()) {
             throw new NullPointerException("Campo vazio");
         }
         Receita receita = new Receita(id, titulo, autor, ingredientes, preparo, tempoDePreparo, categoria, caminhoImagem);
@@ -168,16 +186,16 @@ public class ControleUsuario {
         autor.addMinhasReceita(receita);
         atualizarUsuario(autor);
     }
-    public String salvarImagem(File arquivo, String nomeArquivo) throws IOException {
 
-       return repositorioImagens.salvar(arquivo,nomeArquivo);
+    public String salvarImagem(File arquivo, String nomeArquivo) throws IOException {
+        return repositorioImagens.salvar(arquivo, nomeArquivo);
     }
-    public void cadastrarReceita(Receita receita) throws ReceitaJaExistenteException{
-        if(controleReceita.buscarReceitaPorAutorETitulo(receita.getAutor(), receita.getTitulo()) == null) {
+
+    public void cadastrarReceita(Receita receita) throws ReceitaJaExistenteException {
+        if (controleReceita.buscarReceitaPorAutorETitulo(receita.getAutor(), receita.getTitulo()) == null) {
             controleReceita.salvarReceita(receita);
-        }else {
-            throw new ReceitaJaExistenteException("Usuario "+ receita.getAutor().getNome() + " já possui receita com o titulo " + receita.getTitulo());
+        } else {
+            throw new ReceitaJaExistenteException("Usuário " + receita.getAutor().getNome() + " já possui receita com o título " + receita.getTitulo());
         }
     }
 }
-
