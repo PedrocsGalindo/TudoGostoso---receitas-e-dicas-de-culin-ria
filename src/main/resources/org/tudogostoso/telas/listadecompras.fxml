@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tudogostoso.telas.Listadecompras">
+   <children>
+      <GridPane layoutX="11.0" layoutY="10.0" prefHeight="380.0" prefWidth="578.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="10.0" prefWidth="123.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="307.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="238.0" minHeight="10.0" prefHeight="238.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" text="Voltar">
+               <GridPane.margin>
+                  <Insets bottom="50.0" />
+               </GridPane.margin>
+            </Button>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Aqui esta sua lista de compras" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="50.0" left="50.0" />
+               </GridPane.margin>
+            </Text>
+            <HBox id="lista" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deseja adiconar algo a lista ?" wrappingWidth="140.89453125" GridPane.rowIndex="2" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" text="Adicionar" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

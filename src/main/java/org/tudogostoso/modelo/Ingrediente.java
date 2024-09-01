@@ -30,6 +30,9 @@ public class Ingrediente implements Serializable, Comparable<Ingrediente>{
         this.id = id;
     }
 
+    public Ingrediente(String nome) {
+        this.nome = nome;}
+
     @Override
     public String toString() {
         return nome;

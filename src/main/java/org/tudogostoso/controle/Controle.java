@@ -82,6 +82,9 @@ public class Controle {
     public String salvarImagem(File arquivo, String nomeArquivo) throws IOException {
         return controleUsuario.salvarImagem(arquivo, nomeArquivo);
     }
+    public void adicionarItemListaCompras(Usuario usuario, Ingrediente item) {
+        controleUsuario.adicionarItemListaCompras(usuario, item);
+    }
     //metodos de  ControleReceita
 
     //metodos de ControleIngrediente

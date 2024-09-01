@@ -67,7 +67,10 @@ public class ControleUsuario {
             return usuario;
         }
     }
-
+    public void adicionarItemListaCompras(Usuario usuario, Ingrediente item) {
+        usuario.getListaDeCompra().add(item);
+        repositorio.update(usuario);
+    }
     //Usuario, tem que tratar as exceções
     public  Usuario criarUsuario(String nome, String senha, String email, String cpf) throws AddressException, NullPointerException, UsuarioJaExistenteException{
         //validações
