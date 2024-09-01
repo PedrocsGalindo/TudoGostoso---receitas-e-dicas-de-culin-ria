@@ -9,7 +9,8 @@ public enum UnidadeMedida implements Serializable {
     COLHER_DE_SOPA("colher de sopa"),
     GRAMAS("gramas"),
     LITROS("litros"),
-    MINILITROS("minilitros");
+    MINILITROS("minilitros"),
+    UNIDADE("unidade");
 
     private final String tipo;
 
