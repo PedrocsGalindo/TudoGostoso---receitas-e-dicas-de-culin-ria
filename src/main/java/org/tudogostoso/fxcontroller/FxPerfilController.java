@@ -51,12 +51,12 @@ public class FxPerfilController {
     @FXML
     private void telaListaDeCompras(ActionEvent event ){
         //tem que adicionar o nome correto da tela, quando for feita
-        gerenciadorTelas.mudarTela("ListaDeCompras",event);
+        gerenciadorTelas.mudarTela("listaDeCompra",event);
     }
 //Fazer a tela e colocar o mesmo nome
     @FXML
     private void telaMinhasReceitaFavoritas(ActionEvent event){
-        gerenciadorTelas.mudarTela("MinhasReceitasFavoritas",event);
+        gerenciadorTelas.mudarTela("receitasFavoritas",event);
     }
 
     //Método para voltar na tela anterior, talvez seja possível mapear a tela anterior para facilitar
