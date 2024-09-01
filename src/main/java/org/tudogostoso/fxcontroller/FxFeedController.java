@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
+import org.tudogostoso.modelo.Sessao;
 
 import java.io.IOException;
 import java.util.List;
@@ -55,7 +56,7 @@ public class FxFeedController {
 
             Button btnVerMais = new Button("Ver Mais");
             btnVerMais.setOnAction(event -> {
-                mostrarMaisInformacoes(receita);
+                mostrarMaisInformacoes(event, receita);
             });
 
             detalhesReceita.getChildren().addAll(titulo, autor, tempoPreparo, categoria);
@@ -78,6 +79,7 @@ public class FxFeedController {
         }
     }
 
+<<<<<<< HEAD
     private void mostrarMaisInformacoes(Receita receita) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/tudogostoso/telas/receitavermais.fxml"));
@@ -95,6 +97,12 @@ public class FxFeedController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+=======
+    private void mostrarMaisInformacoes(ActionEvent event, Receita receita) {
+        Sessao.setReceitaSessao(receita);
+        Sessao.setUltimaCena("/org/tudogostoso/telas/feed.fxml");
+        gerenciadorTelas.mudarTela("receita", event);
+>>>>>>> origin/main
     }
 
 
