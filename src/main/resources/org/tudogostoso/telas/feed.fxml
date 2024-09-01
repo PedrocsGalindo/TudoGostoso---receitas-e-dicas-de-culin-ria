@@ -13,7 +13,6 @@
                 <Label fx:id="labelBemVindo" text="Bem-vindo ao Tudo Gostoso" />
                 <Label fx:id="labelReceitas" text="Aqui estão algumas receitas" />
                 <VBox fx:id="feed" spacing="10.0">
-                    <!-- As receitas serão adicionadas dinamicamente aqui -->
                 </VBox>
                 <HBox alignment="CENTER" spacing="10.0">
                <Button fx:id="BTRPerfil" mnemonicParsing="false" onAction="#meuPerfil" text="Meu perfil" />

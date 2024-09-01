@@ -79,9 +79,24 @@ public class FxFeedController {
     }
 
     private void mostrarMaisInformacoes(Receita receita) {
-        // Implementar funcionalidade para exibir mais informações sobre a receita
-        System.out.println("Exibindo mais informações sobre a receita: " + receita.getTitulo());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/tudogostoso/telas/receitavermais.fxml"));
+            VBox verMaisLayout = loader.load();
+
+            // Obtendo o controlador da nova tela e passando a receita
+            FxReceitaDetalhesController verMaisController = loader.getController();
+            verMaisController.setReceita(receita);
+
+            Scene scene = new Scene(verMaisLayout);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Detalhes da Receita");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     void meuPerfil(ActionEvent event) {
