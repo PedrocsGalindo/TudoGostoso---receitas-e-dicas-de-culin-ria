@@ -15,6 +15,10 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
+import org.tudogostoso.exceptions.UsuarioInexistenteException;
+import org.tudogostoso.modelo.Sessao;
+import org.tudogostoso.modelo.Usuario;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,17 +52,23 @@ public class FxLoginController {
 
     @FXML
     private void fazerLogin(ActionEvent event) {
-        String usuario = campoUsuario.getText();
+        String cpf = campoUsuario.getText();
         String senha = campoSenha.getText();
 
-        // Verifica se o usuário existe e se a senha está correta
-        if (usuarios.containsKey(usuario) && usuarios.get(usuario).equals(senha)) {
-            mostrarAlerta(AlertType.INFORMATION, "Login Sucesso", "Bem-vindo, " + usuario + "!");
-            //Sessao.setUsuarioSessao(usuario); tem que fazer a verificação e intanciar o objeto para essa linha funcionar
-           gerenciadorTelas.mudarTela("feed",event);
+        try {
 
-        } else {
-            mostrarAlerta(AlertType.ERROR, "Falha no Login", "Usuário ou senha incorretos.");
+            Usuario usuario = controle.recuperarUsuarioPorCpf(cpf);
+
+            // Verifica se a senha corresponde
+            if (usuario != null && usuario.getSenha().equals(senha)) {
+                mostrarAlerta(AlertType.INFORMATION, "Login Sucesso", "Bem-vindo, " + usuario.getNome() + "!");
+                Sessao.setUsuarioSessao(usuario); // Define o usuário na sessão
+                gerenciadorTelas.mudarTela("feed", event);
+            } else {
+                mostrarAlerta(AlertType.ERROR, "Falha no Login", "Usuário ou senha incorretos.");
+            }
+        } catch (UsuarioInexistenteException e) {
+            mostrarAlerta(AlertType.ERROR, "Falha no Login", "Usuário não encontrado.");
         }
 
         limparCampos();
