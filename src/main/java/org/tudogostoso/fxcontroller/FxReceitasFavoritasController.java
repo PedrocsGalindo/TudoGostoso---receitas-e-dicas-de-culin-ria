@@ -2,6 +2,7 @@ package org.tudogostoso.fxcontroller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,6 +31,7 @@ public class FxReceitasFavoritasController {
     private ObservableList<Receita> favoritosList;
     private Usuario usuario = Sessao.getUsuarioSessao();
     private Controle controle = ControleFactory.criarControleGeral();
+    private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
     @FXML
     public void initialize() {
@@ -49,19 +51,10 @@ public class FxReceitasFavoritasController {
     }
 
     @FXML
-    private void verReceita(Receita receita) {
+    private void verReceita(ActionEvent event,Receita receita) {
         Sessao.setReceitaSessao(receita);
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/tudogostoso/view/telaReceita.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-
-            Stage stage = (Stage) listaFavoritos.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Sessao.setUltimaCena("/org/tudogostoso/telas/receitasFavoritas.fxml");
+        gerenciadorTelas.mudarTela("receita", event);
     }
 
     @FXML
@@ -71,18 +64,8 @@ public class FxReceitasFavoritasController {
     }
 
     @FXML
-    private void voltarParaFeed() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/tudogostoso/view/feed.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-
-            Stage stage = (Stage) listaFavoritos.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void voltarParaFeed(ActionEvent event) {
+        gerenciadorTelas.mudarTela("perfil", event);
     }
 
     public class ReceitaListCell extends ListCell<Receita> {
@@ -109,7 +92,7 @@ public class FxReceitasFavoritasController {
 
             verButton = new Button("Ver Receita");
             verButton.getStyleClass().add("button");
-            verButton.setOnAction(e -> verReceita(getItem()));
+            verButton.setOnAction(e -> verReceita(e, getItem()));
 
             removerButton = new Button("Remover");
             removerButton.getStyleClass().add("button");
@@ -131,7 +114,7 @@ public class FxReceitasFavoritasController {
             if (item != null && !empty) {
                 titulo.setText(item.getTitulo());
                 categoria.setText(item.getCategoria());
-                notaMedia.setText("Nota: " + String.format("%.1f", item.getNota()));
+                notaMedia.setText("Nota: " + String.format("%.1f", (double) item.getNota()));
 
                 File file = new File(item.getCaminhoImagem());
                 Image image;
