@@ -28,10 +28,11 @@ public class FxGerenciadorTelas {
         carregarTelas("buscar", "/org/tudogostoso/telas/buscar.fxml", "Busca");
         carregarTelas("receita", "/org/tudogostoso/telas/receita.fxml", "Receita");
         carregarTelas("perfilCozinheiro", "/org/tudogostoso/telas/perfilCozinheiro.fxml", "Perfil Cozinheiro");
+        carregarTelas("receitasFavoritas","/org/tudogostoso/telas/receitasFavoritas.fxml","Receitas Favoritas");
         // Adicionar mais telas conforme necessário
     }
 
-    // Método para carregar as telas e armazenar os caminhos no mapa, foi add para pode voltar 
+    // Método para carregar as telas e armazenar os caminhos no mapa, foi add para pode voltar
     private void carregarTelas(String nomeTela, String caminhoFXML, String tituloTela) {
         caminhosDasTelas.put(nomeTela, caminhoFXML);
         titulosDasTelas.put(nomeTela, tituloTela);

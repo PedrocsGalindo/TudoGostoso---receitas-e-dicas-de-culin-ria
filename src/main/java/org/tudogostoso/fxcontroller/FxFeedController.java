@@ -1,5 +1,6 @@
 package org.tudogostoso.fxcontroller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,11 +26,15 @@ public class FxFeedController {
 
     @FXML
     private VBox feed;
-
     @FXML
-    private Button btnPerfil;
+    private Button BTRPerfil;
+    @FXML
+    private Button BTNBuscarReceitas;
+
 
     private Controle controle;
+
+    private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
     @FXML
     public void initialize() {
@@ -77,4 +82,15 @@ public class FxFeedController {
         // Implementar funcionalidade para exibir mais informações sobre a receita
         System.out.println("Exibindo mais informações sobre a receita: " + receita.getTitulo());
     }
+
+    @FXML
+    void meuPerfil(ActionEvent event) {
+        gerenciadorTelas.mudarTela("perfil",event);
+    }
+    @FXML
+    void buscarReceitas(ActionEvent event){
+        gerenciadorTelas.mudarTela("buscar",event);
+    }
+
+
 }

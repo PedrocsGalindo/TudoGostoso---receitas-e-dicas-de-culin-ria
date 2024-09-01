@@ -3,16 +3,21 @@ package org.tudogostoso.fxcontroller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.tudogostoso.modelo.Receita;
+import org.tudogostoso.modelo.Sessao;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class FxReceitasFavoritasController {
@@ -38,22 +43,29 @@ public class FxReceitasFavoritasController {
     }
 
     private void carregarFavoritos() {
-        List<Receita> receitasFavoritas = controleReceita.buscarReceitasFavoritas(); // Método que busca receitas favoritas
+        List<Receita> receitasFavoritas = controleReceita.buscarReceitasFavoritas();
         favoritosList.setAll(receitasFavoritas);
     }
 
     @FXML
     private void verReceita(Receita receita) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Detalhes da Receita");
-        alert.setHeaderText(receita.getTitulo());
-        alert.setContentText(receita.toString());
-        alert.showAndWait();
+        Sessao.setReceitaSessao(receita);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/tudogostoso/view/telaReceita.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) listaFavoritos.getScene().getWindow(); 
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void removerFavorito(Receita receita) {
-        controleReceita.removerReceitaFavorita(receita); // Método para remover receita dos favoritos
+        controleReceita.removerReceitaFavorita(receita);
         carregarFavoritos();
     }
 
@@ -95,13 +107,11 @@ public class FxReceitasFavoritasController {
 
             HBox buttonBox = new HBox(verButton, removerButton);
             buttonBox.setSpacing(10);
-            buttonBox.setAlignment(Pos.CENTER_RIGHT);
 
             vBox = new VBox(titulo, categoria, notaMedia);
             vBox.setSpacing(5);
             content = new HBox(imageView, vBox, buttonBox);
             content.setSpacing(10);
-            content.setAlignment(Pos.CENTER_LEFT);
         }
 
         @Override
@@ -112,13 +122,11 @@ public class FxReceitasFavoritasController {
                 categoria.setText(item.getCategoria());
                 notaMedia.setText("Nota: " + String.format("%.1f", item.getNota()));
 
-                // Carregar a imagem da receita
                 File file = new File(item.getCaminhoImagem());
                 Image image;
                 if (file.exists()) {
                     image = new Image(file.toURI().toString(), 50, 50, false, true);
                 } else {
-                    // Imagem padrão se não encontrar
                     image = new Image(getClass().getResourceAsStream("/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg"), 50, 50, false, true);
                 }
                 imageView.setImage(image);

@@ -18,7 +18,7 @@ import java.util.List;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/org/tudogostoso/telas/criarReceitas.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/org/tudogostoso/telas/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 840, 610);
         stage.setTitle("Login");
         stage.setScene(scene);
