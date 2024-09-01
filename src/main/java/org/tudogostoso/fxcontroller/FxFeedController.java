@@ -83,7 +83,7 @@ public class FxFeedController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/tudogostoso/telas/receitavermais.fxml"));
             VBox verMaisLayout = loader.load();
 
-            // Obtendo o controlador da nova tela e passando a receita
+
             FxReceitaDetalhesController verMaisController = loader.getController();
             verMaisController.setReceita(receita);
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="375.0" prefWidth="533.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tudogostoso.fxcontroller.FxReceitaDetalhesController" spacing="10" style="-fx-padding: 20; -fx-alignment: CENTER_LEFT;">
+    <Label text="Autor:" style="-fx-font-weight: bold;"/>
+    <Label fx:id="autorLabel" text="Autor" />
+
+    <Label text="Título:" style="-fx-font-weight: bold;"/>
+    <Label fx:id="tituloLabel" text="Título" />
+
+    <Label text="Tempo de Preparo:" style="-fx-font-weight: bold;"/>
+    <Label fx:id="tempoPreparoLabel" text="Tempo de Preparo" />
+
+    <Label text="Categoria:" style="-fx-font-weight: bold;"/>
+    <Label fx:id="categoriaLabel" text="Categoria" />
+
+    <Label text="Ingredientes:" style="-fx-font-weight: bold;"/>
+    <Label fx:id="ingredientesLabel" text="Ingredientes" wrapText="true"/>
+
+    <Label text="Modo de Preparo:" style="-fx-font-weight: bold;"/>
+    <Label fx:id="preparoLabel" text="Preparo" wrapText="true"/>
+
+    <ImageView fx:id="imagemReceita" fitWidth="400" fitHeight="300" preserveRatio="true" style="-fx-padding: 10;"/>
+</VBox>
