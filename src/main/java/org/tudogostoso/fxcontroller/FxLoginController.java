@@ -20,6 +20,7 @@ import org.tudogostoso.modelo.Sessao;
 import org.tudogostoso.modelo.Usuario;
 import org.tudogostoso.modelo.UsuarioChef;
 
+import javax.mail.internet.InternetAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,13 +59,12 @@ public class FxLoginController {
 
         try {
 
-            Usuario usuario = controle.recuperarUsuarioPorCpf(cpf);
+            Usuario usuario = controle.recuperarUsuarioPorCpf(cpf)  ;
 
             // Verifica se a senha corresponde
             if (usuario != null && usuario.getSenha().equals(senha)) {
                 mostrarAlerta(AlertType.INFORMATION, "Login Sucesso", "Bem-vindo, " + usuario.getNome() + "!");
                 Sessao.setUsuarioSessao(usuario); // Define o usuário na sessão
-                if(usuario instanceof UsuarioChef)
                 gerenciadorTelas.mudarTela("feed", event);
             } else {
                 mostrarAlerta(AlertType.ERROR, "Falha no Login", "Usuário ou senha incorretos.");

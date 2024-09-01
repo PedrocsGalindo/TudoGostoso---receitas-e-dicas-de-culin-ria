@@ -30,6 +30,6 @@
             <Button fx:id="BTNMinhasReceita" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Minhas receitas" />
          </children>
       </HBox>
-      <Button fx:id="BTNcriarReceitas" layoutX="349.0" layoutY="386.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Criar Receitas" />
+      <Button fx:id="BTNcriarReceitas" layoutX="349.0" layoutY="386.0" mnemonicParsing="false" onAction="#telaCriarReceita" prefHeight="25.0" prefWidth="117.0" text="Criar Receitas" />
    </children>
 </Pane>
