@@ -1,15 +1,9 @@
 package org.tudogostoso.fxcontroller;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.exceptions.UsuarioJaExistenteException;
@@ -31,16 +25,13 @@ public class FxCadastroController {
 
     private String tipoUsuario = "Usuário Padrão"; // Por padrão, o tipo de usuário é "Usuário Padrão"
 
-    private static Controle controle = ControleFactory.criarControleGeral();
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    private static final Controle controle = ControleFactory.criarControleGeral();
     private Usuario usuario;
 
-    private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
+    private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
     @FXML
-    private void cadastrarUsuario(ActionEvent event) {
+    private void cadastrarUsuario(ActionEvent event){
         String nomeUsuario = campoUsuario.getText();
         String email = campoEmail.getText();
         String senha = campoSenha.getText();
@@ -50,54 +41,44 @@ public class FxCadastroController {
         try{
             usuario = controle.criarUsuario(nomeUsuario, senha, email, cpf);
 
-        } catch (AddressException e){
-            //alerta de email invalido
-        } catch (NullPointerException e){
-            //um dos campos esta vazio
-        } catch(UsuarioJaExistenteException e){
-         //ja existe usario com determinado elemento, use o e.getMessage para exebir ao usuario oque ja existe
-        }
+            //caso for UsuarioChef
+            if (checkBoxChef.isSelected()) {
+                try {
+                    Sessao.setUsuarioSessao(controle.criarUsuarioChef(usuario));
+                    limparCampos();
+                    tipoUsuario  = "Usuário Chef";
+                    mostrarAlerta(AlertType.INFORMATION, "Cadastro Realizado",
+                            "UsuárioChef: " + usuario + "\nEmail: " + email + "\nSenha: " + senha + "\nTipo de Usuário: "
+                                    + tipoUsuario);
+                    gerenciadorTelas.mudarTela("feed", event);
+                } catch (NullPointerException e){
+                    //mensagem de erro, esse erro acontece pq o usuario que usou para criar o Usuairio Chef é vazio
+                }
 
-        //cria usuarioChef e linka a sessao
-        if (checkBoxChef.isSelected()) {
-            try {
-                Sessao.setUsuarioSessao(controle.criarUsuarioChef(usuario));
-                limparCampos();
-                mudarTela("/org/tudogostoso/telas/feed.fxml", event);
+                //linka o Usuario comun a sessao
+            } else {
                 mostrarAlerta(AlertType.INFORMATION, "Cadastro Realizado",
-                        "UsuárioChef: " + usuario + "\nEmail: " + email + "\nSenha: " + senha + "\nTipo de Usuário: "
+                        "Usuário: " + usuario + "\nEmail: " + email + "\nSenha: " + senha + "\nTipo de Usuário: "
                                 + tipoUsuario);
-            } catch (NullPointerException e){
-                //mensagem de erro, esse erro acontece pq o usuario que usou para criar o Usuairio Chef é vazio
+                Sessao.setUsuarioSessao(usuario);
+                limparCampos();
+                gerenciadorTelas.mudarTela("feed", event);
             }
-
-        //linka o Usuario comun a sessao
-        } else {
-            mostrarAlerta(AlertType.INFORMATION, "Cadastro Realizado",
-                    "Usuário: " + usuario + "\nEmail: " + email + "\nSenha: " + senha + "\nTipo de Usuário: "
-                            + tipoUsuario);
-            Sessao.setUsuarioSessao(usuario);
-            limparCampos();
-            mudarTela("/org/tudogostoso/telas/feed.fxml", event);
+        } catch (NullPointerException e){
+            mostrarAlerta(AlertType.ERROR, "Campo vazio",
+                    "Um dos campos esta vazio, por favor preencha todos com suas informações");
+        } catch (AddressException e){
+            mostrarAlerta(AlertType.ERROR, "Email invalido",
+                    "Insira um email valido");
+        } catch(UsuarioJaExistenteException e){
+            mostrarAlerta(AlertType.ERROR, "Usuario ja existente",
+                    e.getMessage());
         }
     }
 
     @FXML
     private void voltarParaLogin(ActionEvent event) {
         gerenciadorTelas.mudarTela("Login",event);
-    }
-    private void mudarTela(String tela, Event evento) {
-        try {root = FXMLLoader.load(getClass().getResource(tela));
-            scene = new Scene(root);
-
-            // Obtenha a Stage a partir do evento
-            stage = (Stage) ((Node) evento.getSource()).getScene().getWindow();
-
-            stage.setScene(scene);
-            stage.show();;  // Chama a troca para a tela de cadastro ou feed
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 
