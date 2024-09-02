@@ -17,28 +17,24 @@
         <RowConstraints maxHeight="560.0" minHeight="10.0" prefHeight="560.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <!-- Botão Voltar -->
         <Button fx:id="botaoVoltar" text="Voltar" onAction="#handleBotaoVoltar" GridPane.rowIndex="0" GridPane.columnIndex="0">
             <GridPane.margin>
                 <Insets left="10.0" top="10.0" />
             </GridPane.margin>
         </Button>
 
-        <!-- ListView para Minhas Receitas -->
         <ListView fx:id="listViewMinhasReceitas" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2">
             <GridPane.margin>
                 <Insets left="10.0" right="10.0" />
             </GridPane.margin>
         </ListView>
 
-        <!-- Botão Adicionar Receita -->
         <Button fx:id="botaoAdicionarReceita" text="Adicionar Receita" onAction="#handleBotaoAdicionarReceita" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
             <GridPane.margin>
                 <Insets right="10.0" top="10.0" />
             </GridPane.margin>
         </Button>
 
-        <!-- Botão Excluir Receita -->
         <Button fx:id="botaoExcluirReceita" text="Excluir Receita" onAction="#handleBotaoExcluirReceita" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets right="10.0" bottom="10.0" />
