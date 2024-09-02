@@ -49,6 +49,7 @@ public class FxlistaDeComprasVController {
             CompraList.add(novoIngrediente);
             Usuario usuario1 = Sessao.getUsuarioSessao();
             usuario1.addListaDeCompra(novoIngrediente);
+            controle.atualizarUsuario(usuario1);
             ingredienteField.clear();
         }
     }
@@ -60,6 +61,7 @@ public class FxlistaDeComprasVController {
             CompraList.remove(ingredienteSelecionado);
             Usuario usuario1 = Sessao.getUsuarioSessao();
             usuario1.getListaDeCompra().remove(ingredienteSelecionado);
+            controle.atualizarUsuario(usuario1);
             // Se você estiver salvando a lista de compras em um arquivo ou banco de dados, atualize-o aqui
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
