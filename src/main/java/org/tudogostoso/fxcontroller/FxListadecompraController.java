@@ -1,5 +1,6 @@
 package org.tudogostoso.fxcontroller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -26,24 +27,30 @@ public class FxListadecompraController {
     private Usuario usuarioAtual;
 
 
-    private Controle controle;
+    private final Controle controle = ControleFactory.criarControleGeral();
+    private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
     @FXML
     public void initialize() {
-
-        controle = ControleFactory.criarControleGeral();
         carregarListaDeCompras();
     }
 
     private void carregarListaDeCompras() {
-        lista.getChildren().clear();
-        if (usuarioAtual != null) {
-            List<Ingrediente> listaDeCompras = usuarioAtual.getListaDeCompra();
-            for (Ingrediente item : listaDeCompras) {
-                Text itemText = new Text(item.getNome());
-                lista.getChildren().add(itemText);
+        if (lista != null) {
+            lista.getChildren().clear();
+            if (usuarioAtual != null) {
+                List<Ingrediente> listaDeCompras = usuarioAtual.getListaDeCompra();
+                for (Ingrediente item : listaDeCompras) {
+                    Text itemText = new Text(item.getNome());
+                    lista.getChildren().add(itemText);
+                }
             }
         }
+    }
+    @FXML
+    void handllerBotaoVoltar(ActionEvent event) {
+        gerenciadorTelas.mudarTela("perfil", event);
+
     }
 
     @FXML
