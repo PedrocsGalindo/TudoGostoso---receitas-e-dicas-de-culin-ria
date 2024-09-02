@@ -23,7 +23,7 @@ public class FxMinhasReceitasController {
 
     @FXML
     void handleBotaoAdicionarReceita(ActionEvent event) {
-
+        gerenciadorTelas.getInstance().mudarTela("criarReceitas", event);
     }
 
     @FXML
