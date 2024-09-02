@@ -67,7 +67,7 @@ public class FxPerfilController {
     @FXML
     private void telaListaDeCompras(ActionEvent event ){
         //tem que adicionar o nome correto da tela, quando for feita
-        gerenciadorTelas.mudarTela("listadecompras",event);
+        gerenciadorTelas.mudarTela("listaDeComprasV",event);
     }
 //Fazer a tela e colocar o mesmo nome
     @FXML
@@ -89,7 +89,7 @@ public class FxPerfilController {
 
     @FXML
     private void telaMinhasReceita(ActionEvent event){
-        gerenciadorTelas.mudarTela("minhasReceitas",event);// falta fazer a tela
+        gerenciadorTelas.mudarTela("minhasReceitas",event);
     }
     
 

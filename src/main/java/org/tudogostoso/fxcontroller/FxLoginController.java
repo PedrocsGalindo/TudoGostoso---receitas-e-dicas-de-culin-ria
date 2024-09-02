@@ -49,7 +49,7 @@ public class FxLoginController {
             if (usuario != null && usuario.getSenha().equals(senha)) {
                 mostrarAlerta(AlertType.INFORMATION, "Login Sucesso", "Bem-vindo, " + usuario.getNome() + "!");
                 Sessao.setUsuarioSessao(usuario); // Define o usuário na sessão
-                gerenciadorTelas.mudarTela("feed", event);
+                gerenciadorTelas.mudarTela("listaDeComprasV", event);
             } else {
                 mostrarAlerta(AlertType.ERROR, "Falha no Login", "Usuário ou senha incorretos.");
             }
