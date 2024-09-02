@@ -27,7 +27,6 @@ public class FxGerenciadorTelas {
         carregarTelas("criarReceitas", "/org/tudogostoso/telas/criarReceitas.fxml", "Criar Receitas");
         carregarTelas("buscar", "/org/tudogostoso/telas/buscar.fxml", "Busca");
         carregarTelas("receita", "/org/tudogostoso/telas/receita.fxml", "Receita");
-        carregarTelas("perfilCozinheiro", "/org/tudogostoso/telas/perfilCozinheiro.fxml", "Perfil Cozinheiro");
         carregarTelas("receitasFavoritas","/org/tudogostoso/telas/receitasFavoritas.fxml","Receitas Favoritas");
         carregarTelas("listadecompras", "/org/tudogostoso/telas/listadecompras.fxml", "Lista de Compras");
         carregarTelas("minhasReceitas","/org/tudogostoso/telas/minhasReceitas.fxml", "Minhas Receitas");
