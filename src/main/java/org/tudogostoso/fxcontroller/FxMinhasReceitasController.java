@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import org.tudogostoso.modelo.Sessao;
 
 public class FxMinhasReceitasController {
 
@@ -23,7 +24,8 @@ public class FxMinhasReceitasController {
 
     @FXML
     void handleBotaoAdicionarReceita(ActionEvent event) {
-
+        Sessao.setUltimaCena("minhasReceitas");
+        gerenciadorTelas.mudarTela("criarReceitas", event);
     }
 
     @FXML
