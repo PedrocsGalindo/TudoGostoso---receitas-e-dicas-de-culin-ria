@@ -4,17 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.util.Callback;
+import javafx.scene.control.*;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Ingrediente;
 import org.tudogostoso.modelo.Sessao;
 import org.tudogostoso.modelo.Usuario;
-
-import java.util.List;
 
 public class FxlistaDeComprasVController {
 
@@ -24,6 +19,9 @@ public class FxlistaDeComprasVController {
     @FXML
     private TextField ingredienteField;
 
+    @FXML
+    private Button botaoExcluirIngrediente;
+
     private ObservableList<Ingrediente> CompraList;
     private Controle controle = ControleFactory.criarControleGeral();
     private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
@@ -32,25 +30,13 @@ public class FxlistaDeComprasVController {
     public void initialize() {
         CompraList = FXCollections.observableArrayList();
         listaCompras.setItems(CompraList);
-        listaCompras.setCellFactory(new Callback<ListView<Ingrediente>, ListCell<Ingrediente>>() {
-            @Override
-            public ListCell<Ingrediente> call(ListView<Ingrediente> param) {
-                return new IngredienteListCell(); // Classe de célula personalizada
-            }
-        });
+        listaCompras.setCellFactory(param -> new IngredienteListCell());
         carregarListaDeCompras();
     }
 
     private void carregarListaDeCompras() {
-        Usuario usuario = Sessao.getUsuarioSessao();
-        if (usuario != null) {
-            List<Ingrediente> listaDeCompra = usuario.getListaDeCompra();
-            if (listaDeCompra != null) {
-                CompraList.setAll(listaDeCompra);
-            } else {
-                CompraList.clear();
-            }
-        }
+        Usuario usuario1 = Sessao.getUsuarioSessao();
+        CompraList.setAll(usuario1.getListaDeCompra());
     }
 
     @FXML
@@ -65,13 +51,28 @@ public class FxlistaDeComprasVController {
         }
     }
 
+    @FXML
+    private void excluirIngrediente(ActionEvent event) {
+        Ingrediente ingredienteSelecionado = listaCompras.getSelectionModel().getSelectedItem();
+        if (ingredienteSelecionado != null) {
+            CompraList.remove(ingredienteSelecionado);
+            Usuario usuario1 = Sessao.getUsuarioSessao();
+            usuario1.getListaDeCompra().remove(ingredienteSelecionado);
+            // Se você estiver salvando a lista de compras em um arquivo ou banco de dados, atualize-o aqui
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Nenhum Ingrediente Selecionado");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor, selecione um ingrediente para excluir.");
+            alert.showAndWait();
+        }
+    }
 
     @FXML
     void voltarParaFeed(ActionEvent event) {
         gerenciadorTelas.mudarTela("perfil", event);
     }
 
-    // Classe interna para a célula personalizada da ListView
     private class IngredienteListCell extends ListCell<Ingrediente> {
         @Override
         protected void updateItem(Ingrediente item, boolean empty) {
