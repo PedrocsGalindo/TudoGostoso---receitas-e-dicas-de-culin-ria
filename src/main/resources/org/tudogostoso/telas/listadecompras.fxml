@@ -35,10 +35,10 @@
                   <Insets bottom="50.0" left="50.0" />
                </GridPane.margin>
             </Text>
-            <HBox id="lista" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <HBox fx:id="lista" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deseja adiconar algo a lista ?" wrappingWidth="140.89453125" GridPane.rowIndex="2" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="Adicionar" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button mnemonicParsing="false" text="Adicionar" onAction="#adicionarItem" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
