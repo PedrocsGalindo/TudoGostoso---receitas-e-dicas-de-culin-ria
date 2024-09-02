@@ -65,7 +65,7 @@ public class FxFeedController {
 
     private void mostrarMaisInformacoes(ActionEvent event, Receita receita) {
         Sessao.setReceitaSessao(receita);
-        Sessao.setUltimaCena("/org/tudogostoso/telas/feed.fxml");
+        Sessao.setUltimaCena("feed");
         gerenciadorTelas.mudarTela("receita", event);
     }
 

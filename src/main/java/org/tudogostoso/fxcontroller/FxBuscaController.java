@@ -45,12 +45,12 @@ public class FxBuscaController {
     @FXML
     private CheckBox focus;
 
-    private static Controle controle = ControleFactory.criarControleGeral();
+    private static final Controle controle = ControleFactory.criarControleGeral();
     private Stage stage;
     private Scene scene;
     private Parent root;
     private GridPane[] receitasGridPane;
-    private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
+    private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
     @FXML
     public void initialize() {
@@ -61,16 +61,8 @@ public class FxBuscaController {
     }
 
     @FXML
-    void botaoVoltar(ActionEvent event) throws IOException {
-
-        root = FXMLLoader.load(getClass().getResource("/org/tudogostoso/telas/feed.fxml"));
-        scene = new Scene(root);
-
-        // Obtenha a Stage a partir do evento
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        stage.setScene(scene);
-        stage.show();
+    void botaoVoltar(ActionEvent event){
+        gerenciadorTelas.mudarTela("feed", event);
     }
 
     public void prencher(Receita receita, GridPane gridPane) throws NullPointerException{
@@ -177,23 +169,16 @@ public class FxBuscaController {
     }
 
     @FXML
-    void clicarReceitaGridPane(MouseEvent event) throws IOException {
-
-        Node noClique = (Node) event.getSource();
+    void clicarReceitaGridPane(MouseEvent event){
 
         //associa a receita do gridClicado à receita da sessao
+        Node noClique = (Node) event.getSource();
         GridPane gridClicado = (GridPane) noClique;
         Sessao.setReceitaSessao(receitaAssociadaAoGridPane(gridClicado));
-        Sessao.setUltimaCena("/org/tudogostoso/telas/buscar.fxml");
 
-        root = FXMLLoader.load(getClass().getResource("/org/tudogostoso/telas/receita.fxml"));
-        scene = new Scene(root);
+        Sessao.setUltimaCena("buscar");
 
-        // Obtenha a Stage a partir do evento
-        stage = (Stage) noClique.getScene().getWindow();
-
-        stage.setScene(scene);
-        stage.show();
+        gerenciadorTelas.mudarTela("receita", event);
     }
 
     @FXML

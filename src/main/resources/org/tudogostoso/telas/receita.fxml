@@ -24,7 +24,7 @@
       <RowConstraints maxHeight="403.0" minHeight="10.0" prefHeight="280.3333435058594" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="botaoVoltar" mnemonicParsing="false" onAction="#handllerBotaoVoltar" prefHeight="60.0" prefWidth="48.0" text="Voltar" GridPane.halignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#handllerBotaoVoltar" prefHeight="60.0" prefWidth="48.0" text="Voltar" GridPane.halignment="CENTER">
          <opaqueInsets>
             <Insets top="10.0" />
          </opaqueInsets>

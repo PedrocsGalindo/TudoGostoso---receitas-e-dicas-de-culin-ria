@@ -6,12 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.stage.Stage;
 
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
@@ -19,14 +14,10 @@ import org.tudogostoso.modelo.*;
 
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 public class FxReceitaController {
-
-    @FXML
-    private Button botaoVoltar;
 
     @FXML
     private TextArea textAreaAvaliacoes, textAreaIngrediente, textAreaTitulo, textAreaNota, textAreaPreparo;
@@ -41,9 +32,10 @@ public class FxReceitaController {
     private TextField textFiledComentario;
 
     List<ItemIngrediente> ingredientes;
-    Controle controle = ControleFactory.criarControleGeral();
+    private final Controle controle = ControleFactory.criarControleGeral();
     Usuario usuario = Sessao.getUsuarioSessao();
     Receita receita = Sessao.getReceitaSessao();
+    private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
     public void setComentarios(Receita receita){
         textAreaAvaliacoes.clear();
@@ -120,15 +112,8 @@ public class FxReceitaController {
     }
 
     @FXML
-    void handllerBotaoVoltar(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(Sessao.getUltimaCena()));
-        Scene scene = new Scene(root);
-
-        // Obtenha a Stage a partir do evento
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        stage.setScene(scene);
-        stage.show();
+    void handllerBotaoVoltar(ActionEvent event) {
+        gerenciadorTelas.mudarTela(Sessao.getUltimaCena(), event);
 
     }
 }
