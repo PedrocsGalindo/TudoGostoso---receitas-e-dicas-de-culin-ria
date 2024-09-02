@@ -8,6 +8,23 @@ import org.tudogostoso.modelo.Sessao;
 
 public class FxMinhasReceitasController {
 
+    private ListView<Receita> listViewMinhasReceitas;
+
+    private ObservableList<Receita> minhasReceitasList;
+    private Controle controle = ControleFactory.criarControleGeral();
+    private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
+    private Usuario usuario = Sessao.getUsuarioSessao();
+
+    @FXML
+    public void initialize() {
+        minhasReceitasList = FXCollections.observableArrayList();
+        listViewMinhasReceitas.setItems(minhasReceitasList);
+        carregarMinhasReceitas();
+    }
+    private void carregarMinhasReceitas() {
+        minhasReceitasList.setAll(usuario.getMinhasReceitas());
+    }
+    
     @FXML
     private Button botaoVoltar;
 
