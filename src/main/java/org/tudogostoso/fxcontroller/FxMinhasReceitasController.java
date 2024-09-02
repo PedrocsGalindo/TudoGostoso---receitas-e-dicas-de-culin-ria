@@ -19,6 +19,8 @@ public class FxMinhasReceitasController {
     @FXML
     private Button botaoExcluirReceita;
 
+    FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
+
     @FXML
     void handleBotaoAdicionarReceita(ActionEvent event) {
 
@@ -31,6 +33,6 @@ public class FxMinhasReceitasController {
 
     @FXML
     void handleBotaoVoltar(ActionEvent event) {
-
+        gerenciadorTelas.mudarTela("perfil", event);
     }
 }
