@@ -25,13 +25,14 @@ public class Usuario implements Serializable {
         this.listaDeCompra = new ArrayList<>();
     }
     //construtor que so vai ser usado para poder Criar a UsuarioChef
-    public Usuario(String nome, String senha, InternetAddress email, String cpf, List<Receita> receitasFav, int id){
+    public Usuario(String nome, String senha, InternetAddress email, String cpf, List<Receita> receitasFav, List<Ingrediente> listaDeCompra, int id){
         this.id = id;
         this.nome = nome;
         this.senha = senha;
         this.email = email;
         this.cpf = cpf;
         this.receitasFav = receitasFav;
+        this.listaDeCompra = listaDeCompra;
     }
     @Override
     public boolean equals(Object o) {

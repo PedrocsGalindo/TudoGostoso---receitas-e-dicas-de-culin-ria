@@ -8,7 +8,7 @@ public class UsuarioChef extends Usuario {
     private List<Receita> minhasReceitas;
 
     public UsuarioChef(Usuario usuario) {
-        super(usuario.getNome(), usuario.getSenha(), usuario.getEmail(), usuario.getCpf(), usuario.getReceitasFav(), usuario.getId());
+        super(usuario.getNome(), usuario.getSenha(), usuario.getEmail(), usuario.getCpf(), usuario.getReceitasFav(), usuario.getListaDeCompra(), usuario.getId());
         this.minhasReceitas = new ArrayList<>();
     }
 
