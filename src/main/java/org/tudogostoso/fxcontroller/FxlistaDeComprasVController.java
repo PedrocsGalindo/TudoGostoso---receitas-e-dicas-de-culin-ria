@@ -36,7 +36,9 @@ public class FxlistaDeComprasVController {
 
     private void carregarListaDeCompras() {
         Usuario usuario1 = Sessao.getUsuarioSessao();
-        CompraList.setAll(usuario1.getListaDeCompra());
+        if (usuario1.getListaDeCompra() != null){
+            CompraList.setAll(usuario1.getListaDeCompra());
+        }
     }
 
     @FXML
