@@ -1,6 +1,7 @@
 package org.tudogostoso.controle;
 
 import org.tudogostoso.modelo.Avaliacao;
+import org.tudogostoso.modelo.ItemIngrediente;
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.modelo.Usuario;
 import org.tudogostoso.repositorios.IRepositorioReceitas;
@@ -8,7 +9,6 @@ import org.tudogostoso.repositorios.IRepositorioReceitas;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class ControleReceita {
 
@@ -40,13 +40,38 @@ public class ControleReceita {
         return repositorioReceita.buscarPorAvaliacao(avaliacao);
     }
     public List<Receita> buscarReceitaPorAvaliacao(int avaliacao) {
-        return repositorioReceita.buscarPorAvaliacao(avaliacao);
+        List<Receita> items = repositorioReceita.buscar();
+        List<Receita> receitasDesejadas = new ArrayList<>();
+
+        for (Receita item : items) {
+            if (item.getNota() == avaliacao){
+                receitasDesejadas.add(item);
+            }
+        }
+        return receitasDesejadas;
     }
-    public List<Receita> buscarReceitaPorIngrediente(String ingredietne){
-        return repositorioReceita.buscarPorIngrediente(ingredietne);
+    public List<Receita> buscarReceitaPorIngrediente(String ingrediente){
+        List<Receita> items = repositorioReceita.buscar();
+        List<Receita> receitasDesejadas = new ArrayList<>();
+
+        for (Receita item : items) {
+            for (ItemIngrediente ing : item.getIngredientes()) {
+                if (ing.getIngrediente().getNome().equals(ingrediente)){
+                    receitasDesejadas.add(item);
+                }
+            }
+        }
+        return receitasDesejadas;
     }
     public List<Receita> buscarReceitaPorCategoria(String categoria){
-        return repositorioReceita.buscarPorCategoria(categoria);
+        List<Receita> items = repositorioReceita.buscar();
+        List<Receita> receitasDesejadas = new ArrayList<>();
+        for (Receita item : items) {
+            if (item.getCategoria().equals(categoria)){
+                receitasDesejadas.add(item);
+            }
+        }
+        return receitasDesejadas;
     }
     public List<Receita> buscarReceitasAleatorias() {
         List<Receita> receitasAleatorias = repositorioReceita.buscar();

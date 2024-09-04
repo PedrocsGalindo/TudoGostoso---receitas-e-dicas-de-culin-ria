@@ -2,6 +2,7 @@ package org.tudogostoso.fxcontroller;
 
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.ContextMenu;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.controle.Controle;
@@ -33,6 +34,7 @@ public class FxBuscaController {
 
     @FXML
     private TextField textFildBusca;
+    private ContextMenu sugestao;
 
     @FXML
     private CheckBox checkBoxPorNome, checkBoxPorAutor, checkBoxPorIngrediente, checkBoxPorAvaliacao, checkBoxPorCategoria;
@@ -83,7 +85,6 @@ public class FxBuscaController {
         //pega o caminho absoluto do arquivo
         imagem.setImage(new Image(new File(receita.getCaminhoImagem()).getAbsolutePath()));
     }
-
     public void limpar(GridPane[] receitasGridPane){
         for (GridPane gridPane : receitasGridPane) {
             for (Node node : gridPane.getChildren()) {
@@ -97,7 +98,6 @@ public class FxBuscaController {
             }
         }
     }
-
     public Receita receitaAssociadaAoGridPane(GridPane gridPane){
         Receita receita = null;
         String texto = "vazio";
@@ -119,6 +119,12 @@ public class FxBuscaController {
             }
         }
         return receita;
+    }
+
+    @FXML
+    void enquantoDigita(KeyEvent event) {
+        sugestao = new ContextMenu();
+
     }
 
     @FXML
@@ -180,7 +186,6 @@ public class FxBuscaController {
 
         gerenciadorTelas.mudarTela("receita", event);
     }
-
     @FXML
     void cliqueAutor() {
         checkBoxPorAutor.setSelected(true);
@@ -190,7 +195,6 @@ public class FxBuscaController {
         checkBoxPorCategoria.setSelected(false);
 
     }
-
     @FXML
     void cliqueAvaliacao() {
         checkBoxPorAvaliacao.setSelected(true);
@@ -199,7 +203,6 @@ public class FxBuscaController {
         checkBoxPorAutor.setSelected(false);
         checkBoxPorCategoria.setSelected(false);
     }
-
     @FXML
     void cliqueIngrediente() {
         checkBoxPorIngrediente.setSelected(true);
@@ -216,7 +219,6 @@ public class FxBuscaController {
         checkBoxPorAutor.setSelected(false);
         checkBoxPorAvaliacao.setSelected(false);
     }
-
     @FXML
     void cliqueNome() {
         checkBoxPorNome.setSelected(true);

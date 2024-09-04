@@ -12,11 +12,6 @@ public interface IRepositorioReceitas {
 
     List<Receita> buscarPorAvaliacao(Avaliacao avaliacao);
 
-    List<Receita> buscarPorAvaliacao(int avaliacao);
-
-    public List<Receita> buscarPorCategoria(String categoria);
-
-    List<Receita> buscarPorIngrediente(String ingrediente);
     //metodos extendidos do repositorioGenerico
     void salvar(Receita objeto);
     void excluir(Receita objeto);
