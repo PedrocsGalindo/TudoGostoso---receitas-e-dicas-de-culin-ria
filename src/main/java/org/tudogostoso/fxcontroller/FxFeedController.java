@@ -2,22 +2,24 @@ package org.tudogostoso.fxcontroller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.modelo.Sessao;
 
-import java.io.IOException;
 import java.util.List;
 
 public class FxFeedController {
+
+    @FXML
+    private GridPane gridBTRPerfil, gridBTNBuscarReceitas;
+
 
     @FXML
     private Label labelBemVindo;
@@ -72,7 +74,27 @@ public class FxFeedController {
 
     @FXML
     void meuPerfil(ActionEvent event) {
+
         gerenciadorTelas.mudarTela("perfil",event);
+    }
+    @FXML
+    void mousePorCimaBotaoBusca(MouseEvent event) {
+        gridBTNBuscarReceitas.setStyle("-fx-background-color:  #5aa55a;");    }
+
+    @FXML
+    void mousePorCimaBotaoPerdil(MouseEvent event) {
+        gridBTRPerfil.setStyle("-fx-background-color:  #5aa55a;");
+    }
+
+    @FXML
+    void mousePorForaBotaoBusca(MouseEvent event) {
+        gridBTNBuscarReceitas.setStyle("-fx-background-color:   #90ee90;");
+
+    }
+
+    @FXML
+    void mousePorForaBotaoPerdil(MouseEvent event) {
+        gridBTRPerfil.setStyle("-fx-background-color:   #90ee90;");
     }
     @FXML
     void buscarReceitas(ActionEvent event){
