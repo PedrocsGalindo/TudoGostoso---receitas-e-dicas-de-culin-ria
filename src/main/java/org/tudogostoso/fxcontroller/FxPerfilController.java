@@ -3,6 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.tudogostoso.controle.ControleReceita;
 import org.tudogostoso.controle.ControleUsuario;
@@ -30,13 +31,7 @@ public class FxPerfilController {
     private Button BTNMinhasReceita;
 
     @FXML
-    private Label LabelD;
-
-    @FXML
-    private Label LabelEmail;
-
-    @FXML
-    private Label LabelNomeDeUsuario;
+    private Text textNomeUsuario, textEmail;
 
     //Serve para instânciar o gerenciador de Telas
     private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
@@ -48,9 +43,8 @@ public class FxPerfilController {
         Usuario usuario = Sessao.getUsuarioSessao();
 
 
-        LabelNomeDeUsuario.setText(usuario.getNome());
-        LabelD.setText(String.valueOf(usuario.getId()));
-        LabelEmail.setText(String.valueOf(usuario.getEmail()));
+        textNomeUsuario.setText(usuario.getNome());
+        textEmail.setText(String.valueOf(usuario.getEmail()));
 
         if(usuario instanceof UsuarioChef){
             BTNcriarReceitas.setVisible(true);
