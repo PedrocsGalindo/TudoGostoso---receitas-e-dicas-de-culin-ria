@@ -14,31 +14,6 @@ public class RepositorioReceitas extends RepositorioGenerico<Receita> implements
         super("src/main/resources/org/tudogostoso/repositorios/RepositorioReceitas/repositorio.ser");
     }
 
-    @Override
-    public List<Receita> buscarPorTitulo(String nome) {
-        List<Receita> items = this.buscar();
-        return items.stream()
-                .filter(receita -> receita.getTitulo().equalsIgnoreCase(nome))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Receita> buscarPorAutor(String autor) {
-        List<Receita> items = this.buscar();
-        return items.stream()
-                .filter(receita -> receita.getAutor().getNome().equalsIgnoreCase(autor))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Receita> buscarPorAvaliacao(Avaliacao avaliacao) {
-        List<Receita> items = this.buscar();
-        return items.stream()
-                .filter(receita -> receita.getAvaliacoes().stream()
-                        .anyMatch(a -> a.equals(avaliacao)))
-                .collect(Collectors.toList());
-    }
-
     public int getLastId(){
         int id;
         List<Receita> receitas = buscar();

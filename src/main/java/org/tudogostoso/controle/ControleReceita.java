@@ -9,6 +9,7 @@ import org.tudogostoso.repositorios.IRepositorioReceitas;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ControleReceita {
 
@@ -28,16 +29,29 @@ public class ControleReceita {
         repositorioReceita.update(receita);
     }
     public List<Receita> buscarReceitaPorAutor(Usuario autor) {
-        return repositorioReceita.buscarPorAutor(autor.getNome());
+        List<Receita> items = repositorioReceita.buscar();
+        return items.stream()
+                .filter(receita -> receita.getAutor().getNome().equalsIgnoreCase(autor.getNome()))
+                .collect(Collectors.toList());
     }
     public List<Receita> buscarReceitaPorAutor(String autor) {
-        return repositorioReceita.buscarPorAutor(autor);
+        List<Receita> items = repositorioReceita.buscar();
+        return items.stream()
+                .filter(receita -> receita.getAutor().getNome().equalsIgnoreCase(autor))
+                .collect(Collectors.toList());
     }
     public List<Receita> buscarReceitaPorTitulo(String nome) {
-        return repositorioReceita.buscarPorTitulo(nome);
+        List<Receita> items = repositorioReceita.buscar();
+        return items.stream()
+                .filter(receita -> receita.getTitulo().equalsIgnoreCase(nome))
+                .collect(Collectors.toList());
     }
     public List<Receita> buscarReceitaPorAvaliacao(Avaliacao avaliacao) {
-        return repositorioReceita.buscarPorAvaliacao(avaliacao);
+        List<Receita> items = repositorioReceita.buscar();
+        return items.stream()
+                .filter(receita -> receita.getAvaliacoes().stream()
+                        .anyMatch(a -> a.equals(avaliacao)))
+                .collect(Collectors.toList());
     }
     public List<Receita> buscarReceitaPorAvaliacao(int avaliacao) {
         List<Receita> items = repositorioReceita.buscar();
@@ -78,9 +92,8 @@ public class ControleReceita {
         Collections.shuffle(receitasAleatorias);
         return receitasAleatorias;
     }
-
     public Receita buscarReceitaPorAutorETitulo(Usuario autor, String nome) {
-        List<Receita> receitasAutor = repositorioReceita.buscarPorAutor(autor.getNome());
+        List<Receita> receitasAutor = buscarReceitaPorAutor(autor.getNome());
         Receita receitaDesejada = null;
         for (Receita receita : receitasAutor) {
             if (receita.getTitulo().equals(nome)) {
@@ -90,7 +103,7 @@ public class ControleReceita {
         return receitaDesejada;
     }
     public Receita buscarReceitaPorAutorETitulo(String autor, String nome) {
-        List<Receita> receitasAutor = repositorioReceita.buscarPorAutor(autor);
+        List<Receita> receitasAutor = buscarReceitaPorAutor(autor);
         Receita receitaDesejada = null;
         for (Receita receita : receitasAutor) {
             if (receita.getTitulo().equals(nome)) {
