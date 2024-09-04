@@ -45,6 +45,9 @@ public class ControleReceita {
     public List<Receita> buscarReceitaPorIngrediente(String ingredietne){
         return repositorioReceita.buscarPorIngrediente(ingredietne);
     }
+    public List<Receita> buscarReceitaPorCategoria(String categoria){
+        return repositorioReceita.buscarPorCategoria(categoria);
+    }
     public List<Receita> buscarReceitasAleatorias() {
         List<Receita> receitasAleatorias = repositorioReceita.buscar();
         Collections.shuffle(receitasAleatorias);

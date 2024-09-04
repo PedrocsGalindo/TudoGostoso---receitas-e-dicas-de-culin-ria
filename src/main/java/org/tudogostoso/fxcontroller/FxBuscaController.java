@@ -19,11 +19,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,7 +35,7 @@ public class FxBuscaController {
     private TextField textFildBusca;
 
     @FXML
-    private CheckBox checkBoxPorNome, checkBoxPorAutor, checkBoxPorIngrediente, checkBoxPorAvaliacao;
+    private CheckBox checkBoxPorNome, checkBoxPorAutor, checkBoxPorIngrediente, checkBoxPorAvaliacao, checkBoxPorCategoria;
 
     @FXML
     private GridPane receitaGridPane1, receitaGridPane2, receitaGridPane3, receitaGridPane4;
@@ -131,7 +129,7 @@ public class FxBuscaController {
 
         if (event.getCode() == KeyCode.ENTER) {
 
-            if (checkBoxPorNome.isSelected() || checkBoxPorAutor.isSelected() || checkBoxPorIngrediente.isSelected() || checkBoxPorAvaliacao.isSelected() ) {
+            if (checkBoxPorNome.isSelected() || checkBoxPorAutor.isSelected() || checkBoxPorIngrediente.isSelected() || checkBoxPorAvaliacao.isSelected() || checkBoxPorCategoria.isSelected() ) {
                 String textoDigitado = textFildBusca.getText();
 
                 if (checkBoxPorNome.isSelected()){
@@ -143,6 +141,8 @@ public class FxBuscaController {
                 }else if (checkBoxPorAvaliacao.isSelected()){
                     int nota = Integer.parseInt(textoDigitado);
                     receitas = controle.buscarReceitaPorAvaliacao(nota);
+                } else if (checkBoxPorCategoria.isSelected()) {
+                    receitas = controle.buscarReceitaPorCategoria(textoDigitado);
                 }
                 if (!receitas.isEmpty()) {
                     Collections.sort(receitas);
@@ -187,6 +187,7 @@ public class FxBuscaController {
         checkBoxPorNome.setSelected(false);
         checkBoxPorIngrediente.setSelected(false);
         checkBoxPorAvaliacao.setSelected(false);
+        checkBoxPorCategoria.setSelected(false);
 
     }
 
@@ -196,11 +197,21 @@ public class FxBuscaController {
         checkBoxPorNome.setSelected(false);
         checkBoxPorIngrediente.setSelected(false);
         checkBoxPorAutor.setSelected(false);
+        checkBoxPorCategoria.setSelected(false);
     }
 
     @FXML
     void cliqueIngrediente() {
         checkBoxPorIngrediente.setSelected(true);
+        checkBoxPorNome.setSelected(false);
+        checkBoxPorAutor.setSelected(false);
+        checkBoxPorAvaliacao.setSelected(false);
+        checkBoxPorCategoria.setSelected(false);
+    }
+    @FXML
+    void cliqueCategoria(){
+        checkBoxPorCategoria.setSelected(true);
+        checkBoxPorIngrediente.setSelected(false);
         checkBoxPorNome.setSelected(false);
         checkBoxPorAutor.setSelected(false);
         checkBoxPorAvaliacao.setSelected(false);
@@ -212,6 +223,7 @@ public class FxBuscaController {
         checkBoxPorAutor.setSelected(false);
         checkBoxPorIngrediente.setSelected(false);
         checkBoxPorAvaliacao.setSelected(false);
+        checkBoxPorCategoria.setSelected(false);
 
     }
 

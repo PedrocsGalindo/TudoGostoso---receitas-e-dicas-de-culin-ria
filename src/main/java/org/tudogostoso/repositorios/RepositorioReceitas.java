@@ -65,6 +65,19 @@ public class RepositorioReceitas extends RepositorioGenerico<Receita> implements
         }
         return itemsDesejados;
     }
+
+    public List<Receita> buscarPorCategoria(String categoria){
+        List<Receita> items = this.buscar();
+        List<Receita> itemsDesejados = new ArrayList<>();
+
+        for (Receita item : items) {
+            if (item.getCategoria().equals(categoria)){
+                itemsDesejados.add(item);
+            }
+        }
+        return itemsDesejados;
+    }
+
     public int getLastId(){
         int id;
         List<Receita> receitas = buscar();

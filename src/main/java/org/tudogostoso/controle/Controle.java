@@ -28,7 +28,9 @@ public class Controle {
     }
 
     //metodos de ControleRepositorioReceita
-
+    public List<Receita> buscarReceitaPorCategoria(String categoria){
+        return this.controleReceita.buscarReceitaPorCategoria(categoria);
+    }
     public void salvarReceita(Receita receita) {
         this.controleReceita.salvarReceita(receita);
     }
