@@ -1,7 +1,11 @@
 package org.tudogostoso.modelo;
 
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import java.io.Serializable;
+@Getter@Setter@ToString
 //ItemIgrendientes são os igrendiente que vão em receitas, justamente por conta disso precisam tem quantidade e medida
 public class ItemIngrediente implements Serializable {
 
@@ -16,31 +20,12 @@ public class ItemIngrediente implements Serializable {
     }
 
 
-
-    public UnidadeMedida getMedida() {
-        return medida;
-    }
-
-    public Ingrediente getIngrediente(){
-        return ingrediente;
-    }
-
     public void setMedida(UnidadeMedida medida) {
         this.medida = medida;
     }
 
-    public double getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(double quantidade) {
-        this.quantidade = quantidade;
-    }
 
 
-    @Override
-    public String toString() {
-        return ingrediente + "\t" + quantidade + "\t" + medida;
-    }
+
 }
 

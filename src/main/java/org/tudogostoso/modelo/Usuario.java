@@ -1,10 +1,14 @@
 package org.tudogostoso.modelo;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 import javax.mail.internet.InternetAddress;
 import java.util.Objects;
-
+@Getter@Setter@ToString
 public class Usuario implements Serializable {
     protected final int id; //começa do 1
     private String nome;
@@ -60,36 +64,10 @@ public class Usuario implements Serializable {
 
     //gets e sets
 
-    public int getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
 
     public InternetAddress getEmail() {
         return email;
     }
-
-    public void setEmail(InternetAddress email) {
-        this.email = email;
-    }
-
-    public String getCpf(){return cpf;}
 
     public List<Receita> getReceitasFav() {
         return receitasFav;

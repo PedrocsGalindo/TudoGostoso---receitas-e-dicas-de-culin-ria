@@ -1,10 +1,14 @@
 package org.tudogostoso.modelo;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+@Getter@Setter@ToString
 public class Receita implements Serializable, Comparable<Receita>{
     private final int id;
     private String titulo;
@@ -70,19 +74,6 @@ public class Receita implements Serializable, Comparable<Receita>{
     public void setCaminhoImagem(String caminhoImagem) {
         this.caminhoImagem = caminhoImagem;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public Usuario getAutor() {
-        return  this.autor;
-    }
-
     public List<ItemIngrediente> getIngredientes() {
         return ingredientes;
     }
@@ -90,20 +81,6 @@ public class Receita implements Serializable, Comparable<Receita>{
     public List<String> getPreparo() {
         return preparo;
     }
-
-    public int getNota() {
-        return nota;
-    }
-
-
-    public String getCategoria(){
-        return categoria;
-    }
-
-    public  String getTempoDePreparo(){
-        return tempoDePreparo;
-    }
-
     public void atualizarNota(){
         int soma = 0;
         for (Avaliacao avaliacao : avaliacoes) {
@@ -112,9 +89,6 @@ public class Receita implements Serializable, Comparable<Receita>{
         this.nota = soma/this.avaliacoes.size();
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
 
     public void setIngredientes(List<ItemIngrediente> ingredientes) {
         this.ingredientes = ingredientes;
@@ -137,28 +111,6 @@ public class Receita implements Serializable, Comparable<Receita>{
         this.avaliacoes.remove(avaliacao);
     }
 
-    public void setHorario(LocalDateTime horario) {
-        this.horario = horario;
-    }
 
-    public LocalDateTime getHorario(){
-        return this.horario;
-    }
-
-    @Override
-    public String toString() {
-        return "Receita{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", autor=" + autor +
-                ", ingredientes=" + ingredientes +
-                ", preparo=" + preparo +
-                ", avaliacoes=" + avaliacoes +
-                ", nota=" + nota +
-                ", horario=" + horario +
-                ", tempoDePreparo='" + tempoDePreparo + '\'' +
-                ", categoria='" + categoria + '\'' +
-                '}';
-    }
 }
 

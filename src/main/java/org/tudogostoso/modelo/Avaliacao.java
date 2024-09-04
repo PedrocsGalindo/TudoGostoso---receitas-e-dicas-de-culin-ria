@@ -1,9 +1,13 @@
 package org.tudogostoso.modelo;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
-
+@Getter@Setter@ToString
 public class Avaliacao implements Serializable {
     private final int id;
     private int nota;
@@ -30,36 +34,6 @@ public class Avaliacao implements Serializable {
         return id == avaliacao.id;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public int getNota() {
-        return nota;
-    }
-
-    public void setNota(int nota) {
-        this.nota = nota;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    public LocalDateTime getData() {
-        return data;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public Receita getReceita() {
-        return receita;
-    }
 }
 

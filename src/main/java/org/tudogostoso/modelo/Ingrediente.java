@@ -1,7 +1,11 @@
 package org.tudogostoso.modelo;
 
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import java.io.Serializable;
+@Getter @Setter@ToString
 public class Ingrediente implements Serializable, Comparable<Ingrediente>{
     private int id;
     private String nome;
@@ -16,25 +20,8 @@ public class Ingrediente implements Serializable, Comparable<Ingrediente>{
     public int compareTo(Ingrediente o) {
         return this.nome.compareTo(o.getNome());
     }
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getId() {return id;}
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Ingrediente(String nome) {
         this.nome = nome;}
 
-    @Override
-    public String toString() {
-        return nome;
-    }
 }
