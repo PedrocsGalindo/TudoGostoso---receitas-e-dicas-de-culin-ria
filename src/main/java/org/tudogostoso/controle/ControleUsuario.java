@@ -136,7 +136,7 @@ public class ControleUsuario {
                 int id = controleAvaliacao.getLastId() + 1;
                 Avaliacao avaliacao = new Avaliacao(nota, comentario, usuario, receita, id);
 
-                UsuarioChef autor = (UsuarioChef) receita.getAutor();
+                UsuarioChef autor = receita.getAutor();
                 receita.adicioarAvaliacao(avaliacao);
                 List<Receita> receitas = autor.getMinhasReceitas();
                 int indice = receitas.indexOf(receita);
@@ -197,6 +197,12 @@ public class ControleUsuario {
         cadastrarReceita(receita);
         autor.addMinhasReceita(receita);
         atualizarUsuario(autor);
+    }
+
+    public void excluirMinhaReceita(UsuarioChef usuario, Receita receita){
+        usuario.getMinhasReceitas().remove(receita);
+        controleReceita.excluirReceita(receita);
+        atualizarUsuario(usuario);
     }
 
     public String salvarImagem(File arquivo, String nomeArquivo) throws IOException {

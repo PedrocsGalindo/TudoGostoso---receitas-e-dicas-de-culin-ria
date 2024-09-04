@@ -99,6 +99,9 @@ public class Controle {
     public void criarReceita(String titulo, UsuarioChef autor, List<ItemIngrediente> ingredientes, List<String> preparo, String tempoDePreparo, String categoria, String caminhoImagem) throws ReceitaJaExistenteException {
         controleUsuario.criarReceita(titulo, autor, ingredientes, preparo, tempoDePreparo, categoria, caminhoImagem);
     }
+    public void excluirMinhaReceita(UsuarioChef usuario, Receita receita){
+        this.controleUsuario.excluirMinhaReceita(usuario, receita);
+    }
     public String salvarImagem(File arquivo, String nomeArquivo) throws IOException {
         return controleUsuario.salvarImagem(arquivo, nomeArquivo);
     }

@@ -15,7 +15,7 @@ import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.modelo.Sessao;
-import org.tudogostoso.modelo.Usuario;
+import org.tudogostoso.modelo.UsuarioChef;
 
 import java.io.File;
 
@@ -27,7 +27,7 @@ public class FxMinhasReceitasController {
     private ObservableList<Receita> minhasReceitasList;
     private final Controle controle = ControleFactory.criarControleGeral();
     private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
-    private Usuario usuario = Sessao.getUsuarioSessao();
+    private final UsuarioChef usuario = (UsuarioChef) Sessao.getUsuarioSessao();
 
     @FXML
     public void initialize() {
@@ -103,7 +103,7 @@ public class FxMinhasReceitasController {
 
         // Verifica se uma receita foi selecionada
         if (receitaSelecionada != null) {
-            controle.excluirReceita(receitaSelecionada);
+            controle.excluirMinhaReceita(usuario,receitaSelecionada);
             carregarMinhasReceitas();
         } else {
             // Exibe uma mensagem de erro se nenhuma receita for selecionada

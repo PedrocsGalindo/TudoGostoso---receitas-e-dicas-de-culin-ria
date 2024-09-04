@@ -24,7 +24,7 @@ public class FxReceitasFavoritasController {
     private ListView<Receita> listaFavoritos;
 
     private ObservableList<Receita> favoritosList;
-    private Usuario usuario = Sessao.getUsuarioSessao();
+    private final Usuario usuario = Sessao.getUsuarioSessao();
     private final Controle controle = ControleFactory.criarControleGeral();
     private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
