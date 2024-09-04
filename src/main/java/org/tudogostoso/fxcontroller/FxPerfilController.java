@@ -3,6 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.tudogostoso.controle.ControleReceita;
@@ -79,6 +80,18 @@ public class FxPerfilController {
     private void telaCriarReceita(ActionEvent event){
         Sessao.setUltimaCena("perfil");
         gerenciadorTelas.mudarTela("criarReceitas",event);
+    }
+    @FXML
+    void mousePorCimaBotao(MouseEvent event) {
+        Button botao = (Button) event.getSource();
+        botao.setStyle("-fx-background-color: #5aa55a;");
+    }
+
+    @FXML
+    void mousePorForaBotaoPerdil(MouseEvent event) {
+        Button botao = (Button) event.getSource();
+        botao.setStyle("-fx-background-color:  transparent;");
+
     }
 
     @FXML

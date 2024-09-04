@@ -58,19 +58,19 @@
             </GridPane>
          </children>
       </VBox>
-      <Button fx:id="BTNMinhasReceitasFavoritas" mnemonicParsing="false" onAction="#telaMinhasReceitaFavoritas" prefHeight="149.0" prefWidth="305.0" style="-fx-background-color: transparent;" text="Minhas Receitas Favoritas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Button fx:id="BTNMinhasReceitasFavoritas" mnemonicParsing="false" onAction="#telaMinhasReceitaFavoritas" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotaoPerdil" prefHeight="149.0" prefWidth="305.0" style="-fx-background-color: transparent;" text="Minhas Receitas Favoritas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
             <Font size="21.0" />
          </font></Button>
-      <Button fx:id="BTNListaDeCompras" mnemonicParsing="false" onAction="#telaListaDeCompras" prefHeight="144.0" prefWidth="280.0" style="-fx-background-color: transparent;" text="Lista de Compras" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+      <Button fx:id="BTNListaDeCompras" mnemonicParsing="false" onAction="#telaListaDeCompras" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotaoPerdil" prefHeight="144.0" prefWidth="280.0" style="-fx-background-color: transparent;" text="Lista de Compras" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
          <font>
             <Font size="21.0" />
          </font></Button>
-      <Button fx:id="BTNMinhasReceita" mnemonicParsing="false" onAction="#telaMinhasReceita" prefHeight="171.0" prefWidth="339.0" style="-fx-background-color: transparent;" text="Minhas receitas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Button fx:id="BTNMinhasReceita" mnemonicParsing="false" onAction="#telaMinhasReceita" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotaoPerdil" prefHeight="171.0" prefWidth="339.0" style="-fx-background-color: transparent;" text="Minhas receitas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font size="21.0" />
          </font></Button>
-      <Button fx:id="BTNcriarReceitas" mnemonicParsing="false" onAction="#telaCriarReceita" prefHeight="171.0" prefWidth="344.0" style="-fx-background-color: transparent;" text="Criar Receitas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+      <Button fx:id="BTNcriarReceitas" mnemonicParsing="false" onAction="#telaCriarReceita" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotaoPerdil" prefHeight="171.0" prefWidth="344.0" style="-fx-background-color: transparent;" text="Criar Receitas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
          <font>
             <Font size="21.0" />
          </font></Button>
