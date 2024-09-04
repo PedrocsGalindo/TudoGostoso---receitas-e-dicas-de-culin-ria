@@ -28,6 +28,7 @@ public class ControleReceita {
     public void atualizarReceita(Receita receita) {
         repositorioReceita.update(receita);
     }
+
     public List<Receita> buscarReceitaPorAutor(Usuario autor) {
         List<Receita> items = repositorioReceita.buscar();
         return items.stream()
@@ -40,12 +41,34 @@ public class ControleReceita {
                 .filter(receita -> receita.getAutor().getNome().equalsIgnoreCase(autor))
                 .collect(Collectors.toList());
     }
+    public List<String> sugestaoReceitaPorAutor (String nomeAutor){
+        List<Receita> items = repositorioReceita.buscar();
+        List<String> sugestoes = new ArrayList<>();
+        for (Receita item : items) {
+            if(item.getAutor().getNome().indexOf(nomeAutor) == 0){
+                sugestoes.add(item.getAutor().getNome());
+            }
+        }
+        return sugestoes;
+    }
+
     public List<Receita> buscarReceitaPorTitulo(String nome) {
         List<Receita> items = repositorioReceita.buscar();
         return items.stream()
                 .filter(receita -> receita.getTitulo().equalsIgnoreCase(nome))
                 .collect(Collectors.toList());
     }
+    public List<String> sugestaoReceitaPorTitulo(String titulo){
+        List<Receita> items = repositorioReceita.buscar();
+        List<String> sugestoes = new ArrayList<>();
+        for (Receita item : items) {
+            if(item.getTitulo().indexOf(titulo) == 0){
+                sugestoes.add(item.getTitulo());
+            }
+        }
+        return sugestoes;
+    }
+
     public List<Receita> buscarReceitaPorAvaliacao(Avaliacao avaliacao) {
         List<Receita> items = repositorioReceita.buscar();
         return items.stream()
@@ -64,6 +87,7 @@ public class ControleReceita {
         }
         return receitasDesejadas;
     }
+
     public List<Receita> buscarReceitaPorIngrediente(String ingrediente){
         List<Receita> items = repositorioReceita.buscar();
         List<Receita> receitasDesejadas = new ArrayList<>();
@@ -77,6 +101,19 @@ public class ControleReceita {
         }
         return receitasDesejadas;
     }
+    public List<String> sugestaoReceitaPorIngrediente(String ingrediente) {
+        List<Receita> items = repositorioReceita.buscar();
+        List<String> sugestoes = new ArrayList<>();
+        for (Receita item : items) {
+            for (ItemIngrediente ing : item.getIngredientes()) {
+                if(ing.getIngrediente().getNome().indexOf(ingrediente)== 0){
+                    sugestoes.add(ing.getIngrediente().getNome());
+                }
+            }
+        }
+        return sugestoes;
+    }
+
     public List<Receita> buscarReceitaPorCategoria(String categoria){
         List<Receita> items = repositorioReceita.buscar();
         List<Receita> receitasDesejadas = new ArrayList<>();
@@ -87,11 +124,23 @@ public class ControleReceita {
         }
         return receitasDesejadas;
     }
+    public List<String> sugestaoReceitaPorCategoria(String categoria){
+        List<Receita> items = repositorioReceita.buscar();
+        List<String> sugestoes = new ArrayList<>();
+        for (Receita item : items) {
+            if(item.getCategoria().indexOf(categoria) == 0){
+                sugestoes.add(item.getCategoria());
+            }
+        }
+        return sugestoes;
+    }
+
     public List<Receita> buscarReceitasAleatorias() {
         List<Receita> receitasAleatorias = repositorioReceita.buscar();
         Collections.shuffle(receitasAleatorias);
         return receitasAleatorias;
     }
+
     public Receita buscarReceitaPorAutorETitulo(Usuario autor, String nome) {
         List<Receita> receitasAutor = buscarReceitaPorAutor(autor.getNome());
         Receita receitaDesejada = null;

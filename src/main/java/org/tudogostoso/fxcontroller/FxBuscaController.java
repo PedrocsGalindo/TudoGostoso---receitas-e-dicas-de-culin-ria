@@ -2,7 +2,7 @@ package org.tudogostoso.fxcontroller;
 
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.ContextMenu;
+import javafx.scene.control.*;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
 import org.tudogostoso.controle.Controle;
@@ -10,18 +10,12 @@ import org.tudogostoso.modelo.Sessao;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.image.Image;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 
 import java.io.File;
@@ -34,7 +28,7 @@ public class FxBuscaController {
 
     @FXML
     private TextField textFildBusca;
-    private ContextMenu sugestao;
+    private ContextMenu sugestoes;
 
     @FXML
     private CheckBox checkBoxPorNome, checkBoxPorAutor, checkBoxPorIngrediente, checkBoxPorAvaliacao, checkBoxPorCategoria;
@@ -46,11 +40,9 @@ public class FxBuscaController {
     private CheckBox focus;
 
     private static final Controle controle = ControleFactory.criarControleGeral();
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
     private GridPane[] receitasGridPane;
     private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
+    private List<String> listaDeSugestoes;
 
     @FXML
     public void initialize() {
@@ -122,9 +114,50 @@ public class FxBuscaController {
     }
 
     @FXML
-    void enquantoDigita(KeyEvent event) {
-        sugestao = new ContextMenu();
+    void enquantoDigita() {
 
+        if (sugestoes == null) {
+            sugestoes = new ContextMenu();
+        }
+
+        sugestoes.getItems().clear();
+
+        if (checkBoxPorNome.isSelected() || checkBoxPorAutor.isSelected() || checkBoxPorIngrediente.isSelected() || checkBoxPorAvaliacao.isSelected() || checkBoxPorCategoria.isSelected()) {
+            String textoDigitado = textFildBusca.getText();
+
+            if (checkBoxPorNome.isSelected()) {
+                listaDeSugestoes = controle.sugestaoReceitaPorTitulo(textoDigitado);
+            } else if (checkBoxPorAutor.isSelected()) {
+                listaDeSugestoes = controle.sugestaoReceitaPorAutor(textoDigitado);
+            } else if (checkBoxPorIngrediente.isSelected()) {
+                listaDeSugestoes = controle.sugestaoReceitaPorIngrediente(textoDigitado);
+            } else if (checkBoxPorCategoria.isSelected()) {
+                listaDeSugestoes = controle.sugestaoReceitaPorCategoria(textoDigitado);
+            }
+
+            // Adiciona as sugestões ao ContextMenu
+            if (listaDeSugestoes != null && !listaDeSugestoes.isEmpty()) {
+                for (String sugestao : listaDeSugestoes) {
+                    MenuItem item = new MenuItem(sugestao);
+                    //evento de seleção
+                    item.setOnAction(e -> {
+                        textFildBusca.setText(sugestao);
+                        sugestoes.hide();
+                    });
+                    sugestoes.getItems().add(item);
+                }
+
+                // A posição do ContextMenu definida não influencia onde ele aparecera na tela
+                double x = textFildBusca.localToScene(0, 0).getX() + textFildBusca.getScene().getWindow().getX() + textFildBusca.getLayoutX();
+                double y = textFildBusca.localToScene(0, 0).getY() + textFildBusca.getScene().getWindow().getY() + textFildBusca.getLayoutY() + textFildBusca.getHeight();
+
+                sugestoes.show(textFildBusca, x, y - 10);
+            } else {
+                sugestoes.hide(); //se não houver sugestões
+            }
+        } else {
+            sugestoes.hide(); //se nenhum checkbox estiver selecionado
+        }
     }
 
     @FXML

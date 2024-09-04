@@ -27,10 +27,7 @@ public class Controle {
         this.controleUnidadeDeMedida = controleUnidadeDeMedida;
     }
 
-    //metodos de ControleRepositorioReceita
-    public List<Receita> buscarReceitaPorCategoria(String categoria){
-        return this.controleReceita.buscarReceitaPorCategoria(categoria);
-    }
+    //metodos de ControleReceita
     public void salvarReceita(Receita receita) {
         this.controleReceita.salvarReceita(receita);
     }
@@ -40,11 +37,20 @@ public class Controle {
     public void atualizarReceita(Receita receita) {this.controleReceita.atualizarReceita(receita);}
     public List<Receita> buscarReceitaPorAutor(Usuario autor) {return this.controleReceita.buscarReceitaPorAutor(autor);}
     public List<Receita> buscarReceitaPorAutor(String autor) {return this.controleReceita.buscarReceitaPorAutor(autor);}
+    public List<String> sugestaoReceitaPorAutor (String nomeAutor){
+        return controleReceita.sugestaoReceitaPorAutor(nomeAutor);
+    }
     public List<Receita> buascarReceitaPorTitulo(String nome){return this.controleReceita.buscarReceitaPorTitulo(nome);}
+    public List<String> sugestaoReceitaPorTitulo(String titulo){
+        return controleReceita.sugestaoReceitaPorTitulo(titulo);
+    }
     public List<Receita> buscarReceitaPorAvaliacao (Avaliacao avalicao){return this.controleReceita.buscarReceitaPorAvaliacao(avalicao);}
     public List<Receita> buscarReceitaPorAvaliacao (int avalicao){return this.controleReceita.buscarReceitaPorAvaliacao(avalicao);}
     public List<Receita> buscarReceitaPorIngrediente(String ingrediente){
         return this.controleReceita.buscarReceitaPorIngrediente(ingrediente);
+    }
+    public List<String>  sugestaoReceitaPorIngrediente(String ingrediente){
+        return controleReceita.sugestaoReceitaPorIngrediente(ingrediente);
     }
     public List<Receita> buscarReceitasAleatorias(){
         return this.controleReceita.buscarReceitasAleatorias();
@@ -54,6 +60,12 @@ public class Controle {
     }
     public Receita buscarReceitaPorAutorETitulo(String autor, String titulo){
         return this.controleReceita.buscarReceitaPorAutorETitulo(autor, titulo);
+    }
+    public List<Receita> buscarReceitaPorCategoria(String categoria){
+        return this.controleReceita.buscarReceitaPorCategoria(categoria);
+    }
+    public List<String> sugestaoReceitaPorCategoria(String categoria){
+        return controleReceita.sugestaoReceitaPorCategoria(categoria);
     }
 
 
