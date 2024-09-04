@@ -82,13 +82,13 @@ public class FxFeedController {
 
     @FXML
     void mousePorForaBotaoBusca() {
-        gridBTNBuscarReceitas.setStyle("-fx-background-color:   #90ee90;");
+        gridBTNBuscarReceitas.setStyle("-fx-background-color:   #90ee90; -fx-border-color:  #5aa55a; -fx-border-width:  3px;");
 
     }
 
     @FXML
     void mousePorForaBotaoPerdil() {
-        gridBTRPerfil.setStyle("-fx-background-color:   #90ee90;");
+        gridBTRPerfil.setStyle("-fx-background-color:   #90ee90; -fx-border-color:  #5aa55a; -fx-border-width:  3px;");
     }
     @FXML
     void buscarReceitas(ActionEvent event){
