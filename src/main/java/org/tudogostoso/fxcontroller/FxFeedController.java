@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,11 +28,6 @@ public class FxFeedController {
 
     @FXML
     private VBox feed;
-    @FXML
-    private Button BTRPerfil;
-    @FXML
-    private Button BTNBuscarReceitas;
-
 
     private final Controle controle = ControleFactory.criarControleGeral();
 
@@ -78,22 +72,22 @@ public class FxFeedController {
         gerenciadorTelas.mudarTela("perfil",event);
     }
     @FXML
-    void mousePorCimaBotaoBusca(MouseEvent event) {
+    void mousePorCimaBotaoBusca() {
         gridBTNBuscarReceitas.setStyle("-fx-background-color:  #5aa55a;");    }
 
     @FXML
-    void mousePorCimaBotaoPerdil(MouseEvent event) {
+    void mousePorCimaBotaoPerdil() {
         gridBTRPerfil.setStyle("-fx-background-color:  #5aa55a;");
     }
 
     @FXML
-    void mousePorForaBotaoBusca(MouseEvent event) {
+    void mousePorForaBotaoBusca() {
         gridBTNBuscarReceitas.setStyle("-fx-background-color:   #90ee90;");
 
     }
 
     @FXML
-    void mousePorForaBotaoPerdil(MouseEvent event) {
+    void mousePorForaBotaoPerdil() {
         gridBTRPerfil.setStyle("-fx-background-color:   #90ee90;");
     }
     @FXML
