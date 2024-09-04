@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 
+import javafx.scene.text.Text;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.*;
@@ -20,7 +21,10 @@ import java.util.List;
 public class FxReceitaController {
 
     @FXML
-    private TextArea textAreaAvaliacoes, textAreaIngrediente, textAreaTitulo, textAreaNota, textAreaPreparo;
+    private TextArea textAreaAvaliacoes, textAreaIngrediente, textAreaPreparo;
+
+    @FXML
+    private Text textTitulo, textNota;
 
     @FXML
     private ImageView imagemReceita;
@@ -66,10 +70,10 @@ public class FxReceitaController {
             textAreaIngrediente.setText(stringIngrediente.toString());
         }
 
-        textAreaTitulo.setText(receita.getTitulo());
+        textTitulo.setText(receita.getTitulo());
 
         String nota = String.valueOf(receita.getNota());
-        textAreaNota.setText(nota + "/5");
+        textNota.setText(nota + "/5");
 
         String preparo = String.join("\n\n " , receita.getPreparo());
         textAreaPreparo.setText(preparo);
@@ -100,7 +104,7 @@ public class FxReceitaController {
         try {
             controle.criarAvaliacao(nota, comentario, usuario, receita);
             setComentarios(receita);
-            textAreaNota.setText(String.valueOf(receita.getNota() + "/5"));
+            textNota.setText(String.valueOf(receita.getNota() + "/5"));
 
         } catch (NullPointerException e) {
             Alert alertaCriarAvaliacao = new Alert(Alert.AlertType.ERROR);
