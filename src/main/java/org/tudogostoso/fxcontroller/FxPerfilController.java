@@ -88,9 +88,15 @@ public class FxPerfilController {
     }
 
     @FXML
-    void mousePorForaBotaoPerdil(MouseEvent event) {
+    void mousePorForaBotao(MouseEvent event) {
         Button botao = (Button) event.getSource();
         botao.setStyle("-fx-background-color:  transparent;");
+
+    }
+    @FXML
+    void mousePorForaBotaoVoltar(MouseEvent event) {
+        Button botao = (Button) event.getSource();
+        botao.setStyle("-fx-background-color:   #76c976;");
 
     }
 

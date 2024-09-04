@@ -31,10 +31,19 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="199.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="407.0" minHeight="10.0" prefHeight="407.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="34.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="89.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../Imagens/imagemOpcoesDoPerfil.png" />
+               </image>
+            </ImageView>
+         </children>
       </GridPane>
       <VBox prefHeight="201.0" prefWidth="314.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <children>
@@ -58,23 +67,24 @@
             </GridPane>
          </children>
       </VBox>
-      <Button fx:id="BTNMinhasReceitasFavoritas" mnemonicParsing="false" onAction="#telaMinhasReceitaFavoritas" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotaoPerdil" prefHeight="149.0" prefWidth="305.0" style="-fx-background-color: transparent;" text="Minhas Receitas Favoritas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Button fx:id="BTNMinhasReceitasFavoritas" mnemonicParsing="false" onAction="#telaMinhasReceitaFavoritas" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotao" prefHeight="149.0" prefWidth="305.0" style="-fx-background-color: transparent;" text="Minhas Receitas Favoritas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="BTNListaDeCompras" mnemonicParsing="false" onAction="#telaListaDeCompras" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotao" prefHeight="144.0" prefWidth="280.0" style="-fx-background-color: transparent;" text="Lista de Compras" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
          <font>
             <Font size="21.0" />
          </font></Button>
-      <Button fx:id="BTNListaDeCompras" mnemonicParsing="false" onAction="#telaListaDeCompras" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotaoPerdil" prefHeight="144.0" prefWidth="280.0" style="-fx-background-color: transparent;" text="Lista de Compras" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+      <Button fx:id="BTNMinhasReceita" mnemonicParsing="false" onAction="#telaMinhasReceita" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotao" prefHeight="171.0" prefWidth="339.0" style="-fx-background-color: transparent;" text="Minhas receitas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font size="21.0" />
          </font></Button>
-      <Button fx:id="BTNMinhasReceita" mnemonicParsing="false" onAction="#telaMinhasReceita" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotaoPerdil" prefHeight="171.0" prefWidth="339.0" style="-fx-background-color: transparent;" text="Minhas receitas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Button fx:id="BTNcriarReceitas" mnemonicParsing="false" onAction="#telaCriarReceita" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotao" prefHeight="171.0" prefWidth="344.0" style="-fx-background-color: transparent;" text="Criar Receitas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
          <font>
             <Font size="21.0" />
          </font></Button>
-      <Button fx:id="BTNcriarReceitas" mnemonicParsing="false" onAction="#telaCriarReceita" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotaoPerdil" prefHeight="171.0" prefWidth="344.0" style="-fx-background-color: transparent;" text="Criar Receitas" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
-         <font>
-            <Font size="21.0" />
-         </font></Button>
-      <Button fx:id="BTNVoltar" mnemonicParsing="false" onAction="#voltar" style="-fx-background-color: #76c976;" text="Voltar" GridPane.halignment="LEFT">
+      <Button fx:id="BTNVoltar" mnemonicParsing="false" onAction="#voltar" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotaoVoltar" style="-fx-background-color: #76c976;" text="Voltar" GridPane.halignment="LEFT">
          <font>
             <Font size="15.0" />
          </font>
