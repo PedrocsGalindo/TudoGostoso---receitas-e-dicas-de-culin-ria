@@ -1,7 +1,11 @@
 package org.tudogostoso.modelo;
 
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import java.io.Serializable;
+@Getter@ToString
 public enum UnidadeMedida implements Serializable {
 
     XICARA("xícara"),
@@ -17,6 +21,7 @@ public enum UnidadeMedida implements Serializable {
     UnidadeMedida(String tipo){
         this.tipo = tipo;
     }
+
     public String getTipo(){return this.tipo;}
 
     @Override
