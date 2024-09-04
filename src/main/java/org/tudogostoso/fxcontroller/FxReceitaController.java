@@ -90,11 +90,18 @@ public class FxReceitaController {
             usuario.addListaDeCompra(itemIngrediente.getIngrediente());
         }
         controle.atualizarUsuario(usuario);
+        Button botao = (Button) event.getSource();
+        botao.setDisable(true);
+        botao.setVisible(false);
     }
 
     @FXML
     void handllerBotaoAddFav(ActionEvent event) {
         controle.addReceitafav(usuario, receita);
+        //pegando a fonte do evento, nesse caso o botAddFav
+        Button botao = (Button) event.getSource();
+        botao.setDisable(true);
+        botao.setVisible(false);
     }
 
     @FXML
