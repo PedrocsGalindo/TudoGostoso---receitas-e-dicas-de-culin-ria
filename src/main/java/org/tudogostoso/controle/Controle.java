@@ -72,6 +72,9 @@ public class Controle {
     //metodos de ControleUsuario
     public  void excluirUsuario(Usuario usuario){ this.controleUsuario.excluirUsuario(usuario);}
     public void atualizarUsuario(Usuario usuario){this.controleUsuario.atualizarUsuario(usuario);}
+    public void verificacaoListaFav(Usuario usuario){
+        this.controleUsuario.verificacaoListaFav(usuario);
+    }
     public  Usuario recuperarUsuarioPorId(int id){return this.controleUsuario.recuperarUsuarioPorId(id);}
     public Usuario recuperarUsuarioPorCpf(String cpf) throws UsuarioInexistenteException{ return this.controleUsuario.recuperarUsuarioPorCpf(cpf);}
     public Usuario recuperarUsuarioPorEmail(InternetAddress email) throws UsuarioInexistenteException {return this.controleUsuario.recuperarUsuarioPorEmail(email);}

@@ -25,11 +25,12 @@ public class FxReceitasFavoritasController {
 
     private ObservableList<Receita> favoritosList;
     private Usuario usuario = Sessao.getUsuarioSessao();
-    private Controle controle = ControleFactory.criarControleGeral();
-    private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
+    private final Controle controle = ControleFactory.criarControleGeral();
+    private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
     @FXML
     public void initialize() {
+        controle.verificacaoListaFav(usuario);
         favoritosList = FXCollections.observableArrayList();
         listaFavoritos.setItems(favoritosList);
         listaFavoritos.setCellFactory(new Callback<ListView<Receita>, ListCell<Receita>>() {

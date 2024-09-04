@@ -28,6 +28,9 @@ public class ControleReceita {
     public void atualizarReceita(Receita receita) {
         repositorioReceita.update(receita);
     }
+    public List<Receita> buscarTodasRecetias(){
+     return repositorioReceita.buscar();
+    }
 
     public List<Receita> buscarReceitaPorAutor(Usuario autor) {
         List<Receita> items = repositorioReceita.buscar();

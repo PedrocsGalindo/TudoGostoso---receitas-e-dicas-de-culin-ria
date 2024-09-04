@@ -53,8 +53,20 @@ public class ControleUsuario {
         return repositorio.getLastId();
     }
 
+    public void verificacaoListaFav(Usuario usuario) {
+        List<Receita> listaDeRecitasFav = usuario.getReceitasFav();
+        List<Receita> lisaDeReceitas = controleReceita.buscarTodasRecetias();
+        for (Receita receita : listaDeRecitasFav) {
+            if (!lisaDeReceitas.contains(receita)) {
+                usuario.getReceitasFav().remove(receita);
+            }
+
+        }
+        atualizarUsuario(usuario);
+    }
+
     public Usuario recuperarUsuarioPorId(int id) {
-        return repositorio.buscarPorId(id);
+        return  repositorio.buscarPorId(id);
     }
 
     public Usuario recuperarUsuarioPorCpf(String cpf) throws UsuarioInexistenteException {
