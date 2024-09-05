@@ -3,6 +3,7 @@ package org.tudogostoso.fxcontroller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -17,26 +18,23 @@ import java.util.List;
 public class FxFeedController {
 
     @FXML
-    private GridPane gridBTRPerfil, gridBTNBuscarReceitas;
-
-
-    @FXML
-    private Label labelBemVindo;
-
-    @FXML
-    private Label labelReceitas;
+    private ListView<HBox> feedList; // ListView que exibirá as receitas
 
     @FXML
     private VBox feed;
 
-    private final Controle controle = ControleFactory.criarControleGeral();
+    @FXML
+    private Button BTRPerfil, BTNBuscarReceitas;
 
-    private  final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
+    @FXML
+    private GridPane gridBTRPerfil, gridBTNBuscarReceitas;
+
+    private final Controle controle = ControleFactory.criarControleGeral();
+    private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
     @FXML
     public void initialize() {
         List<Receita> receitas = controle.buscarReceitasAleatorias();
-
         for (Receita receita : receitas) {
             HBox receitaBox = new HBox();
             receitaBox.setSpacing(10);
@@ -55,7 +53,7 @@ public class FxFeedController {
             detalhesReceita.getChildren().addAll(titulo, autor, tempoPreparo, categoria);
             receitaBox.getChildren().addAll(detalhesReceita, btnVerMais);
 
-            feed.getChildren().add(receitaBox);
+            feedList.getItems().add(receitaBox);
         }
     }
 
@@ -65,15 +63,15 @@ public class FxFeedController {
         gerenciadorTelas.mudarTela("receita", event);
     }
 
-
     @FXML
     void meuPerfil(ActionEvent event) {
-
-        gerenciadorTelas.mudarTela("perfil",event);
+        gerenciadorTelas.mudarTela("perfil", event);
     }
+
     @FXML
     void mousePorCimaBotaoBusca() {
-        gridBTNBuscarReceitas.setStyle("-fx-background-color:  #5aa55a;");    }
+        gridBTNBuscarReceitas.setStyle("-fx-background-color:  #5aa55a;");
+    }
 
     @FXML
     void mousePorCimaBotaoPerdil() {
@@ -83,17 +81,15 @@ public class FxFeedController {
     @FXML
     void mousePorForaBotaoBusca() {
         gridBTNBuscarReceitas.setStyle("-fx-background-color:   #90ee90; -fx-border-color:  #5aa55a; -fx-border-width:  3px;");
-
     }
 
     @FXML
     void mousePorForaBotaoPerdil() {
         gridBTRPerfil.setStyle("-fx-background-color:   #90ee90; -fx-border-color:  #5aa55a; -fx-border-width:  3px;");
     }
+
     @FXML
-    void buscarReceitas(ActionEvent event){
-        gerenciadorTelas.mudarTela("buscar",event);
+    void buscarReceitas(ActionEvent event) {
+        gerenciadorTelas.mudarTela("buscar", event);
     }
-
-
 }
