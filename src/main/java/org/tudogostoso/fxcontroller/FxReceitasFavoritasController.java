@@ -47,10 +47,10 @@ public class FxReceitasFavoritasController {
     }
 
     @FXML
-    private void verReceita(ActionEvent event,Receita receita) {
+    private void verReceita(ActionEvent event, Receita receita) {
         Sessao.setReceitaSessao(receita);
         Sessao.setUltimaCena("/org/tudogostoso/telas/receitasFavoritas.fxml");
-        gerenciadorTelas.mudarTela("receita", event);
+        gerenciadorTelas.mudarTela("receita", event); // Tela para ver receita
     }
 
     @FXML
