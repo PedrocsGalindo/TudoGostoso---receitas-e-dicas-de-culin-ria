@@ -21,6 +21,14 @@ public class Ingrediente implements Serializable, Comparable<Ingrediente>{
         return this.nome.compareTo(o.getNome());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ingrediente ingrediente = (Ingrediente) o;
+        return this.nome.equals(ingrediente.getNome());
+    }
+
     public Ingrediente(String nome) {
         this.nome = nome;}
 
