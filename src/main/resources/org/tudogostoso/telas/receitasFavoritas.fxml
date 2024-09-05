@@ -12,7 +12,6 @@
     <ListView fx:id="listaFavoritos" prefHeight="495.0" prefWidth="840.0">
     </ListView>
 
-    <!-- Adicionando botões "Ver Receita" e "Excluir dos Favoritos" -->
     <HBox spacing="10.0" alignment="CENTER">
         <Button onAction="#handleBotaoVerReceita" text="Ver Receita" />
         <Button onAction="#handleBotaoExcluirFavoritos" text="Excluir dos Favoritos" />
