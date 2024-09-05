@@ -30,6 +30,12 @@ public class RepositorioImagens {
         // caminho original do arquivo
         BufferedImage imagem = ImageIO.read(arquivo);
 
+        // Cria o diretório, se necessário
+        File diretorioSaida = new File("src/main/resources/org/tudogostoso/ImagensReceitas/");
+        if (!diretorioSaida.exists()) {
+            diretorioSaida.mkdirs();
+        }
+
         File arquivoSaida = new File("src/main/resources/org/tudogostoso/ImagensReceitas/" + nomeArquivo + "." + formatoDeImagem);
 
         // Salva a imagem no formato desejado

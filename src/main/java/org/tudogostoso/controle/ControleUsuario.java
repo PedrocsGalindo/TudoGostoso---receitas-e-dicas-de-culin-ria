@@ -206,6 +206,7 @@ public class ControleUsuario {
     }
 
     public String salvarImagem(File arquivo, String nomeArquivo) throws IOException {
+
         return repositorioImagens.salvar(arquivo, nomeArquivo);
     }
 
