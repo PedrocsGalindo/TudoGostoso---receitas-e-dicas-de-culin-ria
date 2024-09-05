@@ -46,11 +46,16 @@ public class FxlistaDeComprasVController {
         String nomeIngrediente = ingredienteField.getText().trim();
         if (!nomeIngrediente.isEmpty()) {
             Ingrediente novoIngrediente = new Ingrediente(nomeIngrediente);
-            CompraList.add(novoIngrediente);
-            Usuario usuario1 = Sessao.getUsuarioSessao();
-            usuario1.addListaDeCompra(novoIngrediente);
-            controle.atualizarUsuario(usuario1);
-            ingredienteField.clear();
+            if (CompraList.contains(novoIngrediente)) {
+                mostrarAlerta(Alert.AlertType.WARNING, "Item ja listado", "O ingrediente que voce quis adicionar ja esta na sua lista de compras");
+                ingredienteField.clear();
+            }else {
+                CompraList.add(novoIngrediente);
+                Usuario usuario1 = Sessao.getUsuarioSessao();
+                usuario1.addListaDeCompra(novoIngrediente);
+                controle.atualizarUsuario(usuario1);
+                ingredienteField.clear();
+            }
         }
     }
 
@@ -62,13 +67,9 @@ public class FxlistaDeComprasVController {
             Usuario usuario1 = Sessao.getUsuarioSessao();
             usuario1.getListaDeCompra().remove(ingredienteSelecionado);
             controle.atualizarUsuario(usuario1);
-            // Se você estiver salvando a lista de compras em um arquivo ou banco de dados, atualize-o aqui
+
         } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Nenhum Ingrediente Selecionado");
-            alert.setHeaderText(null);
-            alert.setContentText("Por favor, selecione um ingrediente para excluir.");
-            alert.showAndWait();
+            mostrarAlerta(Alert.AlertType.WARNING, "Nenhum Ingrediente Selecionado", "Por favor, selecione um ingrediente para excluir.");
         }
     }
 
@@ -87,5 +88,12 @@ public class FxlistaDeComprasVController {
                 setText(null);
             }
         }
+    }
+    private void mostrarAlerta(Alert.AlertType tipoAlerta, String titulo, String mensagem) {
+        Alert alerta = new Alert(tipoAlerta);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensagem);
+        alerta.showAndWait();
     }
 }
