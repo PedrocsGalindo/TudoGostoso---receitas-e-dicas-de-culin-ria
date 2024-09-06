@@ -137,9 +137,11 @@ public class FxMinhasReceitasController {
     void handleBotaoVerMais(ActionEvent event) {
         Receita receitaSelecionada = listViewMinhasReceitas.getSelectionModel().getSelectedItem();
 
+
         if (receitaSelecionada != null) {
             Sessao.setReceitaSessao(receitaSelecionada);
-            gerenciadorTelas.mudarTela("detalhesReceita", event); // Tela para ver mais detalhes da receita
+            gerenciadorTelas.mudarTela("receita", event); // Tela para ver mais detalhes da receita
+            Sessao.setUltimaCena("minhasReceitas");
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Nenhuma Receita Selecionada");
