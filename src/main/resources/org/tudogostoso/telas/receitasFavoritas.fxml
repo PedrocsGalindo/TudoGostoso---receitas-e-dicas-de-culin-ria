@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?> <!-- Adicione esta linha -->
+<?import javafx.scene.layout.HBox?>
 
 <VBox alignment="TOP_CENTER" prefHeight="610.0" prefWidth="840.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tudogostoso.fxcontroller.FxReceitasFavoritasController">
     <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Receitas Favoritas" />
