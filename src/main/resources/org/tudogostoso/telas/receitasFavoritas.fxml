@@ -11,7 +11,7 @@
     
     <ListView fx:id="listaFavoritos" prefHeight="495.0" prefWidth="840.0" />
 
-    <HBox spacing="10.0" alignment="CENTER"> <!-- Adicione o botão Voltar ao mesmo HBox -->
+    <HBox spacing="10.0" alignment="CENTER">
         <Button onAction="#voltarParaFeed" style="-fx-font-size: 14px;" text="Voltar" />
         <Button onAction="#handleBotaoVerReceita" text="Ver Receita" />
         <Button onAction="#handleBotaoExcluirFavoritos" text="Excluir dos Favoritos" />
