@@ -47,10 +47,10 @@ public class FxReceitasFavoritasController {
     }
 
     @FXML
-    private void verReceita(ActionEvent event,Receita receita) {
+    private void verReceita(ActionEvent event, Receita receita) {
         Sessao.setReceitaSessao(receita);
         Sessao.setUltimaCena("/org/tudogostoso/telas/receitasFavoritas.fxml");
-        gerenciadorTelas.mudarTela("receita", event);
+        gerenciadorTelas.mudarTela("receita", event); // Tela para ver receita
     }
 
     @FXML
@@ -62,6 +62,25 @@ public class FxReceitasFavoritasController {
     @FXML
     private void voltarParaFeed(ActionEvent event) {
         gerenciadorTelas.mudarTela("perfil", event);
+    }
+
+    // Métodos adicionados para correspondência com o FXML
+    @FXML
+    private void handleBotaoVerReceita(ActionEvent event) {
+        // Aqui você pode pegar a receita selecionada e chamar verReceita com ela
+        Receita receitaSelecionada = listaFavoritos.getSelectionModel().getSelectedItem();
+        if (receitaSelecionada != null) {
+            verReceita(event, receitaSelecionada);
+        }
+    }
+
+    @FXML
+    private void handleBotaoExcluirFavoritos(ActionEvent event) {
+        // Aqui você pode pegar a receita selecionada e chamar removerFavorito com ela
+        Receita receitaSelecionada = listaFavoritos.getSelectionModel().getSelectedItem();
+        if (receitaSelecionada != null) {
+            removerFavorito(receitaSelecionada);
+        }
     }
 
     public class ReceitaListCell extends ListCell<Receita> {

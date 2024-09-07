@@ -36,13 +36,12 @@ public class FxMinhasReceitasController {
         listViewMinhasReceitas.setCellFactory(new Callback<ListView<Receita>, ListCell<Receita>>() {
             @Override
             public ListCell<Receita> call(ListView<Receita> param) {
-                return new FxMinhasReceitasController.ReceitaListCell();
+                return new ReceitaListCell();
             }
         });
         carregarMinhasReceitas();
-
-
     }
+
     public class ReceitaListCell extends ListCell<Receita> {
         private HBox hBoxReceita;
         private VBox vBoxReceita;
@@ -64,6 +63,7 @@ public class FxMinhasReceitasController {
             hBoxReceita = new HBox(imageViewReceita, vBoxReceita);
             hBoxReceita.setSpacing(10);
         }
+
         @Override
         protected void updateItem(Receita item, boolean empty) {
             super.updateItem(item, empty);
@@ -98,15 +98,12 @@ public class FxMinhasReceitasController {
 
     @FXML
     void handleBotaoExcluirReceita() {
-        // Obtém a receita selecionada na ListView
         Receita receitaSelecionada = listViewMinhasReceitas.getSelectionModel().getSelectedItem();
 
-        // Verifica se uma receita foi selecionada
         if (receitaSelecionada != null) {
-            controle.excluirMinhaReceita(usuario,receitaSelecionada);
+            controle.excluirMinhaReceita(usuario, receitaSelecionada);
             carregarMinhasReceitas();
         } else {
-            // Exibe uma mensagem de erro se nenhuma receita for selecionada
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Nenhuma Receita Selecionada");
             alert.setHeaderText(null);
@@ -118,5 +115,37 @@ public class FxMinhasReceitasController {
     @FXML
     void handleBotaoVoltar(ActionEvent event) {
         gerenciadorTelas.mudarTela("perfil", event);
+    }
+
+    @FXML
+    void handleBotaoEditar(ActionEvent event) {
+        Receita receitaSelecionada = listViewMinhasReceitas.getSelectionModel().getSelectedItem();
+
+        if (receitaSelecionada != null) {
+            Sessao.setReceitaSessao(receitaSelecionada);
+            gerenciadorTelas.mudarTela("editarReceita", event); // Tela para editar receita
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Nenhuma Receita Selecionada");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor, selecione uma receita para editar.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void handleBotaoVerMais(ActionEvent event) {
+        Receita receitaSelecionada = listViewMinhasReceitas.getSelectionModel().getSelectedItem();
+
+        if (receitaSelecionada != null) {
+            Sessao.setReceitaSessao(receitaSelecionada);
+            gerenciadorTelas.mudarTela("detalhesReceita", event); // Tela para ver mais detalhes da receita
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Nenhuma Receita Selecionada");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor, selecione uma receita para ver mais detalhes.");
+            alert.showAndWait();
+        }
     }
 }
