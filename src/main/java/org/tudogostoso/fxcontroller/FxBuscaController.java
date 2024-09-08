@@ -220,6 +220,18 @@ public class FxBuscaController {
         gerenciadorTelas.mudarTela("receita", event);
     }
     @FXML
+    void mousePorCimaBotao(MouseEvent event) {
+        Button botao = (Button) event.getSource();
+        botao.setStyle("-fx-background-color:  #5aa55a;");
+    }
+
+    @FXML
+    void mousePorFora(MouseEvent event) {
+        Button botao = (Button) event.getSource();
+        botao.setStyle("-fx-background-color:   #90ee90;");
+    }
+
+    @FXML
     void cliqueAutor() {
         checkBoxPorAutor.setSelected(true);
         checkBoxPorNome.setSelected(false);

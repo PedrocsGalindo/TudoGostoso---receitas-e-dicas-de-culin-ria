@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
@@ -93,6 +94,18 @@ public class FxReceitaController {
         Button botao = (Button) event.getSource();
         botao.setDisable(true);
         botao.setVisible(false);
+    }
+
+    @FXML
+    void mousePorCimaBotao(MouseEvent event) {
+        Button botao = (Button) event.getSource();
+        botao.setStyle("-fx-background-color:  #5aa55a;");
+    }
+
+    @FXML
+    void mousePorFora(MouseEvent event) {
+        Button botao = (Button) event.getSource();
+        botao.setStyle("-fx-background-color:   #90ee90;");
     }
 
     @FXML

@@ -146,7 +146,7 @@
                   <CheckBox fx:id="focus" mnemonicParsing="false" opacity="0.0" text="focus" />
                </children>
             </GridPane>
-            <Button alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#botaoVoltar" prefHeight="10.0" prefWidth="49.0" style="-fx-background-color: #90ee90;" text="Voltar" />
+            <Button alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#botaoVoltar" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorFora" prefHeight="10.0" prefWidth="49.0" style="-fx-background-color: #90ee90;" text="Voltar" />
          </children>
       </GridPane>
    </children>

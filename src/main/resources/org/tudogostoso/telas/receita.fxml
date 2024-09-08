@@ -26,7 +26,7 @@
       <RowConstraints maxHeight="403.0" minHeight="10.0" prefHeight="280.3333435058594" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button mnemonicParsing="false" onAction="#handllerBotaoVoltar" prefHeight="19.0" prefWidth="48.0" style="-fx-background-color: #90ee90;" text="Voltar" GridPane.halignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#handllerBotaoVoltar" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorFora" prefHeight="19.0" prefWidth="48.0" style="-fx-background-color: #90ee90;" text="Voltar" GridPane.halignment="CENTER">
          <opaqueInsets>
             <Insets top="10.0" />
          </opaqueInsets>
@@ -54,7 +54,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#handllerBotaoAvaliar" style="-fx-background-color: #90ee90;" text="Avaliar">
+            <Button mnemonicParsing="false" onAction="#handllerBotaoAvaliar" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorFora" style="-fx-background-color: #90ee90;" text="Avaliar">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -91,7 +91,7 @@
             </Text>
          </children>
       </GridPane>
-      <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handllerBotaoAddListaCompra" style="-fx-background-color: #90ee90;" text="Adicionar ingredientes na lista de compra" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handllerBotaoAddListaCompra" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorFora" style="-fx-background-color: #90ee90;" text="Adicionar ingredientes na lista de compra" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <GridPane GridPane.rowIndex="3">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -112,7 +112,7 @@
             <Insets bottom="10.0" />
          </GridPane.margin></TextArea>
       <ImageView fx:id="imagemReceita" fitHeight="243.0" fitWidth="316.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" onAction="#handllerBotaoAddFav" prefHeight="23.0" prefWidth="186.0" style="-fx-background-color: #90ee90;" text="Adicionar receita favorita" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#handllerBotaoAddFav" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorFora" prefHeight="23.0" prefWidth="186.0" style="-fx-background-color: #90ee90;" text="Adicionar receita favorita" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <ImageView fitHeight="26.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
          <image>
             <Image url="@../Imagens/cestaDeCompra.png" />
