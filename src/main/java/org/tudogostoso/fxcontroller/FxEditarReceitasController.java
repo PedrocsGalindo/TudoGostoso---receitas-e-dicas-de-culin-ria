@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.exceptions.ObjetoJaExiste;
-import org.tudogostoso.exceptions.ReceitaJaExistenteException;
 import org.tudogostoso.modelo.*;
 
 import java.io.File;
@@ -47,8 +46,7 @@ public class FxEditarReceitasController {
     private final Controle controle = ControleFactory.criarControleGeral();
     private File caminhoArquivoUsuario;
     private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
-    private final Usuario usuario = Sessao.getUsuarioSessao();
-    private Receita receita = Sessao.getReceitaSessao();
+    private final Receita receita = Sessao.getReceitaSessao();
 
     @FXML
     public void initialize() {
@@ -96,6 +94,7 @@ public class FxEditarReceitasController {
             ingredientesReceita = ingredientesReceita.concat(linhaIngrediente + "\n");
         }
         textAreaItemnsIngredientes.setText(ingredientesReceita);
+        itemIngredientes.addAll(receita.getIngredientes());
 
     }
 
@@ -176,22 +175,27 @@ public class FxEditarReceitasController {
         //tem que separar cada etapa por linha
         List<String> preparo = Arrays.asList(textAreaPreparo.getText().split("\n"));
         try {
-            if (caminhoArquivoUsuario.exists() && caminhoArquivoUsuario != null) {
+            //se não alterou a foto
+            if (caminhoArquivoUsuario != null) {
+                controle.excluirImagem(receita.getCaminhoImagem());
                 String caminhoImagem = controle.salvarImagem(caminhoArquivoUsuario, usuarioChef.getNome() + titulo.replace(" ", ""));
-                controle.criarReceita(titulo, usuarioChef, itemIngredientes, preparo, tempoPreparo, categoria, caminhoImagem);
-                mostrarAlerta(Alert.AlertType.CONFIRMATION, "Receita criada com sucesso", "Sua Receita "+ titulo +" foi criada com sucesso");
-            } else {
-                controle.criarReceita(titulo, usuarioChef, itemIngredientes, preparo, tempoPreparo, categoria);
-                mostrarAlerta(Alert.AlertType.CONFIRMATION, "Receita criada com sucesso", "Sua Receita "+ titulo +" foi criada com sucesso");
+                receita.setCaminhoImagem(caminhoImagem);
             }
-            limparTela();
+            receita.setCategoria(categoria);
+            receita.setTempoDePreparo(tempoPreparo);
+            receita.setTitulo(titulo);
+            receita.setPreparo(preparo);
+            receita.setIngredientes(itemIngredientes);
+
+            controle.atualizarReceita(receita);
+
+            mostrarAlerta(Alert.AlertType.CONFIRMATION, "Mudanças salvas com sucesso", "Sua Receita "+ titulo +" foi alterada com sucesso");
             gerenciadorTelas.mudarTela("minhasReceitas", event);
+
         }catch (IOException e){
-            mostrarAlerta(Alert.AlertType.ERROR, "Erro ao salvar imagem", "Erro ao salvar imagem: " +  e.getMessage());
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro ao salvar nova imagem", "Erro ao salvar imagem: " +  e.getMessage());
         } catch (NullPointerException e){
             mostrarAlerta(Alert.AlertType.ERROR, "Campo Vazio", "Algum dos campos esta vazio");
-        } catch (ReceitaJaExistenteException e){
-            mostrarAlerta(Alert.AlertType.ERROR, "Receita ja existe", "Voce ja possui Uma receita com esse mesmo titulo");
         }
 
     }
@@ -201,17 +205,5 @@ public class FxEditarReceitasController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
         alerta.showAndWait();
-    }
-    private void limparTela(){
-        imagemEscolhida.setImage(new Image(new File("src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg").getAbsolutePath()));
-        textAreaItemnsIngredientes.clear();
-        textFieldCateogira.clear();
-        textAreaPreparo.clear();
-        textFieldQuantidade.clear();
-        textFieldTempodDePreapro.clear();
-        textFieldTitulo.clear();
-        choicheBoxIngrediente.setValue(null);
-        choiceBoxUnidadeDeMedida.setValue(null);
-        caminhoArquivoUsuario = null;
     }
 }

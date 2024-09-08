@@ -43,4 +43,8 @@ public class RepositorioImagens {
 
         return "src/main/resources/org/tudogostoso/ImagensReceitas/" + nomeArquivo + "." + formatoDeImagem;
     }
+    public void excluir(String caminhoImagem) throws IOException {
+        File arquivo = new File(caminhoImagem);
+        arquivo.delete();
+    }
 }

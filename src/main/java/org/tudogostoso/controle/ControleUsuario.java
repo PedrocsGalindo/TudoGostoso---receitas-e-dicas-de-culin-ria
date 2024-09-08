@@ -210,6 +210,10 @@ public class ControleUsuario {
         return repositorioImagens.salvar(arquivo, nomeArquivo);
     }
 
+    public void excluirImagem(String caminhoImagem) throws IOException {
+        repositorioImagens.excluir(caminhoImagem);
+    }
+
     public void cadastrarReceita(Receita receita) throws ReceitaJaExistenteException {
         if (controleReceita.buscarReceitaPorAutorETitulo(receita.getAutor(), receita.getTitulo()) == null) {
             controleReceita.salvarReceita(receita);
