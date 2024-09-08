@@ -101,7 +101,7 @@ public class FxEditarReceitasController {
 
     @FXML
     void HandllerButtonVoltar(ActionEvent event) {
-        gerenciadorTelas.mudarTela(Sessao.getUltimaCena(),event);
+        gerenciadorTelas.mudarTela("minhasReceitas",event);
     }
 
     @FXML
@@ -185,7 +185,7 @@ public class FxEditarReceitasController {
                 mostrarAlerta(Alert.AlertType.CONFIRMATION, "Receita criada com sucesso", "Sua Receita "+ titulo +" foi criada com sucesso");
             }
             limparTela();
-            gerenciadorTelas.mudarTela("feed", event);
+            gerenciadorTelas.mudarTela("minhasReceitas", event);
         }catch (IOException e){
             mostrarAlerta(Alert.AlertType.ERROR, "Erro ao salvar imagem", "Erro ao salvar imagem: " +  e.getMessage());
         } catch (NullPointerException e){
