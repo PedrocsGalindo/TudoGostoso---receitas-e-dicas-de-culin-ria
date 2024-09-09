@@ -192,5 +192,37 @@ public class FxCriarReceitasController {
         choiceBoxUnidadeDeMedida.setValue(null);
         caminhoArquivoUsuario = null;
     }
+    //Vou testar ainda e ajustar
+    @FXML
+    void handleBuscarImagemWeb() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Buscar Imagem no Google");
+        dialog.setHeaderText("Digite o termo de pesquisa para buscar imagens:");
+        dialog.setContentText("Pesquisa:");
+
+        dialog.showAndWait().ifPresent(termoPesquisa -> {
+            try {
+                // Número de imagens que você deseja buscar
+                int numImagens = 5;
+
+                // Chama a classe GoogleImagens para buscar múltiplas imagens
+                List<String> urlsImagens = GoogleImagens.buscarImagens(termoPesquisa, numImagens);
+
+                // Criar uma lista de escolha para o usuário selecionar uma das imagens
+                ChoiceDialog<String> choiceDialog = new ChoiceDialog<>(urlsImagens.get(0), urlsImagens);
+                choiceDialog.setTitle("Escolha uma Imagem");
+                choiceDialog.setHeaderText("Selecione a imagem desejada:");
+                choiceDialog.setContentText("Imagens:");
+
+                choiceDialog.showAndWait().ifPresent(urlImagem -> {
+                    Image imagem = new Image(urlImagem);
+                    imagemEscolhida.setImage(imagem);
+                });
+
+            } catch (Exception e) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Erro ao buscar imagem", "Erro ao buscar imagem: " + e.getMessage());
+            }
+        });
+        }
 }
 
