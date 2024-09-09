@@ -162,7 +162,6 @@ public class FxCriarReceitasController {
                 controle.criarReceita(titulo, usuarioChef, itemIngredientes, preparo, tempoPreparo, categoria);
                 mostrarAlerta(Alert.AlertType.CONFIRMATION, "Receita criada com sucesso", "Sua Receita "+ titulo +" foi criada com sucesso");
             }
-            limparTela();
             gerenciadorTelas.mudarTela("feed", event);
         }catch (IOException e){
             mostrarAlerta(Alert.AlertType.ERROR, "Erro ao salvar imagem", "Erro ao salvar imagem: " +  e.getMessage());
@@ -173,25 +172,7 @@ public class FxCriarReceitasController {
         }
 
     }
-    private void mostrarAlerta(Alert.AlertType tipoAlerta, String titulo, String mensagem) {
-        Alert alerta = new Alert(tipoAlerta);
-        alerta.setTitle(titulo);
-        alerta.setHeaderText(null);
-        alerta.setContentText(mensagem);
-        alerta.showAndWait();
-    }
-    private void limparTela(){
-        imagemEscolhida.setImage(new Image(new File("src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg").getAbsolutePath()));
-        textAreaItemnsIngredientes.clear();
-        textFieldCateogira.clear();
-        textAreaPreparo.clear();
-        textFieldQuantidade.clear();
-        textFieldTempodDePreapro.clear();
-        textFieldTitulo.clear();
-        choicheBoxIngrediente.setValue(null);
-        choiceBoxUnidadeDeMedida.setValue(null);
-        caminhoArquivoUsuario = null;
-    }
+
     @FXML
     void handleBuscarImagemWeb() {
         TextInputDialog dialog = new TextInputDialog();
@@ -232,6 +213,14 @@ public class FxCriarReceitasController {
                 mostrarAlerta(Alert.AlertType.ERROR, "Erro ao buscar imagem", "Erro ao buscar imagem: " + e.getMessage());
             }
         });
+    }
+
+    private void mostrarAlerta(Alert.AlertType tipoAlerta, String titulo, String mensagem) {
+        Alert alerta = new Alert(tipoAlerta);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensagem);
+        alerta.showAndWait();
     }
 }
 
