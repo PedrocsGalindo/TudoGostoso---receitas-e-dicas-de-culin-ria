@@ -102,6 +102,8 @@ public class FxMinhasReceitasController {
 
         if (receitaSelecionada != null) {
             controle.excluirMinhaReceita(usuario, receitaSelecionada);
+            //Remover também do próprio usuário
+            controle.removerReceitaFavorita(usuario,receitaSelecionada);
             carregarMinhasReceitas();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
