@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="grid" alignment="CENTER" hgap="10" prefHeight="610.0" prefWidth="840.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tudogostoso.fxcontroller.FxCadastroController">
+<GridPane fx:id="grid" alignment="CENTER" hgap="10" prefHeight="610.0" prefWidth="840.0" vgap="10" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tudogostoso.fxcontroller.FxCadastroController">
     <padding>
         <Insets bottom="25" left="25" right="25" top="25" />
     </padding>

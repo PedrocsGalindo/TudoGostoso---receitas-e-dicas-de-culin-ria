@@ -34,6 +34,10 @@ public class FxPerfilController {
     @FXML
     private Text textNomeUsuario, textEmail;
 
+    @FXML
+    private Button btnLogout;
+
+
     //Serve para instânciar o gerenciador de Telas
     private FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
 
@@ -104,7 +108,12 @@ public class FxPerfilController {
     private void telaMinhasReceita(ActionEvent event){
         gerenciadorTelas.mudarTela("minhasReceitas",event);
     }
-    
+
+    @FXML
+    private void telaDeLogin(ActionEvent event){
+        gerenciadorTelas.mudarTela("Login",event);
+    }
+
 
 
 
