@@ -177,7 +177,9 @@ public class FxEditarReceitasController {
         try {
             //se não alterou a foto
             if (caminhoArquivoUsuario != null) {
-                controle.excluirImagem(receita.getCaminhoImagem());
+                if (!caminhoArquivoUsuario.getPath().equals("src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg")){
+                    controle.excluirImagem(receita.getCaminhoImagem());
+                }
                 String caminhoImagem = controle.salvarImagem(caminhoArquivoUsuario, usuarioChef.getNome() + titulo.replace(" ", ""));
                 receita.setCaminhoImagem(caminhoImagem);
             }
