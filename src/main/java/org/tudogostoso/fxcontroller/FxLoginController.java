@@ -12,9 +12,8 @@ import org.tudogostoso.exceptions.UsuarioInexistenteException;
 import org.tudogostoso.modelo.Sessao;
 import org.tudogostoso.modelo.Usuario;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.AddressException;
 
 public class FxLoginController {
 
@@ -24,31 +23,32 @@ public class FxLoginController {
     private PasswordField campoSenha;
 
     private static final Controle controle = ControleFactory.criarControleGeral();
-
     private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
-
-    // Armazenamento simulado de usuários e senhas
-    private static final Map<String, String> usuarios = new HashMap<>();
-
-    static {
-        // Usuários e senhas pré-cadastrados
-        usuarios.put("admin", "1234");
-        usuarios.put("user", "abcd");
-    }
 
     @FXML
     private void fazerLogin(ActionEvent event) {
-        String cpf = campoUsuario.getText();
+        String identificador = campoUsuario.getText();  // Pra CPF ou email
         String senha = campoSenha.getText();
 
         try {
+            Usuario usuario = null;
 
-            Usuario usuario = controle.recuperarUsuarioPorCpf(cpf)  ;
+            //primeiro a busca é feito pelo cpf
+            try {
+                usuario = controle.recuperarUsuarioPorCpf(identificador);
+            } catch (UsuarioInexistenteException e) {
+                //A segunda verificaçaõ é pelo email
+                try {
+                    InternetAddress email = new InternetAddress(identificador);
+                    usuario = controle.recuperarUsuarioPorEmail(email);
+                } catch (AddressException emailEx) {
+                ;
+                }
+            }
 
-            // Verifica se a senha corresponde
             if (usuario != null && usuario.getSenha().equals(senha)) {
                 mostrarAlerta(AlertType.INFORMATION, "Login Sucesso", "Bem-vindo, " + usuario.getNome() + "!");
-                Sessao.setUsuarioSessao(usuario); // Define o usuário na sessão
+                Sessao.setUsuarioSessao(usuario);
                 gerenciadorTelas.mudarTela("feed", event);
             } else {
                 mostrarAlerta(AlertType.ERROR, "Falha no Login", "Usuário ou senha incorretos.");
@@ -61,21 +61,20 @@ public class FxLoginController {
     }
 
     @FXML
-    private void irParaTelaCadastro (ActionEvent event) {
-       gerenciadorTelas.mudarTela("cadastro",event);
+    private void irParaTelaCadastro(ActionEvent event) {
+        gerenciadorTelas.mudarTela("cadastro", event);
     }
 
     private void mostrarAlerta(AlertType tipoAlerta, String titulo, String mensagem) {
-    Alert alerta = new Alert(tipoAlerta);
+        Alert alerta = new Alert(tipoAlerta);
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
         alerta.showAndWait();
-}
+    }
 
     private void limparCampos() {
         campoUsuario.clear();
         campoSenha.clear();
     }
 }
-

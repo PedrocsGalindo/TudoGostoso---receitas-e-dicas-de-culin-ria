@@ -16,15 +16,15 @@
         <Insets bottom="25" left="25" right="25" top="25" />
     </padding>
 
-    <Label text="CPF" GridPane.rowIndex="1" />
-    <TextField fx:id="campoUsuario" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+    <Label prefHeight="17.0" prefWidth="74.0" text="CPF ou Email:" GridPane.rowIndex="1" />
+    <TextField fx:id="campoUsuario" prefHeight="25.0" prefWidth="252.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
     <Label text="Senha:" GridPane.rowIndex="2" />
     <PasswordField fx:id="campoSenha" GridPane.columnIndex="2" GridPane.rowIndex="2" />
 
     <Button onAction="#fazerLogin" text="Login" GridPane.columnIndex="2" GridPane.rowIndex="3" />
     <Button onAction="#irParaTelaCadastro" text="Cadastrar" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+   <ImageView fitHeight="150.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
       <image>
          <Image url="@../Imagens/vecteezy_illustration-of-a-chef-holding-a-platter-and-showing-thumbs-up_37219950.png" />
       </image>
