@@ -9,7 +9,7 @@
 
 <VBox alignment="TOP_CENTER" prefHeight="610.0" prefWidth="840.0" spacing="10.0" style="-fx-background-color: #76c976;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tudogostoso.fxcontroller.FxlistaDeComprasVController">
     <Button onAction="#voltarParaFeed" style="-fx-font-size: 14px;" text="Voltar" />
-   <Button mnemonicParsing="false" onAction="#adicionarIngrediente" text="add" />
+   <Button mnemonicParsing="false" onAction="#excluirIngrediente" text="Excluir Ingrediente" />
     <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Lista de Compras" />
    <TextField fx:id="ingredienteField" prefHeight="25.0" prefWidth="554.0" />
     
