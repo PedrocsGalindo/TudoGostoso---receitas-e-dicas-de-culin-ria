@@ -172,17 +172,31 @@ public class FxEditarReceitasController {
         String titulo = textFieldTitulo.getText();
         String tempoPreparo = textFieldTempodDePreapro.getText();
         String categoria = textFieldCateogira.getText();
-        //tem que separar cada etapa por linha
+
+        // Verifica se todos os campos obrigatórios estão preenchidos
+        if (titulo == null || titulo.trim().isEmpty() ||
+                tempoPreparo == null || tempoPreparo.trim().isEmpty() ||
+                categoria == null || categoria.trim().isEmpty() ||
+                itemIngredientes.isEmpty()) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Campo Vazio", "Por favor, preencha todos os campos obrigatórios.");
+            return;
+        }
+
+        // Separa o preparo em linhas
         List<String> preparo = Arrays.asList(textAreaPreparo.getText().split("\n"));
+
         try {
-            //se não alterou a foto
+            // Se alterou a foto
             if (caminhoArquivoUsuario != null) {
-                if (!caminhoArquivoUsuario.getPath().equals("src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg")){
-                    controle.excluirImagem(receita.getCaminhoImagem());
+                String caminhoImagemAtual = receita.getCaminhoImagem();
+                if (caminhoImagemAtual != null && !caminhoImagemAtual.equals("src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg")) {
+                    controle.excluirImagem(caminhoImagemAtual);
                 }
-                String caminhoImagem = controle.salvarImagem(caminhoArquivoUsuario, usuarioChef.getNome() + titulo.replace(" ", ""));
+                String nomeArquivoImagem = usuarioChef.getNome() + "_" + titulo.replace(" ", "") + ".jpg";
+                String caminhoImagem = controle.salvarImagem(caminhoArquivoUsuario, nomeArquivoImagem);
                 receita.setCaminhoImagem(caminhoImagem);
             }
+
             receita.setCategoria(categoria);
             receita.setTempoDePreparo(tempoPreparo);
             receita.setTitulo(titulo);
@@ -191,15 +205,14 @@ public class FxEditarReceitasController {
 
             controle.atualizarReceita(receita);
 
-            mostrarAlerta(Alert.AlertType.CONFIRMATION, "Mudanças salvas com sucesso", "Sua Receita "+ titulo +" foi alterada com sucesso");
+            mostrarAlerta(Alert.AlertType.CONFIRMATION, "Mudanças salvas com sucesso", "Sua Receita \"" + titulo + "\" foi alterada com sucesso");
             gerenciadorTelas.mudarTela("minhasReceitas", event);
 
-        }catch (IOException e){
-            mostrarAlerta(Alert.AlertType.ERROR, "Erro ao salvar nova imagem", "Erro ao salvar imagem: " +  e.getMessage());
-        } catch (NullPointerException e){
-            mostrarAlerta(Alert.AlertType.ERROR, "Campo Vazio", "Algum dos campos esta vazio");
+        } catch (IOException e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro ao salvar nova imagem", "Erro ao salvar imagem: " + e.getMessage());
+        } catch (Exception e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro ao atualizar receita", "Erro ao atualizar receita: " + e.getMessage());
         }
-
     }
     private void mostrarAlerta(Alert.AlertType tipoAlerta, String titulo, String mensagem) {
         Alert alerta = new Alert(tipoAlerta);
@@ -208,4 +221,49 @@ public class FxEditarReceitasController {
         alerta.setContentText(mensagem);
         alerta.showAndWait();
     }
+    //Vou testar ainda e ajustar
+    @FXML
+    void handleBuscarImagemWeb() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Buscar Imagem no Google");
+        dialog.setHeaderText("Digite o termo de pesquisa para buscar imagens:");
+        dialog.setContentText("Pesquisa:");
+
+        dialog.showAndWait().ifPresent(termoPesquisa -> {
+            try {
+                // Número de imagens que você deseja buscar
+                int numImagens = 5;
+
+                // Chama a classe GoogleImagens para buscar múltiplas imagens
+                List<String> urlsImagens = GoogleImagens.buscarImagens(termoPesquisa, numImagens);
+
+                // Criar uma lista de escolha para o usuário selecionar uma das imagens
+                ChoiceDialog<String> choiceDialog = new ChoiceDialog<>(urlsImagens.get(0), urlsImagens);
+                choiceDialog.setTitle("Escolha uma Imagem");
+                choiceDialog.setHeaderText("Selecione a imagem desejada:");
+                choiceDialog.setContentText("Imagens:");
+
+                choiceDialog.showAndWait().ifPresent(urlImagem -> {
+                    // Nome do arquivo para salvar a imagem
+                    String nomeArquivo = "imagemSelecionada_" + System.currentTimeMillis() + ".jpg"; // Nome único baseado no timestamp
+
+                    // Salva a imagem no diretório especificado
+                    try {
+                        String caminhoImagem = GoogleImagens.salvarImagem(urlImagem, nomeArquivo);
+                        Image imagem = new Image(new File(caminhoImagem).toURI().toString());
+                        imagemEscolhida.setImage(imagem);
+                        caminhoArquivoUsuario = new File(caminhoImagem); // Atualiza o caminho da imagem na variável
+                    } catch (IOException e) {
+                        mostrarAlerta(Alert.AlertType.ERROR, "Erro ao salvar imagem", "Erro ao salvar imagem: " + e.getMessage());
+                    }
+                });
+
+            } catch (Exception e) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Erro ao buscar imagem", "Erro ao buscar imagem: " + e.getMessage());
+            }
+        });
+    }
+
+
+
 }

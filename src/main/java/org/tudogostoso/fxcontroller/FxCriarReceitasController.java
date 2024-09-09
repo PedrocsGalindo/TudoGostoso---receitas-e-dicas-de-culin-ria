@@ -192,7 +192,6 @@ public class FxCriarReceitasController {
         choiceBoxUnidadeDeMedida.setValue(null);
         caminhoArquivoUsuario = null;
     }
-    //Vou testar ainda e ajustar
     @FXML
     void handleBuscarImagemWeb() {
         TextInputDialog dialog = new TextInputDialog();
@@ -215,14 +214,24 @@ public class FxCriarReceitasController {
                 choiceDialog.setContentText("Imagens:");
 
                 choiceDialog.showAndWait().ifPresent(urlImagem -> {
-                    Image imagem = new Image(urlImagem);
-                    imagemEscolhida.setImage(imagem);
+                    // Nome do arquivo para salvar a imagem
+                    String nomeArquivo = "imagemSelecionada_" + System.currentTimeMillis() + ".jpg"; // Nome único baseado no timestamp
+
+                    // Salva a imagem no diretório especificado
+                    try {
+                        String caminhoImagem = GoogleImagens.salvarImagem(urlImagem, nomeArquivo);
+                        Image imagem = new Image(new File(caminhoImagem).toURI().toString());
+                        imagemEscolhida.setImage(imagem);
+                        caminhoArquivoUsuario = new File(caminhoImagem); // Atualiza o caminho da imagem na variável
+                    } catch (IOException e) {
+                        mostrarAlerta(Alert.AlertType.ERROR, "Erro ao salvar imagem", "Erro ao salvar imagem: " + e.getMessage());
+                    }
                 });
 
             } catch (Exception e) {
                 mostrarAlerta(Alert.AlertType.ERROR, "Erro ao buscar imagem", "Erro ao buscar imagem: " + e.getMessage());
             }
         });
-        }
+    }
 }
 

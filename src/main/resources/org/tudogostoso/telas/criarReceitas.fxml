@@ -10,9 +10,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="840.0" style="-fx-background-color: #76c976;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tudogostoso.fxcontroller.FxCriarReceitasController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tudogostoso.fxcontroller.FxCriarReceitasController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.0" minWidth="10.0" prefWidth="195.0" />
@@ -133,6 +134,25 @@
             </GridPane>
          </children>
       </GridPane>
-      <Button mnemonicParsing="false" onAction="#handlerButtonCriarReceita" text="Criar Receita" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <VBox prefHeight="121.0" prefWidth="223.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleBuscarImagemWeb" prefHeight="25.0" prefWidth="161.0" text="Imagem da Web">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="32.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handllerButtonCriarReceita" prefHeight="25.0" prefWidth="115.0" text="Criar Receita">
+               <VBox.margin>
+                  <Insets left="55.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </GridPane>
