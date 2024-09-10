@@ -54,7 +54,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Button fx:id="BTRPerfil" mnemonicParsing="false" onAction="#meuPerfil" onMouseEntered="#mousePorCimaBotaoPerdil" onMouseExited="#mousePorForaBotaoPerdil" prefHeight="25.0" prefWidth="417.0" style="-fx-background-color: transparent; -fx-control-inner-background: transparent;" text="Meu perfil" GridPane.halignment="CENTER" />
+                                <Button fx:id="BTRPerfil" mnemonicParsing="false" onAction="#meuPerfil" onMouseEntered="#mousePorCimaBotaoPerfil" onMouseExited="#mousePorForaBotaoPerfil" prefHeight="25.0" prefWidth="417.0" style="-fx-background-color: transparent; -fx-control-inner-background: transparent;" text="Meu perfil" GridPane.halignment="CENTER" />
                             </children>
                         </GridPane>
 
