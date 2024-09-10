@@ -108,13 +108,17 @@ public class FxEditarReceitasController {
         Ingrediente ingrediente = choicheBoxIngrediente.getValue();
         UnidadeMedida unidadeMedida = choiceBoxUnidadeDeMedida.getValue();
         try {
+            //cria o Item ingrediente
             double quantidade = Double.parseDouble(textFieldQuantidade.getText());
             ItemIngrediente itemIngrediente = controle.criarItemIngrediente(ingrediente, quantidade, unidadeMedida);
 
+            //mostra o item criado
             String textoItem = textAreaItemnsIngredientes.getText();
             textoItem = textoItem + itemIngrediente + "\n";
             textAreaItemnsIngredientes.setText(textoItem);
             itemIngredientes.add(itemIngrediente);
+
+            //limpa os valores do item ingrediente
             choicheBoxIngrediente.setValue(null);
             choiceBoxUnidadeDeMedida.setValue(null);
             textFieldQuantidade.clear();
@@ -166,6 +170,49 @@ public class FxEditarReceitasController {
 
 
     }
+
+    @FXML
+    void handleBuscarImagemWeb() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Buscar Imagem no Google");
+        dialog.setHeaderText("Digite o termo de pesquisa para buscar imagens:");
+        dialog.setContentText("Pesquisa:");
+
+        dialog.showAndWait().ifPresent(termoPesquisa -> {
+            try {
+                // Número de imagens que você deseja buscar
+                int numImagens = 5;
+
+                // Chama a classe GoogleImagens para buscar múltiplas imagens
+                List<String> urlsImagens = GoogleImagens.buscarImagens(termoPesquisa, numImagens);
+
+                // Criar uma lista de escolha para o usuário selecionar uma das imagens
+                ChoiceDialog<String> choiceDialog = new ChoiceDialog<>(urlsImagens.get(0), urlsImagens);
+                choiceDialog.setTitle("Escolha uma Imagem");
+                choiceDialog.setHeaderText("Selecione a imagem desejada:");
+                choiceDialog.setContentText("Imagens:");
+
+                choiceDialog.showAndWait().ifPresent(urlImagem -> {
+                    // Nome do arquivo para salvar a imagem
+                    String nomeArquivo = "imagemSelecionada_" + System.currentTimeMillis() + ".jpg"; // Nome único baseado no timestamp
+
+                    // Salva a imagem no diretório especificado
+                    try {
+                        String caminhoImagem = GoogleImagens.salvarImagem(urlImagem, nomeArquivo);
+                        Image imagem = new Image(new File(caminhoImagem).toURI().toString());
+                        imagemEscolhida.setImage(imagem);
+                        caminhoArquivoUsuario = new File(caminhoImagem); // Atualiza o caminho da imagem na variável
+                    } catch (IOException e) {
+                        mostrarAlerta(Alert.AlertType.ERROR, "Erro ao salvar imagem", "Erro ao salvar imagem: " + e.getMessage());
+                    }
+                });
+
+            } catch (Exception e) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Erro ao buscar imagem", "Erro ao buscar imagem: " + e.getMessage());
+            }
+        });
+    }
+
     @FXML
     void handllerButtonSalvarEdicao(ActionEvent event) {
         UsuarioChef usuarioChef = (UsuarioChef) Sessao.getUsuarioSessao();
@@ -214,6 +261,7 @@ public class FxEditarReceitasController {
             mostrarAlerta(Alert.AlertType.ERROR, "Erro ao atualizar receita", "Erro ao atualizar receita: " + e.getMessage());
         }
     }
+
     private void mostrarAlerta(Alert.AlertType tipoAlerta, String titulo, String mensagem) {
         Alert alerta = new Alert(tipoAlerta);
         alerta.setTitle(titulo);
@@ -221,49 +269,4 @@ public class FxEditarReceitasController {
         alerta.setContentText(mensagem);
         alerta.showAndWait();
     }
-    //Vou testar ainda e ajustar
-    @FXML
-    void handleBuscarImagemWeb() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Buscar Imagem no Google");
-        dialog.setHeaderText("Digite o termo de pesquisa para buscar imagens:");
-        dialog.setContentText("Pesquisa:");
-
-        dialog.showAndWait().ifPresent(termoPesquisa -> {
-            try {
-                // Número de imagens que você deseja buscar
-                int numImagens = 5;
-
-                // Chama a classe GoogleImagens para buscar múltiplas imagens
-                List<String> urlsImagens = GoogleImagens.buscarImagens(termoPesquisa, numImagens);
-
-                // Criar uma lista de escolha para o usuário selecionar uma das imagens
-                ChoiceDialog<String> choiceDialog = new ChoiceDialog<>(urlsImagens.get(0), urlsImagens);
-                choiceDialog.setTitle("Escolha uma Imagem");
-                choiceDialog.setHeaderText("Selecione a imagem desejada:");
-                choiceDialog.setContentText("Imagens:");
-
-                choiceDialog.showAndWait().ifPresent(urlImagem -> {
-                    // Nome do arquivo para salvar a imagem
-                    String nomeArquivo = "imagemSelecionada_" + System.currentTimeMillis() + ".jpg"; // Nome único baseado no timestamp
-
-                    // Salva a imagem no diretório especificado
-                    try {
-                        String caminhoImagem = GoogleImagens.salvarImagem(urlImagem, nomeArquivo);
-                        Image imagem = new Image(new File(caminhoImagem).toURI().toString());
-                        imagemEscolhida.setImage(imagem);
-                        caminhoArquivoUsuario = new File(caminhoImagem); // Atualiza o caminho da imagem na variável
-                    } catch (IOException e) {
-                        mostrarAlerta(Alert.AlertType.ERROR, "Erro ao salvar imagem", "Erro ao salvar imagem: " + e.getMessage());
-                    }
-                });
-
-            } catch (Exception e) {
-                mostrarAlerta(Alert.AlertType.ERROR, "Erro ao buscar imagem", "Erro ao buscar imagem: " + e.getMessage());
-            }
-        });
-    }
-
-
-
 }
