@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -32,6 +34,9 @@ public class FxEditarReceitasController {
     private ImageView imagemEscolhida;
 
     @FXML
+    private ListView<ItemIngrediente> listViewItemnsIngredientes;
+
+    @FXML
     private ChoiceBox<Ingrediente> choicheBoxIngrediente;
     @FXML
     private ChoiceBox<UnidadeMedida> choiceBoxUnidadeDeMedida;
@@ -40,7 +45,7 @@ public class FxEditarReceitasController {
     private TextField textFieldQuantidade, textFieldTitulo, textFieldTempodDePreapro,textFieldCateogira, textFieldNomeIngrediente;
 
     @FXML
-    private TextArea textAreaItemnsIngredientes, textAreaPreparo;
+    private TextArea textAreaPreparo;
 
     List<ItemIngrediente> itemIngredientes = new ArrayList<>();
     private final Controle controle = ControleFactory.criarControleGeral();
@@ -93,7 +98,8 @@ public class FxEditarReceitasController {
         for (ItemIngrediente linhaIngrediente : receita.getIngredientes()){
             ingredientesReceita = ingredientesReceita.concat(linhaIngrediente + "\n");
         }
-        textAreaItemnsIngredientes.setText(ingredientesReceita);
+
+        listViewItemnsIngredientes.getItems().addAll(receita.getIngredientes());
         itemIngredientes.addAll(receita.getIngredientes());
 
     }
@@ -113,9 +119,7 @@ public class FxEditarReceitasController {
             ItemIngrediente itemIngrediente = controle.criarItemIngrediente(ingrediente, quantidade, unidadeMedida);
 
             //mostra o item criado
-            String textoItem = textAreaItemnsIngredientes.getText();
-            textoItem = textoItem + itemIngrediente + "\n";
-            textAreaItemnsIngredientes.setText(textoItem);
+            listViewItemnsIngredientes.getItems().add(itemIngrediente);
             itemIngredientes.add(itemIngrediente);
 
             //limpa os valores do item ingrediente
@@ -260,6 +264,17 @@ public class FxEditarReceitasController {
         } catch (Exception e) {
             mostrarAlerta(Alert.AlertType.ERROR, "Erro ao atualizar receita", "Erro ao atualizar receita: " + e.getMessage());
         }
+    }
+
+    @FXML
+    void keyPressedListView(KeyEvent event) {
+        if (event.getCode() == KeyCode.BACK_SPACE){
+            ItemIngrediente itemSelecionado = listViewItemnsIngredientes.getSelectionModel().getSelectedItem();
+            listViewItemnsIngredientes.getItems().remove(itemSelecionado);
+            itemIngredientes.remove(itemSelecionado);
+
+        }
+
     }
 
     private void mostrarAlerta(Alert.AlertType tipoAlerta, String titulo, String mensagem) {
