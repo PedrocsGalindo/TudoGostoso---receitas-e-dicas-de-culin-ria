@@ -120,6 +120,9 @@ public class Controle {
     public List<Ingrediente> buscarIngrediente(){
         return controleIngrediente.buscarIngrediente();
     }
+    public List<Ingrediente> sugestaoIngrediente(String ingredinte){
+        controleIngrediente.sugestaoIngrediente(ingredinte);
+    }
 
     //metodos de ControleUnidadeDeMedida
     public List<UnidadeMedida> buscarUnidadeDeMedida(){

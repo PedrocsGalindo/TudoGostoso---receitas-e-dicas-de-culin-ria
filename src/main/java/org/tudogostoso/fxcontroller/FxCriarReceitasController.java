@@ -31,18 +31,20 @@ public class FxCriarReceitasController {
     private Button arquivos;
 
     @FXML
-    private Text textIngrediente, textUnidadeDeMedida;
+    private Text textUnidadeDeMedida;
 
     @FXML
     private ImageView imagemEscolhida;
 
     @FXML
-    private ChoiceBox<Ingrediente> choicheBoxIngrediente;
-    @FXML
     private ChoiceBox<UnidadeMedida> choiceBoxUnidadeDeMedida;
 
     @FXML
     private TextField textFieldQuantidade, textFieldTitulo, textFieldTempodDePreapro,textFieldCateogira, textFieldNomeIngrediente;
+
+    @FXML
+    private TextField textFieldIngrediente;
+    private ContextMenu sugestoes;
 
     @FXML
     private ListView<ItemIngrediente> listViewItemnsIngredientes;
@@ -54,32 +56,58 @@ public class FxCriarReceitasController {
     private final Controle controle = ControleFactory.criarControleGeral();
     private File caminhoArquivoUsuario;
     private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
+    private List<String> listaDeSugestoes;
 
     @FXML
     public void initialize() {
         Sessao.setUsuarioSessao(controle.recuperarUsuarioPorId(3));
         List<Ingrediente> ingredientes = controle.buscarIngrediente();
-        ObservableList<Ingrediente> observableIngredientes = FXCollections.observableArrayList(ingredientes);
         List<UnidadeMedida> unidadesDeMedida = controle.buscarUnidadeDeMedida();
         ObservableList<UnidadeMedida> observableUnidadesDeMedida = FXCollections.observableArrayList(unidadesDeMedida);
 
-        choicheBoxIngrediente.setItems(observableIngredientes);
         choiceBoxUnidadeDeMedida.setItems(observableUnidadesDeMedida);
 
         imagemEscolhida.setImage(new Image(new File("src/main/resources/org/tudogostoso/Imagens/fotoDefaultReceitas.jpg").getAbsolutePath()));
 
-        choicheBoxIngrediente.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            // Verifica se um valor foi selecionado
-            if (newValue != null) {
-                textIngrediente.setVisible(false); // Oculta o texto
-            }
-        });
         choiceBoxUnidadeDeMedida.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             // Verifica se um valor foi selecionado
             if (newValue != null) {
                 textUnidadeDeMedida.setVisible(false); // Oculta o texto
             }
         });
+    }
+
+    @FXML
+    void enquantoDigita() {
+
+        if (sugestoes == null) {
+            sugestoes = new ContextMenu();
+        }
+        String textoDigitado = textFieldIngrediente.getText();
+        sugestoes.getItems().clear();
+        listaDeSugestoes = controle.sugestaoIngrediente(textoDigitado);
+
+
+        // Adiciona as sugestões ao ContextMenu
+        if (listaDeSugestoes != null && !listaDeSugestoes.isEmpty()) {
+            for (String sugestao : listaDeSugestoes) {
+                MenuItem item = new MenuItem(sugestao);
+                //evento de seleção
+                item.setOnAction(e -> {
+                    textFieldIngrediente.setText(sugestao);
+                    sugestoes.hide();
+                });
+                sugestoes.getItems().add(item);
+            }
+
+            // A posição do ContextMenu definida não influencia onde ele aparecera na tela
+            double x = textFieldIngrediente.localToScene(0, 0).getX() + textFieldIngrediente.getScene().getWindow().getX() + textFieldIngrediente.getLayoutX();
+            double y = textFieldIngrediente.localToScene(0, 0).getY() + textFieldIngrediente.getScene().getWindow().getY() + textFieldIngrediente.getLayoutY() + textFieldIngrediente.getHeight();
+
+            sugestoes.show(textFieldIngrediente, x, y);
+        } else {
+            sugestoes.hide(); //se não houver sugestões
+        }
     }
 
     @FXML
@@ -90,7 +118,7 @@ public class FxCriarReceitasController {
     @FXML
     void handllerButtonAdicionarItemIngrediente() {
         //pega o ingrediente e a unidade de medida
-        Ingrediente ingrediente = choicheBoxIngrediente.getValue();
+        Ingrediente ingrediente = controle.buscarIngredientePorNome(textFieldIngrediente.getText());
         UnidadeMedida unidadeMedida = choiceBoxUnidadeDeMedida.getValue();
         try {
             //cria o Item ingrediente
@@ -102,11 +130,10 @@ public class FxCriarReceitasController {
             itemIngredientes.add(itemIngrediente);
 
             //limpa os valores do item ingrediente
-            choicheBoxIngrediente.setValue(null);
+            textFieldIngrediente.clear();
             choiceBoxUnidadeDeMedida.setValue(null);
             textFieldQuantidade.clear();
             textUnidadeDeMedida.setVisible(true);
-            textIngrediente.setVisible(true);
 
         }catch (NullPointerException e ){
             mostrarAlerta(Alert.AlertType.ERROR, "Campo vazio", "Algum dos campos para adicionar item esta vazio");
@@ -121,9 +148,7 @@ public class FxCriarReceitasController {
     void handllerButtonCriarIngrediente() {
         try {
             String nomeIngrediente = textFieldNomeIngrediente.getText();
-            Ingrediente ingrediente = controle.criarIngrediente(nomeIngrediente);
-            ObservableList<Ingrediente> lista = choicheBoxIngrediente.getItems();
-            lista.add(ingrediente);
+            controle.criarIngrediente(nomeIngrediente);
             textFieldNomeIngrediente.clear();
 
         } catch (ObjetoJaExiste e ) {
