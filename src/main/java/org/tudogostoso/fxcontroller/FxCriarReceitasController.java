@@ -61,7 +61,6 @@ public class FxCriarReceitasController {
     @FXML
     public void initialize() {
         Sessao.setUsuarioSessao(controle.recuperarUsuarioPorId(3));
-        List<Ingrediente> ingredientes = controle.buscarIngrediente();
         List<UnidadeMedida> unidadesDeMedida = controle.buscarUnidadeDeMedida();
         ObservableList<UnidadeMedida> observableUnidadesDeMedida = FXCollections.observableArrayList(unidadesDeMedida);
 
@@ -178,6 +177,7 @@ public class FxCriarReceitasController {
 
 
     }
+
     @FXML
     void handllerButtonCriarReceita(ActionEvent event) {
 
