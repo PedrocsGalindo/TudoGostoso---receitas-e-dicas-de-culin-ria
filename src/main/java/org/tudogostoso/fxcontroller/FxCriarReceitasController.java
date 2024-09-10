@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -43,7 +45,10 @@ public class FxCriarReceitasController {
     private TextField textFieldQuantidade, textFieldTitulo, textFieldTempodDePreapro,textFieldCateogira, textFieldNomeIngrediente;
 
     @FXML
-    private TextArea textAreaItemnsIngredientes, textAreaPreparo;
+    private ListView<ItemIngrediente> listViewItemnsIngredientes;
+
+    @FXML
+    private TextArea textAreaPreparo;
 
     List<ItemIngrediente> itemIngredientes = new ArrayList<>();
     private final Controle controle = ControleFactory.criarControleGeral();
@@ -87,13 +92,15 @@ public class FxCriarReceitasController {
         Ingrediente ingrediente = choicheBoxIngrediente.getValue();
         UnidadeMedida unidadeMedida = choiceBoxUnidadeDeMedida.getValue();
         try {
+            //cria o Item ingrediente
             double quantidade = Double.parseDouble(textFieldQuantidade.getText());
             ItemIngrediente itemIngrediente = controle.criarItemIngrediente(ingrediente, quantidade, unidadeMedida);
 
-            String textoItem = textAreaItemnsIngredientes.getText();
-            textoItem = textoItem + itemIngrediente + "\n";
-            textAreaItemnsIngredientes.setText(textoItem);
+            //mostra o item criado
+            listViewItemnsIngredientes.getItems().add(itemIngrediente);
             itemIngredientes.add(itemIngrediente);
+
+            //limpa os valores do item ingrediente
             choicheBoxIngrediente.setValue(null);
             choiceBoxUnidadeDeMedida.setValue(null);
             textFieldQuantidade.clear();
@@ -213,6 +220,16 @@ public class FxCriarReceitasController {
                 mostrarAlerta(Alert.AlertType.ERROR, "Erro ao buscar imagem", "Erro ao buscar imagem: " + e.getMessage());
             }
         });
+    }
+
+    @FXML
+    void keyPressedListView(KeyEvent event) {
+        //para de mostrar o item selecionado e o retira da lista de itensIngrediente
+        if (event.getCode() == KeyCode.BACK_SPACE){
+            ItemIngrediente itemSelecionado = listViewItemnsIngredientes.getSelectionModel().getSelectedItem();
+            listViewItemnsIngredientes.getItems().remove(itemSelecionado);
+            itemIngredientes.remove(itemSelecionado);
+        }
     }
 
     private void mostrarAlerta(Alert.AlertType tipoAlerta, String titulo, String mensagem) {
