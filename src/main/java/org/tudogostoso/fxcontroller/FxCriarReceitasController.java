@@ -89,6 +89,7 @@ public class FxCriarReceitasController {
 
     @FXML
     void handllerButtonAdicionarItemIngrediente() {
+        //pega o ingrediente e a unidade de medida
         Ingrediente ingrediente = choicheBoxIngrediente.getValue();
         UnidadeMedida unidadeMedida = choiceBoxUnidadeDeMedida.getValue();
         try {
@@ -154,17 +155,22 @@ public class FxCriarReceitasController {
     }
     @FXML
     void handllerButtonCriarReceita(ActionEvent event) {
+
+        //valores necessarios para crair uma receita
         UsuarioChef usuarioChef = (UsuarioChef) Sessao.getUsuarioSessao();
         String titulo = textFieldTitulo.getText();
         String tempoPreparo = textFieldTempodDePreapro.getText();
         String categoria = textFieldCateogira.getText();
-        //tem que separar cada etapa por linha
+
+        // separa o array usando a quebra de linha como parametro
         List<String> preparo = Arrays.asList(textAreaPreparo.getText().split("\n"));
         try {
+            //se o usuario tiver selecionado uma imagem
             if (caminhoArquivoUsuario.exists() && caminhoArquivoUsuario != null) {
                 String caminhoImagem = controle.salvarImagem(caminhoArquivoUsuario, usuarioChef.getNome() + titulo.replace(" ", ""));
                 controle.criarReceita(titulo, usuarioChef, itemIngredientes, preparo, tempoPreparo, categoria, caminhoImagem);
                 mostrarAlerta(Alert.AlertType.CONFIRMATION, "Receita criada com sucesso", "Sua Receita "+ titulo +" foi criada com sucesso");
+
             } else {
                 controle.criarReceita(titulo, usuarioChef, itemIngredientes, preparo, tempoPreparo, categoria);
                 mostrarAlerta(Alert.AlertType.CONFIRMATION, "Receita criada com sucesso", "Sua Receita "+ titulo +" foi criada com sucesso");
