@@ -89,8 +89,6 @@ public class MainApplication extends Application {
             System.out.println(e.getMessage());
         }
 
-
-
         launch();
     }
 }
