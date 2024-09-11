@@ -82,7 +82,7 @@ public class Controle {
         controleUsuario.removerReceitaFavorita(usuario, receita);
     }
 
-    public  Usuario criarUsuario(String nome, String senha, String email, String cpf) throws AddressException, NullPointerException, UsuarioJaExistenteException  {return this.controleUsuario.criarUsuario(nome, senha, email, cpf);}
+    public  Usuario criarUsuario(String nome, String senha, String email, String cpf) throws IllegalArgumentException, AddressException, NullPointerException, UsuarioJaExistenteException  {return this.controleUsuario.criarUsuario(nome, senha, email, cpf);}
     public UsuarioChef criarUsuarioChef(Usuario usuario) throws NullPointerException{return controleUsuario.criarUsuarioChef(usuario);}
     public void addReceitafav(Usuario usuario, Receita receita){
         controleUsuario.addReceitasFav(usuario,receita);

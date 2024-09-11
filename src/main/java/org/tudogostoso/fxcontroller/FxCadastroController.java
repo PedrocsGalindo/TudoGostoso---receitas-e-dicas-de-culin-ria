@@ -38,7 +38,7 @@ public class FxCadastroController {
         String cpf = campoCpf.getText();
 
         //validações, vai criar o usuario
-        try{
+        try {
             usuario = controle.criarUsuario(nomeUsuario, senha, email, cpf);
 
             //caso for UsuarioChef
@@ -46,12 +46,12 @@ public class FxCadastroController {
                 try {
                     Sessao.setUsuarioSessao(controle.criarUsuarioChef(usuario));
                     limparCampos();
-                    tipoUsuario  = "Usuário Chef";
+                    tipoUsuario = "Usuário Chef";
                     mostrarAlerta(AlertType.INFORMATION, "Cadastro Realizado",
                             "UsuárioChef: " + usuario + "\nEmail: " + email + "\nSenha: " + senha + "\nTipo de Usuário: "
                                     + tipoUsuario);
                     gerenciadorTelas.mudarTela("feed", event);
-                } catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     //mensagem de erro, esse erro acontece pq o usuario que usou para criar o Usuairio Chef é vazio
                 }
 
@@ -64,6 +64,9 @@ public class FxCadastroController {
                 limparCampos();
                 gerenciadorTelas.mudarTela("feed", event);
             }
+        } catch (IllegalArgumentException e) {
+            mostrarAlerta(AlertType.ERROR, "cpf invalido",
+                    e.getMessage());
         } catch (NullPointerException e){
             mostrarAlerta(AlertType.ERROR, "Campo vazio",
                     "Um dos campos esta vazio, por favor preencha todos com suas informações");

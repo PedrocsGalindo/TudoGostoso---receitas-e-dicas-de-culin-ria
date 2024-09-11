@@ -92,12 +92,14 @@ public class ControleUsuario {
         repositorio.update(usuario);
     }
 
-    public Usuario criarUsuario(String nome, String senha, String email, String cpf) throws AddressException, NullPointerException, UsuarioJaExistenteException {
+    public Usuario criarUsuario(String nome, String senha, String email, String cpf) throws IllegalArgumentException, AddressException, NullPointerException, UsuarioJaExistenteException {
         InternetAddress emailAddress = new InternetAddress(email);
         emailAddress.validate();
 
         if (nome.isEmpty() || senha.isEmpty() || email.isEmpty() || cpf.isEmpty()) {
             throw new NullPointerException();
+        } else if (cpf.length() != 11){
+            throw new IllegalArgumentException("cpf invalido");
         }
 
         int id = getLastId() + 1;

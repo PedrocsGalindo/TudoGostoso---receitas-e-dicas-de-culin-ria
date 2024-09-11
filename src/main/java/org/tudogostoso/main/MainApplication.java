@@ -31,7 +31,7 @@ public class MainApplication extends Application {
         Controle controle = ControleFactory.criarControleGeral();
 
         try {
-            Usuario pedro = controle.criarUsuario("pedro", "4315","pedrocgsouza23@gmail", "31321");
+            Usuario pedro = controle.criarUsuario("pedro", "4315","pedrocgsouza23@gmail", "31321574812");
         }catch (AddressException e) {
             System.out.println("email invalido");
         } catch (NullPointerException e){
@@ -40,7 +40,7 @@ public class MainApplication extends Application {
             System.out.println(e.getMessage());
         }
         try {
-            Usuario caio = controle.criarUsuario("caio", "4315","pedrocgsouza4fc@gmail", "123141");
+            Usuario caio = controle.criarUsuario("caio", "4315","pedrocgsouza4fc@gmail", "12314114785");
         }catch (AddressException e) {
             System.out.println("email invalido");
         } catch (NullPointerException e){
@@ -49,7 +49,7 @@ public class MainApplication extends Application {
             System.out.println(e.getMessage());
         }
         try {
-            Usuario joaquim = controle.criarUsuario("Joaquim", "senha", "cesarpedrog23@gmail","3214");
+            Usuario joaquim = controle.criarUsuario("Joaquim", "senha", "cesarpedrog23@gmail","32146425873");
         }catch (AddressException e) {
             System.out.println("email invalido");
         } catch (NullPointerException e){
