@@ -130,28 +130,27 @@ public class ControleUsuario {
         atualizarUsuario(usuario);
     }
 
-    public void criarAvalizacao(int nota, String comentario, Usuario usuario, Receita receita) throws NullPointerException {
-        if (!comentario.isEmpty()) {
-            if (usuario != null) {
-                int id = controleAvaliacao.getLastId() + 1;
-                Avaliacao avaliacao = new Avaliacao(nota, comentario, usuario, receita, id);
-
-                UsuarioChef autor = receita.getAutor();
-                receita.adicioarAvaliacao(avaliacao);
-                List<Receita> receitas = autor.getMinhasReceitas();
-                int indice = receitas.indexOf(receita);
-                if (indice != -1) {
-                    receitas.set(indice, receita);
+    public void criarAvalizacao(int nota, String comentario, Boolean conzinhou, Usuario usuario, Receita receita) throws NullPointerException {
+            if (!comentario.isEmpty()) {
+                if (usuario != null) {
+                    int id = controleAvaliacao.getLastId() + 1;
+                    Avaliacao avaliacao = new Avaliacao(nota, comentario, conzinhou, usuario, receita, id);
+                    UsuarioChef autor = receita.getAutor();
+                    receita.adicioarAvaliacao(avaliacao);
+                    List<Receita> receitas = autor.getMinhasReceitas();
+                    int indice = receitas.indexOf(receita);
+                    if (indice != -1) {
+                        receitas.set(indice, receita);
+                    }
+                    controleReceita.atualizarReceita(receita);
+                    controleAvaliacao.salvar(avaliacao);
+                    atualizarUsuario(autor);
+                } else {
+                    throw new NullPointerException("Usuário é null");
                 }
-                controleReceita.atualizarReceita(receita);
-                controleAvaliacao.salvar(avaliacao);
-                atualizarUsuario(autor);
             } else {
-                throw new NullPointerException("Usuário é null");
+                throw new NullPointerException("Comentário está vazio");
             }
-        } else {
-            throw new NullPointerException("Comentário está vazio");
-        }
     }
 
     public Ingrediente criarIngrediente(String nome) throws ObjetoJaExiste, NullPointerException {

@@ -87,8 +87,8 @@ public class Controle {
     public void addReceitafav(Usuario usuario, Receita receita){
         controleUsuario.addReceitasFav(usuario,receita);
     }
-    public void criarAvaliacao(int nota, String comentario, Usuario usuario, Receita receita) throws NullPointerException{
-        controleUsuario.criarAvalizacao(nota, comentario, usuario, receita);
+    public void criarAvaliacao(int nota, String comentario, Boolean conzinhou, Usuario usuario, Receita receita) throws NullPointerException{
+        controleUsuario.criarAvalizacao(nota, comentario, conzinhou, usuario, receita);
     }
     public Ingrediente criarIngrediente(String nome) throws ObjetoJaExiste, NullPointerException {return this.controleUsuario.criarIngrediente(nome);}
     public ItemIngrediente criarItemIngrediente(Ingrediente ingrediente, double quantidade, UnidadeMedida medida) throws NullPointerException{

@@ -34,6 +34,9 @@ public class FxReceitaController {
     private ChoiceBox<Integer> choiceBoxNota;
 
     @FXML
+    private CheckBox checkBoxCozinhou;
+
+    @FXML
     private TextField textFiledComentario;
 
     List<ItemIngrediente> ingredientes;
@@ -48,7 +51,12 @@ public class FxReceitaController {
         List<Avaliacao> avaliacaos = receita.getAvaliacoes();
         if (!avaliacaos.isEmpty()) {
             for (Avaliacao avaliacao : avaliacaos) {
-                stringAvaliacoes.append(avaliacao.getComentario()).append("\nNota: ").append(avaliacao.getNota()).append("\n");
+                if (avaliacao.getCozinhou()) {
+                    stringAvaliacoes.append(avaliacao.getComentario()).append("\n").append(avaliacao.getUsuario().getNome()).append(" cozinhou").append("     Nota: ").append(avaliacao.getNota()).append("\n");
+                } else {
+                    stringAvaliacoes.append(avaliacao.getComentario()).append("\n").append(avaliacao.getUsuario().getNome()).append("     Nota: ").append(avaliacao.getNota()).append("\n");
+                }
+
             }
             textAreaAvaliacoes.setText(stringAvaliacoes.toString());
         }
@@ -79,9 +87,9 @@ public class FxReceitaController {
         String preparo = String.join("\n\n " , receita.getPreparo());
         textAreaPreparo.setText(preparo);
 
-        ObservableList<Integer> opçõesNota = FXCollections.observableArrayList(Arrays.asList(0, 1, 2, 3, 4, 5));
+        ObservableList<Integer> opcoesNota = FXCollections.observableArrayList(Arrays.asList(0, 1, 2, 3, 4, 5));
         choiceBoxNota.setValue(5);
-        choiceBoxNota.setItems(opçõesNota);
+        choiceBoxNota.setItems(opcoesNota);
 
     }
 
@@ -118,13 +126,15 @@ public class FxReceitaController {
     }
 
     @FXML
-    void handllerBotaoAvaliar(ActionEvent event) {
+    void handllerBotaoAvaliar() {
         String comentario = textFiledComentario.getText();
         int nota = choiceBoxNota.getValue();
+        boolean cozinhou = checkBoxCozinhou.isSelected();
         try {
-            controle.criarAvaliacao(nota, comentario, usuario, receita);
+            controle.criarAvaliacao(nota, comentario, cozinhou, usuario, receita);
+
             setComentarios(receita);
-            textNota.setText(String.valueOf(receita.getNota() + "/5"));
+            textNota.setText(receita.getNota() + "/5");
 
         } catch (NullPointerException e) {
             Alert alertaCriarAvaliacao = new Alert(Alert.AlertType.ERROR);

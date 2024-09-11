@@ -6,22 +6,24 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 @Getter@Setter@ToString
+
 public class Avaliacao implements Serializable {
     private final int id;
     private int nota;
     private String comentario;
     private final LocalDateTime data;
+    private final Boolean cozinhou;
     private final Usuario usuario;
     private final Receita receita;
 
 
-    public Avaliacao(int nota, String comentario, Usuario usuario, Receita receita, int id) {
+    public Avaliacao(int nota, String comentario, Boolean cozinhou, Usuario usuario, Receita receita, int id) {
         this.id = id;
         this.nota = nota;
         this.comentario = comentario;
         this.data = LocalDateTime.now();
+        this.cozinhou = cozinhou;
         this.usuario = usuario;
         this.receita = receita;
     }
