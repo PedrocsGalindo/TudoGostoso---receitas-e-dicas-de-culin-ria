@@ -56,16 +56,22 @@
          <children>
             <Button mnemonicParsing="false" onAction="#handllerButtonAdicionarItemIngrediente" text="Adicionar" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#HandllerButtonVoltar" text="Voltar" GridPane.halignment="CENTER" />
-            <ChoiceBox fx:id="choicheBoxIngrediente" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ChoiceBox fx:id="choiceBoxUnidadeDeMedida" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <TextField fx:id="textFieldQuantidade" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Text fx:id="textIngrediente" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrediente" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <TextField fx:id="textFieldQuantidade" prefHeight="0.0" prefWidth="149.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></TextField>
             <Text fx:id="textUnidadeDeMedida" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidade de Medida" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             <ListView fx:id="listViewItemnsIngredientes" onKeyPressed="#keyPressedListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowSpan="2">
                <GridPane.margin>
                   <Insets top="10.0" />
                </GridPane.margin>
             </ListView>
+            <TextField fx:id="textFieldIngrediente" onKeyReleased="#enquantoDigita" prefHeight="24.0" prefWidth="38.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </TextField>
          </children>
       </GridPane>
       <GridPane prefHeight="203.0" prefWidth="476.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
