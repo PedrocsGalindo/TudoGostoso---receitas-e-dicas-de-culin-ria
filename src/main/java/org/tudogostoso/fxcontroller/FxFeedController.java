@@ -28,6 +28,16 @@ public class FxFeedController {
 
     @FXML
     private VBox feed;
+    @FXML
+    private Button btnVerMais;
+
+    @FXML
+    void handleVerMais(ActionEvent event) {
+        Receita selectedReceita = feedList.getSelectionModel().getSelectedItem();
+        if (selectedReceita != null) {
+            mostrarMaisInformacoes(event, selectedReceita);
+        }
+    }
 
     @FXML
     private Button BTRPerfil, BTNBuscarReceitas;
@@ -97,7 +107,7 @@ public class FxFeedController {
         private Label titulo;
         private Label categoria;
         private Label notaMedia;
-        private Button verButton;
+
 
         public FeedReceitaListCell() {
             super();
@@ -114,18 +124,12 @@ public class FxFeedController {
             notaMedia = new Label();
             notaMedia.setStyle("-fx-font-size: 12px; -fx-text-fill: green;");
 
-            verButton = new Button("Ver Receita");
-            verButton.getStyleClass().add("button");
-            verButton.setOnAction(e -> {
-                if (getItem() != null) {
-                    mostrarMaisInformacoes(e, getItem());
-                }
-            });
+
 
             vBox = new VBox(titulo, categoria, notaMedia);
             vBox.setSpacing(5);
 
-            content = new HBox(imageView, vBox, verButton);
+            content = new HBox(imageView, vBox);
             content.setSpacing(10);
         }
 

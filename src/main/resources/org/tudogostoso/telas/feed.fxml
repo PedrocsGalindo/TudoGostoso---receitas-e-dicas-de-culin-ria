@@ -72,6 +72,7 @@
                     </children>
                 </GridPane>
                 <ListView fx:id="feedList" prefHeight="500.0" prefWidth="700.0" />
+                <Button fx:id="btnVerMais" text="Ver Receita" onAction="#handleVerMais" />
             </children>
         </VBox>
         <Text fill="#76c976" strokeType="OUTSIDE" strokeWidth="0.0" text="TudoGostoso" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
