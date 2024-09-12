@@ -42,7 +42,10 @@ public class FxReceitasFavoritasController {
         for (Receita receita : receitasUsuario) {
             receitaVerificada = controle.buscarReceitaPorAutorETitulo(receita.getAutor().getNome(), receita.getTitulo());
             recetiasFavoritasUsuario.add(receitaVerificada);
+            usuario.getReceitasFav().remove(receita);
+            usuario.getReceitasFav().add(receitaVerificada);
         }
+        controle.atualizarUsuario(usuario);
 
         favoritosList = FXCollections.observableArrayList();
         listaFavoritos.setItems(favoritosList);
