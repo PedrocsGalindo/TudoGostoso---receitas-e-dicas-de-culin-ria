@@ -194,9 +194,12 @@ public class FxCriarReceitasController {
 
         // separa o array usando a quebra de linha como parametro
         List<String> preparo = Arrays.asList(textAreaPreparo.getText().split("\n"));
+
+        System.out.println(caminhoArquivoUsuario);
+
         try {
             //se o usuario tiver selecionado uma imagem
-            if (caminhoArquivoUsuario.exists() && caminhoArquivoUsuario != null) {
+            if (caminhoArquivoUsuario != null) {
                 String caminhoImagem = controle.salvarImagem(caminhoArquivoUsuario, usuarioChef.getNome() + titulo.replace(" ", ""));
                 controle.criarReceita(titulo, usuarioChef, itemIngredientes, preparo, tempoPreparo, categoria, caminhoImagem);
                 mostrarAlerta(Alert.AlertType.CONFIRMATION, "Receita criada com sucesso", "Sua Receita "+ titulo +" foi criada com sucesso");
