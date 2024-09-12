@@ -51,16 +51,19 @@ public class FxReceitaController {
         List<Avaliacao> avaliacaos = receita.getAvaliacoes();
         if (!avaliacaos.isEmpty()) {
             for (Avaliacao avaliacao : avaliacaos) {
+                stringAvaliacoes.append(avaliacao.getUsuario().getNome()).append("\n");
+                stringAvaliacoes.append(avaliacao.getComentario()).append("\n");
                 if (avaliacao.getCozinhou()) {
-                    stringAvaliacoes.append(avaliacao.getComentario()).append("\n").append(avaliacao.getUsuario().getNome()).append(" cozinhou").append("     Nota: ").append(avaliacao.getNota()).append("\n");
+                    stringAvaliacoes.append("Cozinhou");
                 } else {
-                    stringAvaliacoes.append(avaliacao.getComentario()).append("\n").append(avaliacao.getUsuario().getNome()).append("     Nota: ").append(avaliacao.getNota()).append("\n");
+                    stringAvaliacoes.append("Não cozinhou");
                 }
-
+                stringAvaliacoes.append("     Nota: ").append(avaliacao.getNota()).append("\n\n");
             }
             textAreaAvaliacoes.setText(stringAvaliacoes.toString());
         }
     }
+
 
     @FXML
     public void initialize() {
