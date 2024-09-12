@@ -13,10 +13,9 @@ import java.util.Map;
 
 public class FxGerenciadorTelas {
 
-    private static FxGerenciadorTelas instancia = new FxGerenciadorTelas();
-    private Stage stage;
-    private Map<String, String> caminhosDasTelas = new HashMap<>();
-    private Map<String, String> titulosDasTelas = new HashMap<>();
+    private static final FxGerenciadorTelas instancia = new FxGerenciadorTelas();
+    private final Map<String, String> caminhosDasTelas = new HashMap<>();
+    private final Map<String, String> titulosDasTelas = new HashMap<>();
 
     // Inicializando e carregando as telas na inicialização, para adicionar as telas seguintes, deve ser seguido os exemplos
     private FxGerenciadorTelas() {
@@ -49,7 +48,7 @@ public class FxGerenciadorTelas {
                 String caminhoFXML = caminhosDasTelas.get(nomeTela);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(caminhoFXML));
                 Parent tela = loader.load(); // Carregar uma nova instância de Parent
-                stage = (Stage) ((Node) evento.getSource()).getScene().getWindow();
+                Stage stage = (Stage) ((Node) evento.getSource()).getScene().getWindow();
                 Scene novaCena = new Scene(tela);
                 stage.setScene(novaCena);
                 stage.setTitle(titulosDasTelas.getOrDefault(nomeTela, nomeTela)); // Definindo o título da tela

@@ -28,7 +28,7 @@ public class FxEditarReceitasController {
     private Button arquivos;
 
     @FXML
-    private Text textIngrediente, textUnidadeDeMedida;
+    private Text textUnidadeDeMedida;
 
     @FXML
     private ImageView imagemEscolhida;
@@ -54,14 +54,11 @@ public class FxEditarReceitasController {
     private File caminhoArquivoUsuario;
     private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
     private final Receita receita = Sessao.getReceitaSessao();
-    private List<String> listaDeSugestoes;
 
     @FXML
     public void initialize() {
 
-        //configura as listas de ingredientes e unidades de medidas
-        List<Ingrediente> ingredientes = controle.buscarIngrediente();
-        ObservableList<Ingrediente> observableIngredientes = FXCollections.observableArrayList(ingredientes);
+        //configura as listas de unidades de medidas
         List<UnidadeMedida> unidadesDeMedida = controle.buscarUnidadeDeMedida();
         ObservableList<UnidadeMedida> observableUnidadesDeMedida = FXCollections.observableArrayList(unidadesDeMedida);
 
@@ -108,7 +105,7 @@ public class FxEditarReceitasController {
         }
         String textoDigitado = textFieldIngrediente.getText();
         sugestoes.getItems().clear();
-        listaDeSugestoes = controle.sugestaoIngrediente(textoDigitado);
+        List<String> listaDeSugestoes = controle.sugestaoIngrediente(textoDigitado);
 
 
         // Adiciona as sugestões ao ContextMenu
@@ -162,7 +159,6 @@ public class FxEditarReceitasController {
             choiceBoxUnidadeDeMedida.setValue(null);
             textFieldQuantidade.clear();
             textUnidadeDeMedida.setVisible(true);
-            textIngrediente.setVisible(true);
 
         }catch (NullPointerException e ){
             mostrarAlerta(Alert.AlertType.ERROR, "Campo vazio", "Algum dos campos para adicionar item esta vazio");

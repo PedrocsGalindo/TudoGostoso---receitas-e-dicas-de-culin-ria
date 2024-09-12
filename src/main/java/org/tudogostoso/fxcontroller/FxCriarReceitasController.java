@@ -56,7 +56,6 @@ public class FxCriarReceitasController {
     private final Controle controle = ControleFactory.criarControleGeral();
     private File caminhoArquivoUsuario;
     private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
-    private List<String> listaDeSugestoes;
 
     @FXML
     public void initialize() {
@@ -84,7 +83,7 @@ public class FxCriarReceitasController {
         }
         String textoDigitado = textFieldIngrediente.getText();
         sugestoes.getItems().clear();
-        listaDeSugestoes = controle.sugestaoIngrediente(textoDigitado);
+        List<String> listaDeSugestoes = controle.sugestaoIngrediente(textoDigitado);
 
 
         // Adiciona as sugestões ao ContextMenu

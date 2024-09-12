@@ -3,7 +3,6 @@ package org.tudogostoso.fxcontroller;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -12,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.GridPane;
-import javafx.util.Callback;
 import org.tudogostoso.controle.Controle;
 import org.tudogostoso.controle.ControleFactory;
 import org.tudogostoso.modelo.Receita;
@@ -26,10 +24,6 @@ public class FxFeedController {
     @FXML
     private ListView<Receita> feedList; // Alterado para ListView<Receita> para permitir o uso de ReceitaListCell
 
-    @FXML
-    private VBox feed;
-    @FXML
-    private Button btnVerMais;
 
     @FXML
     void handleVerMais(ActionEvent event) {
@@ -38,9 +32,6 @@ public class FxFeedController {
             mostrarMaisInformacoes(event, selectedReceita);
         }
     }
-
-    @FXML
-    private Button BTRPerfil, BTNBuscarReceitas;
 
     @FXML
     private GridPane gridBTRPerfil, gridBTNBuscarReceitas;
@@ -54,12 +45,7 @@ public class FxFeedController {
 
 
         feedList.setItems(FXCollections.observableArrayList(receitas));
-        feedList.setCellFactory(new Callback<ListView<Receita>, ListCell<Receita>>() {
-            @Override
-            public ListCell<Receita> call(ListView<Receita> param) {
-                return new FeedReceitaListCell();
-            }
-        });
+        feedList.setCellFactory(param -> new FeedReceitaListCell());
     }
 
     private void mostrarMaisInformacoes(ActionEvent event, Receita receita) {
@@ -100,13 +86,12 @@ public class FxFeedController {
     }
 
     // Célula personalizada interna
-    private class FeedReceitaListCell extends ListCell<Receita> {
-        private HBox content;
-        private ImageView imageView;
-        private VBox vBox;
-        private Label titulo;
-        private Label categoria;
-        private Label notaMedia;
+    private static class FeedReceitaListCell extends ListCell<Receita> {
+        private final HBox content;
+        private final ImageView imageView;
+        private final Label titulo;
+        private final Label categoria;
+        private final Label notaMedia;
 
 
         public FeedReceitaListCell() {
@@ -125,8 +110,7 @@ public class FxFeedController {
             notaMedia.setStyle("-fx-font-size: 12px; -fx-text-fill: green;");
 
 
-
-            vBox = new VBox(titulo, categoria, notaMedia);
+            VBox vBox = new VBox(titulo, categoria, notaMedia);
             vBox.setSpacing(5);
 
             content = new HBox(imageView, vBox);
