@@ -84,7 +84,7 @@ public class MainApplication extends Application {
 
         List<String> preparo = List.of("bater", "juntar tudo");
         try{
-            controle.criarReceita("bolo", joaquimChef, ingredientes, preparo, "2min", "larica");
+            controle.criarReceita("bolo", joaquimChef, ingredientes, preparo, "2min", "Sobremesa");
         } catch (ReceitaJaExistenteException e){
             System.out.println(e.getMessage());
         }
