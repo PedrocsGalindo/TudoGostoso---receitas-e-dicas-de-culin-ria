@@ -36,7 +36,7 @@ public class FxReceitasFavoritasController {
         //verificação de existencia
         controle.verificacaoListaFav(usuario);
 
-        //verificação de edição
+        //verificação de edição, seria melhor um metodo de verificação detalhada em controle Usuario
         List<Receita> receitasUsuario = usuario.getReceitasFav();
         Receita receitaVerificada;
         for (Receita receita : receitasUsuario) {
