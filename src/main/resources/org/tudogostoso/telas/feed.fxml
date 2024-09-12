@@ -35,7 +35,7 @@
                 <Insets bottom="10.0" />
             </GridPane.margin>
         </GridPane>
-        <VBox id="feed" alignment="TOP_CENTER" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <VBox id="feed" alignment="TOP_CENTER" prefHeight="677.0" prefWidth="533.0" spacing="20.0" style="-fx-background-color: #76c976;" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <children>
                 <GridPane prefHeight="57.0" prefWidth="536.0" style="-fx-background-color: #90ee90; -fx-border-color: #76c976;">
                     <columnConstraints>
@@ -54,7 +54,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Button fx:id="BTRPerfil" mnemonicParsing="false" onAction="#meuPerfil" onMouseEntered="#mousePorCimaBotaoPerfil" onMouseExited="#mousePorForaBotaoPerfil" prefHeight="25.0" prefWidth="417.0" style="-fx-background-color: transparent; -fx-control-inner-background: transparent;" text="Meu perfil" GridPane.halignment="CENTER" />
+                                <Button fx:id="BTRPerfil" mnemonicParsing="false" onAction="#meuPerfil" onMouseEntered="#mousePorCimaBotaoPerfil" onMouseExited="#mousePorForaBotaoPerfil" prefHeight="32.0" prefWidth="260.0" style="-fx-background-color: transparent; -fx-control-inner-background: transparent;" text="Meu perfil" GridPane.halignment="CENTER" />
                             </children>
                         </GridPane>
 
@@ -71,9 +71,15 @@
                         </GridPane>
                     </children>
                 </GridPane>
-                <ListView fx:id="feedList" prefHeight="500.0" prefWidth="700.0" />
-                <Button fx:id="btnVerMais" text="Ver Receita" onAction="#handleVerMais" />
+                <ListView fx:id="feedList" prefHeight="436.0" prefWidth="533.0" style="-fx-background-color: f5f5dc;" />
+                <Button fx:id="btnVerMais" onAction="#handleVerMais" onMouseEntered="#mousePorCimaBotao" onMouseExited="#mousePorForaBotao" style="-fx-background-color: #90ee90;" text="Ver Receita">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin></Button>
             </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
         </VBox>
         <Text fill="#76c976" strokeType="OUTSIDE" strokeWidth="0.0" text="TudoGostoso" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
             <font>

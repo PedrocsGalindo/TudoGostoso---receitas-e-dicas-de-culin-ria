@@ -3,11 +3,13 @@ package org.tudogostoso.fxcontroller;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.GridPane;
@@ -83,6 +85,18 @@ public class FxFeedController {
     @FXML
     void mousePorForaBotaoPerfil() {
         gridBTRPerfil.setStyle("-fx-background-color: #90ee90; -fx-border-color: #5aa55a; -fx-border-width: 3px;");
+    }
+
+    @FXML
+    void mousePorCimaBotao(MouseEvent event) {
+        Button botao = (Button) event.getSource();
+        botao.setStyle("-fx-background-color: #5aa55a;");
+    }
+    @FXML
+    void mousePorForaBotao(MouseEvent event) {
+        Button botao = (Button) event.getSource();
+        botao.setStyle("-fx-background-color:   #90ee90;");
+
     }
 
     // Célula personalizada interna
