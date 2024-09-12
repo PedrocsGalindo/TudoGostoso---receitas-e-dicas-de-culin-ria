@@ -41,11 +41,7 @@ public class FxReceitasFavoritasController {
         Receita receitaVerificada;
         for (Receita receita : receitasUsuario) {
             receitaVerificada = controle.buscarReceitaPorAutorETitulo(receita.getAutor().getNome(), receita.getTitulo());
-            if (receitaVerificada != null){
-                recetiasFavoritasUsuario.add(receitaVerificada);
-            }else {
-                controle.removerReceitaFavorita(usuario, receita);
-            }
+            recetiasFavoritasUsuario.add(receitaVerificada);
         }
 
         favoritosList = FXCollections.observableArrayList();
@@ -93,7 +89,7 @@ public class FxReceitasFavoritasController {
     }
 
     @FXML
-    private void handleBotaoExcluirFavoritos(ActionEvent event) {
+    private void handleBotaoExcluirFavoritos() {
         // Aqui você pode pegar a receita selecionada e chamar removerFavorito com ela
         Receita receitaSelecionada = listaFavoritos.getSelectionModel().getSelectedItem();
         if (receitaSelecionada != null) {
