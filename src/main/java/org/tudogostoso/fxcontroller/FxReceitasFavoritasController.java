@@ -17,6 +17,8 @@ import org.tudogostoso.modelo.Sessao;
 import org.tudogostoso.modelo.Usuario;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FxReceitasFavoritasController {
 
@@ -27,10 +29,21 @@ public class FxReceitasFavoritasController {
     private final Usuario usuario = Sessao.getUsuarioSessao();
     private final Controle controle = ControleFactory.criarControleGeral();
     private final FxGerenciadorTelas gerenciadorTelas = FxGerenciadorTelas.getInstance();
+    private final List<Receita> recetiasFavoritasUsuario = new ArrayList<>();
 
     @FXML
     public void initialize() {
+        //verificação de existencia
         controle.verificacaoListaFav(usuario);
+
+        //verificação de edição
+        List<Receita> receitasUsuario = usuario.getReceitasFav();
+        Receita receitaVerificada;
+        for (Receita receita : receitasUsuario) {
+            receitaVerificada = controle.buscarReceitaPorAutorETitulo(receita.getAutor().getNome(), receita.getTitulo());
+            recetiasFavoritasUsuario.add(receitaVerificada);
+        }
+
         favoritosList = FXCollections.observableArrayList();
         listaFavoritos.setItems(favoritosList);
         listaFavoritos.setCellFactory(new Callback<ListView<Receita>, ListCell<Receita>>() {
@@ -43,7 +56,8 @@ public class FxReceitasFavoritasController {
     }
 
     private void carregarFavoritos() {
-        favoritosList.setAll(usuario.getReceitasFav());
+
+        favoritosList.setAll(recetiasFavoritasUsuario);
     }
 
     @FXML
