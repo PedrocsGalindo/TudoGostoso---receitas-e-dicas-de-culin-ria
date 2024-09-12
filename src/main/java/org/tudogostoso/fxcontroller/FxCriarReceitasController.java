@@ -195,8 +195,6 @@ public class FxCriarReceitasController {
         // separa o array usando a quebra de linha como parametro
         List<String> preparo = Arrays.asList(textAreaPreparo.getText().split("\n"));
 
-        System.out.println(caminhoArquivoUsuario);
-
         try {
             //se o usuario tiver selecionado uma imagem
             if (caminhoArquivoUsuario != null) {
