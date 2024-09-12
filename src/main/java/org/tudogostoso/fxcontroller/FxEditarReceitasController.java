@@ -124,10 +124,16 @@ public class FxEditarReceitasController {
             }
 
             // A posição do ContextMenu definida não influencia onde ele aparecera na tela
-            double x = textFieldIngrediente.localToScene(0, 0).getX() + textFieldIngrediente.getScene().getWindow().getX() + textFieldIngrediente.getLayoutX();
-            double y = textFieldIngrediente.localToScene(0, 0).getY() + textFieldIngrediente.getScene().getWindow().getY() + textFieldIngrediente.getLayoutY() + textFieldIngrediente.getHeight();
+            double x = textFieldIngrediente.localToScene(0, 0).getX()
+                    + textFieldIngrediente.getScene().getWindow().getX()
+                    + textFieldIngrediente.getLayoutX();
 
-            sugestoes.show(textFieldIngrediente, x, y);
+            double y = textFieldIngrediente.localToScene(0, 0).getY()
+                    + textFieldIngrediente.getScene().getWindow().getY()
+                    + textFieldIngrediente.getLayoutY()
+                    + textFieldIngrediente.getHeight();
+
+            sugestoes.show(textFieldIngrediente, x, y - 177);
         } else {
             sugestoes.hide(); //se não houver sugestões
         }
