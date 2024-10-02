@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GoogleImagens {
-    private static final String API_KEY = "AIzaSyBZwU23Hdl_HVxhhcgJeO-7XKD5KVysBO4";
-    private static final String CX = "702669bb08f8e4a1f";
+    private static final String API_KEY = ""; //dado sensivel
+    private static final String CX = ""; //dado sensivel
     private static final String DIRETORIO_IMAGENS = "src/main/resources/org/tudogostoso/ImagensReceitas/";
 
     /**
